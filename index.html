@@ -2,705 +2,935 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>ORRA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#000">
+<title>ORRA — Online Store</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#111;overflow-x:hidden}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#fff;
+  color:#000;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden
+}
+body.lock{overflow:hidden}
 button,input,textarea{font:inherit}
 button{cursor:pointer}
 a{text-decoration:none;color:inherit}
 
-/* HEADER */
-header{
- position:sticky;top:0;z-index:1000;
- background:rgba(255,255,255,.97);
- border-bottom:1px solid #eee;
- backdrop-filter:blur(10px)
-}
-.header{
- height:72px;max-width:1400px;margin:auto;padding:0 28px;
- display:flex;align-items:center;justify-content:space-between
-}
-.logo{font-size:27px;font-weight:700;letter-spacing:5px}
-.nav{display:flex;gap:30px;font-size:12px;letter-spacing:1.5px}
-.nav a:hover{opacity:.5}
-.header-actions{display:flex;align-items:center;gap:20px}
-.icon-btn{
- border:0;background:none;color:#000;
- display:flex;align-items:center;gap:6px;
- font-size:12px;letter-spacing:1px
-}
-.icon-btn svg{
- width:20px;height:20px;stroke:#000;fill:none;stroke-width:1.8
+/* TOP DELIVERY BAR */
+.announcement{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  height:34px;
+  background:#000;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:0 10px
 }
 
-/* SEARCH */
-.search-box{
- display:none;position:absolute;top:72px;left:0;right:0;
- background:#fff;border-bottom:1px solid #ddd;padding:18px 28px
+/* HEADER */
+header{
+  position:sticky;
+  top:34px;
+  z-index:900;
+  height:70px;
+  background:#fff;
+  border-bottom:1px solid #eee;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:0 22px
 }
-.search-box.active{display:block}
-.search-inner{max-width:1400px;margin:auto;display:flex;gap:10px}
-.search-inner input{
- width:100%;border:0;border-bottom:1px solid #111;
- padding:12px 0;outline:none;font-size:14px
+.logo{
+  font-size:25px;
+  font-weight:700;
+  letter-spacing:5px
 }
+.header-left,.header-right{
+  display:flex;
+  align-items:center;
+  gap:18px
+}
+.header-right{justify-content:flex-end}
+.nav{
+  border:0;
+  background:none;
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase
+}
+.icon{
+  width:34px;
+  height:34px;
+  border:0;
+  background:#fff;
+  padding:5px
+}
+.icon svg{width:100%;height:100%;stroke:#000}
 
 /* HERO */
 .hero{
- height:78vh;min-height:520px;position:relative;
- overflow:hidden;background:#eee
+  height:calc(100vh - 104px);
+  min-height:560px;
+  position:relative;
+  overflow:hidden;
+  background:#eee
 }
 .hero img{
- width:100%;height:100%;object-fit:cover;display:block
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block
 }
-.hero-overlay{
- position:absolute;inset:0;display:flex;align-items:center;
- justify-content:center;text-align:center;
- background:rgba(0,0,0,.1)
+.hero-text{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-start;
+  padding:45px 7vw;
+  color:#fff;
+  background:linear-gradient(transparent 40%,rgba(0,0,0,.5))
 }
-.hero-content{color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.3)}
-.hero-small{font-size:12px;letter-spacing:4px;margin-bottom:18px}
-.hero-title{
- font-size:clamp(45px,8vw,90px);
- letter-spacing:8px;margin-bottom:28px
+.hero-small{
+  font-size:11px;
+  letter-spacing:2px;
+  margin-bottom:12px
 }
-.hero-button{
- display:inline-block;background:#fff;color:#111;
- padding:15px 30px;font-size:11px;letter-spacing:2px
+.hero h1{
+  font-size:clamp(42px,7vw,90px);
+  line-height:.92;
+  font-weight:400;
+  letter-spacing:-3px;
+  margin:0 0 25px
 }
+.white-btn,.black-btn{
+  border:1px solid #000;
+  padding:14px 25px;
+  font-size:10px;
+  letter-spacing:1.6px;
+  text-transform:uppercase
+}
+.white-btn{background:#fff;color:#000;border-color:#fff}
+.black-btn{background:#000;color:#fff}
 
 /* SECTIONS */
-.section{
- max-width:1400px;margin:auto;padding:90px 28px
+.section{padding:75px 6vw}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:25px
 }
 .section-title{
- text-align:center;font-size:11px;
- letter-spacing:4px;margin-bottom:45px
+  margin:0;
+  font-size:25px;
+  font-weight:400
+}
+.section-note{
+  font-size:10px;
+  letter-spacing:1.3px;
+  text-transform:uppercase
 }
 
 /* COLLECTIONS */
 .collections{
- display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px
 }
 .collection{
- height:500px;position:relative;overflow:hidden;background:#eee
+  position:relative;
+  height:430px;
+  overflow:hidden;
+  background:#eee
 }
 .collection img{
- width:100%;height:100%;object-fit:cover;transition:.5s
+  width:100%;
+  height:100%;
+  object-fit:cover
 }
-.collection:hover img{transform:scale(1.03)}
-.collection-overlay{
- position:absolute;inset:0;display:flex;
- align-items:flex-end;padding:28px;
- background:linear-gradient(transparent 45%,rgba(0,0,0,.5))
+.collection span{
+  position:absolute;
+  left:20px;
+  bottom:20px;
+  color:#fff;
+  font-size:12px;
+  letter-spacing:1.7px;
+  text-transform:uppercase
 }
-.collection-name{color:#fff;font-size:15px;letter-spacing:3px}
 
 /* PRODUCTS */
 .products{
- display:grid;grid-template-columns:repeat(4,1fr);gap:22px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:25px 12px
 }
-.product-card{cursor:pointer}
-.product-image{
- width:100%;aspect-ratio:3/4;object-fit:cover;
- display:block;background:#f3f3f3
+.product{
+  border:0;
+  background:#fff;
+  padding:0;
+  text-align:left
 }
-.product-info{padding:14px 2px 5px}
-.product-category{
- font-size:9px;letter-spacing:2px;
- color:#777;margin-bottom:7px
+.product-img{
+  aspect-ratio:3/4;
+  background:#eee;
+  overflow:hidden
 }
-.product-name{font-size:13px;margin-bottom:7px}
-.product-price{font-size:13px}
+.product-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block
+}
+.product-info{padding:10px 2px}
+.product-name{font-size:12px;margin-bottom:6px}
+.product-price{font-size:12px}
+.product-cat{
+  color:#777;
+  font-size:9px;
+  letter-spacing:1.2px;
+  margin-top:5px;
+  text-transform:uppercase
+}
 .loading{
- grid-column:1/-1;text-align:center;
- padding:60px;font-size:11px;letter-spacing:2px
+  grid-column:1/-1;
+  padding:50px;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:1.3px
 }
 .error{
- grid-column:1/-1;text-align:center;
- padding:60px 20px;font-size:11px;
- letter-spacing:1.5px;line-height:2
+  grid-column:1/-1;
+  padding:25px;
+  border:1px solid #ddd;
+  text-align:center;
+  font-size:11px;
+  line-height:1.8
 }
 
-/* IMAGE BREAK */
-.image-break{height:620px;overflow:hidden;background:#eee}
-.image-break img{width:100%;height:100%;object-fit:cover}
+/* EDITORIAL */
+.editorial{
+  margin:0 6vw;
+  height:58vh;
+  position:relative;
+  overflow:hidden;
+  background:#eee
+}
+.editorial img{
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+.editorial-text{
+  position:absolute;
+  left:6%;
+  bottom:7%;
+  color:#fff
+}
+.editorial-text h2{
+  margin:0 0 18px;
+  font-size:55px;
+  line-height:.95;
+  font-weight:400
+}
 
 /* FOOTER */
-footer{background:#111;color:#fff;padding:70px 28px 30px}
-.footer{max-width:1400px;margin:auto}
-.footer-logo{font-size:28px;letter-spacing:6px;margin-bottom:45px}
-.footer-links{
- display:flex;gap:30px;font-size:10px;
- letter-spacing:1px;margin-bottom:70px
+footer{
+  margin-top:75px;
+  padding:55px 6vw 30px;
+  background:#000;
+  color:#fff
 }
-.footer-bottom{
- border-top:1px solid #333;
- padding-top:20px;font-size:9px;color:#aaa
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:40px
+}
+.footer-logo{
+  font-size:25px;
+  font-weight:700;
+  letter-spacing:5px;
+  margin-bottom:15px
+}
+footer p,footer a{
+  color:#aaa;
+  font-size:11px;
+  line-height:1.8
+}
+footer h4{
+  font-size:10px;
+  letter-spacing:1.5px
+}
+footer a{display:block;margin-bottom:8px}
+.copy{
+  border-top:1px solid #222;
+  margin-top:40px;
+  padding-top:20px;
+  color:#666;
+  font-size:9px;
+  letter-spacing:1px
 }
 
-/* PRODUCT MODAL */
+/* PRODUCT PAGE */
 .modal{
- position:fixed;inset:0;z-index:2000;
- background:rgba(0,0,0,.55);
- display:none;align-items:center;
- justify-content:center;padding:20px
+  position:fixed;
+  inset:0;
+  z-index:1800;
+  display:none;
+  background:#fff
 }
-.modal.active{display:flex}
-.modal-box{
- width:min(1050px,100%);
- max-height:94vh;overflow:auto;background:#fff;
- display:grid;grid-template-columns:1.1fr .9fr;
- position:relative
-}
+.modal.active{display:block}
 .close{
- position:absolute;right:15px;top:15px;z-index:20;
- width:38px;height:38px;border:0;background:#fff;
- color:#000;font-size:25px;
- display:flex;align-items:center;justify-content:center
+  position:absolute;
+  right:15px;
+  top:12px;
+  z-index:30;
+  width:44px;
+  height:44px;
+  border:0;
+  background:#fff;
+  font-size:30px;
+  font-weight:300
 }
-
-/* GALLERY */
+.modal-content{
+  height:100%;
+  display:grid;
+  grid-template-columns:1.15fr .85fr
+}
 .gallery{
- position:relative;background:#f3f3f3;overflow:hidden;
- touch-action:pan-y
+  position:relative;
+  background:#f3f3f3;
+  overflow:hidden;
+  touch-action:pan-y
 }
-.track{
- display:flex;width:100%;
- transition:transform .3s ease;
- touch-action:pan-y
-}
-.slide{min-width:100%;aspect-ratio:3/4}
-.slide img{
- width:100%;height:100%;object-fit:cover;
- display:block;user-select:none;
- -webkit-user-drag:none;pointer-events:none
+.gallery img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  user-select:none;
+  -webkit-user-drag:none
 }
 .dots{
- position:absolute;bottom:15px;left:0;right:0;
- display:flex;justify-content:center;gap:7px;z-index:5
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:7px
 }
 .dot{
- width:7px;height:7px;border-radius:50%;
- border:1px solid #111;background:#fff;padding:0
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#bbb
 }
-.dot.active{background:#111}
-
-/* DETAILS */
+.dot.active{background:#000}
 .details{
- padding:55px 45px;
- display:flex;flex-direction:column;
- justify-content:center
+  padding:90px 7vw 50px 5vw;
+  overflow:auto
 }
 .category{
- font-size:9px;letter-spacing:3px;
- color:#777;margin-bottom:12px
+  color:#777;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:12px
 }
-.name{font-size:28px;font-weight:400;margin-bottom:12px}
-.price{font-size:16px;margin-bottom:28px}
+.details h2{
+  font-size:30px;
+  font-weight:400;
+  margin:0 0 12px
+}
+.price{
+  font-size:16px;
+  margin-bottom:30px
+}
 .description{
- font-size:13px;line-height:1.8;
- color:#555;margin-bottom:28px
+  color:#555;
+  font-size:12px;
+  line-height:1.7;
+  margin-bottom:30px
 }
-.size-label{font-size:9px;letter-spacing:2px;margin-bottom:10px}
-.sizes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px}
+.option{
+  font-size:10px;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  margin-bottom:10px
+}
+.sizes{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:30px
+}
 .size{
- min-width:48px;height:42px;background:#fff!important;
- color:#111!important;border:1px solid #111!important;
- font-size:12px;-webkit-appearance:none;
- appearance:none;border-radius:0
+  min-width:48px;
+  height:40px;
+  background:#fff;
+  border:1px solid #ccc;
+  font-size:11px
 }
-.size:hover,.size.selected{
- background:#111!important;color:#fff!important
+.size.selected{
+  background:#000;
+  color:#fff;
+  border-color:#000
 }
 .add{
- width:100%;height:52px;background:#111;color:#fff;
- border:0;font-size:10px;letter-spacing:2px
+  width:100%;
+  height:50px;
+  background:#000;
+  color:#fff;
+  border:1px solid #000;
+  font-size:11px;
+  letter-spacing:1.5px
+}
+
+/* ADDED TO BAG */
+.notice{
+  position:fixed;
+  z-index:3000;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(.95);
+  background:#000;
+  color:#fff;
+  padding:18px 28px;
+  font-size:11px;
+  letter-spacing:2px;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s
+}
+.notice.show{
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1)
 }
 
 /* BAG */
-.bag-modal{
- position:fixed;inset:0;z-index:2500;
- background:rgba(0,0,0,.45);
- display:none;justify-content:flex-end
+.panel{
+  position:fixed;
+  inset:0;
+  z-index:1700;
+  display:none;
+  background:#fff;
+  overflow:auto
 }
-.bag-modal.active{display:flex}
+.panel.active{display:block}
+.panel-head{
+  position:sticky;
+  top:0;
+  z-index:5;
+  height:70px;
+  padding:0 22px;
+  background:#fff;
+  border-bottom:1px solid #eee;
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+.panel-head strong{
+  font-size:13px;
+  letter-spacing:1.5px;
+  text-transform:uppercase
+}
+.panel-close{
+  border:0;
+  background:none;
+  font-size:28px
+}
 .bag{
- background:#fff;width:min(450px,100%);
- height:100%;padding:28px;overflow:auto
+  max-width:760px;
+  margin:auto;
+  padding:35px 22px 70px
 }
-.bag-head{
- display:flex;justify-content:space-between;
- align-items:center;margin-bottom:35px
-}
-.bag-title{font-size:12px;letter-spacing:3px}
-.bag-close{border:0;background:none;font-size:24px;color:#000}
-.bag-items{font-size:13px}
 .bag-item{
- padding:15px 0;border-bottom:1px solid #eee;
- display:flex;align-items:center;
- justify-content:space-between;gap:12px
+  display:grid;
+  grid-template-columns:90px 1fr auto;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid #eee
 }
-.bag-item-left{
- display:flex;align-items:center;gap:12px;flex:1
+.bag-item img{
+  width:90px;
+  height:120px;
+  object-fit:cover;
+  background:#eee
 }
-.bag-item-image{
- width:65px;height:82px;object-fit:cover;
- background:#f3f3f3;flex-shrink:0
+.bag-name{
+  font-size:12px;
+  margin-bottom:8px
 }
-.bag-item-info{font-size:12px;line-height:1.7}
-.bag-item-price{font-size:12px;white-space:nowrap}
-.checkout{
- margin-top:30px;width:100%;height:50px;
- background:#111;color:#fff;border:0;
- letter-spacing:2px;font-size:10px
+.bag-meta{
+  color:#777;
+  font-size:10px;
+  line-height:1.7
 }
-
-/* NOTIFICATION */
-.notification{
- position:fixed;left:50%;bottom:30px;
- transform:translate(-50%,20px);
- z-index:5000;background:#111;color:#fff;
- border:1px solid #111;padding:15px 28px;
- min-width:210px;text-align:center;
- font-size:10px;letter-spacing:2px;
- opacity:0;visibility:hidden;
- transition:opacity .25s ease,transform .25s ease,visibility .25s ease;
- pointer-events:none
+.remove{
+  border:0;
+  background:none;
+  text-decoration:underline;
+  padding:0;
+  margin-top:10px;
+  font-size:10px
 }
-.notification.show{
- opacity:1;visibility:visible;transform:translate(-50%,0)
+.total{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  font-size:13px
+}
+.checkout-btn{
+  width:100%;
+  height:50px;
+  background:#000;
+  color:#fff;
+  border:0;
+  font-size:11px;
+  letter-spacing:1.5px;
+  margin-top:15px
 }
 
 /* CHECKOUT */
-.checkout-modal{
- position:fixed;inset:0;z-index:3000;
- background:rgba(0,0,0,.55);
- display:none;align-items:center;
- justify-content:center;padding:20px
-}
-.checkout-modal.active{display:flex}
-.checkout-box{
- width:min(950px,100%);max-height:94vh;
- overflow:auto;background:#fff;position:relative;padding:45px
-}
-.checkout-close{
- position:absolute;right:15px;top:15px;
- width:38px;height:38px;border:0;
- background:#fff;color:#000;font-size:25px;
- display:flex;align-items:center;justify-content:center
+.checkout-content{
+  max-width:700px;
+  margin:auto;
+  padding:40px 22px 70px
 }
 .checkout-title{
- font-size:13px;letter-spacing:4px;margin-bottom:40px
+  font-size:25px;
+  font-weight:400;
+  margin:0 0 30px
 }
-.checkout-content{
- display:grid;grid-template-columns:1fr 1fr;gap:55px
+.field{margin-bottom:17px}
+.field label{
+  display:block;
+  font-size:9px;
+  letter-spacing:1.3px;
+  margin-bottom:7px;
+  text-transform:uppercase
 }
-.checkout-section-title{
- font-size:10px;letter-spacing:3px;
- margin-bottom:25px;border-bottom:1px solid #111;
- padding-bottom:12px
+.field input,.field textarea{
+  width:100%;
+  border:1px solid #ccc;
+  padding:13px;
+  outline:0;
+  background:#fff;
+  font-size:12px
 }
-.checkout-item{
- display:flex;gap:15px;padding:15px 0;
- border-bottom:1px solid #eee
+.field textarea{
+  min-height:90px;
+  resize:vertical
 }
-.checkout-item-image{
- width:80px;height:100px;object-fit:cover;
- background:#f3f3f3;flex-shrink:0
+.cod{
+  border:1px solid #000;
+  padding:14px;
+  font-size:10px;
+  letter-spacing:1px;
+  margin:25px 0
 }
-.checkout-item-info{flex:1;font-size:12px;line-height:1.8}
-.checkout-item-name{margin-bottom:4px}
-.checkout-item-meta{color:#777;font-size:10px}
-.checkout-item-price{font-size:12px;margin-top:5px}
-.checkout-subtotal,
-.checkout-delivery,
-.checkout-total{
- display:flex;justify-content:space-between;
- align-items:center;font-size:11px;letter-spacing:1.5px
+.summary{
+  border-top:1px solid #000;
+  padding-top:18px
 }
-.checkout-subtotal{
- margin-top:25px;padding-top:18px;border-top:1px solid #eee
+.summary div{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:11px;
+  font-size:12px
 }
-.checkout-delivery{margin-top:12px;color:#555}
-.checkout-total{
- border-top:1px solid #111;margin-top:15px;
- padding-top:18px;letter-spacing:2px
+.summary .grand{
+  border-top:1px solid #eee;
+  padding-top:15px;
+  font-size:14px
 }
-.checkout-form{display:flex;flex-direction:column}
-.checkout-form label{
- font-size:9px;letter-spacing:1.5px;
- margin-bottom:7px;margin-top:15px
+
+/* SEARCH */
+.search{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  background:#fff;
+  display:none;
+  padding:110px 7vw 40px
 }
-.checkout-form input,
-.checkout-form textarea{
- width:100%;border:1px solid #ddd;
- padding:13px;outline:none;font-size:13px;
- background:#fff;color:#111
+.search.active{display:block}
+.search-x{
+  position:absolute;
+  top:75px;
+  right:20px;
+  background:none;
+  border:0;
+  font-size:30px
 }
-.checkout-form input:focus,
-.checkout-form textarea:focus{border-color:#111}
-.checkout-form textarea{min-height:80px;resize:vertical}
-.payment-box{
- margin-top:28px;border-top:1px solid #eee;
- border-bottom:1px solid #eee;padding:20px 0
-}
-.payment-title{font-size:9px;letter-spacing:2px;margin-bottom:15px}
-.payment-method{
- display:flex;align-items:center;gap:10px;
- font-size:10px;letter-spacing:1px
-}
-.payment-radio{
- width:14px;height:14px;border:1px solid #111;
- border-radius:50%;display:block;position:relative
-}
-.payment-radio:after{
- content:"";position:absolute;width:6px;height:6px;
- background:#111;border-radius:50%;top:3px;left:3px
-}
-.place-order{
- width:100%;height:52px;background:#111;
- color:#fff;border:0;margin-top:25px;
- font-size:10px;letter-spacing:2px
+.search input{
+  width:100%;
+  border:0;
+  border-bottom:1px solid #000;
+  outline:0;
+  font-size:28px;
+  padding:15px 0
 }
 
 /* MOBILE */
-@media(max-width:800px){
- .header{height:64px;padding:0 18px}
- .logo{font-size:21px;letter-spacing:4px}
- .nav{display:none}
- .hero{height:70vh}
- .hero-title{font-size:48px;letter-spacing:5px}
- .section{padding:65px 18px}
- .collections{grid-template-columns:1fr}
- .collection{height:420px}
- .products{grid-template-columns:repeat(2,1fr);gap:15px}
- .image-break{height:450px}
- .modal{padding:0;align-items:flex-end}
- .modal-box{
-  width:100%;max-height:96vh;display:block
- }
- .slide{aspect-ratio:4/5}
- .details{padding:30px 20px 35px}
- .name{font-size:24px}
- .close{top:10px;right:10px}
- .footer-links{flex-wrap:wrap}
- .checkout-modal{padding:0;align-items:flex-end}
- .checkout-box{
-  width:100%;max-height:96vh;
-  padding:35px 20px 30px
- }
- .checkout-content{grid-template-columns:1fr;gap:40px}
- .checkout-title{margin-bottom:30px}
- .checkout-item-image{width:70px;height:88px}
- .notification{
-  bottom:20px;width:calc(100% - 40px);min-width:0
- }
+@media(max-width:850px){
+  header{
+    height:62px;
+    top:34px;
+    padding:0 14px
+  }
+  .logo{font-size:21px;letter-spacing:4px}
+  .header-left .nav{display:none}
+  .header-right{gap:4px}
+
+  .hero{
+    height:calc(100svh - 96px);
+    min-height:540px
+  }
+  .hero-text{padding:30px 22px}
+  .hero h1{font-size:48px}
+
+  .section{padding:55px 16px}
+  .section-title{font-size:22px}
+
+  .collections{
+    grid-template-columns:1fr 1fr
+  }
+  .collection{height:260px}
+  .collection:first-child{
+    grid-column:1/-1;
+    height:390px
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:25px 9px
+  }
+
+  .editorial{
+    margin:0 16px;
+    height:58vh
+  }
+  .editorial-text h2{font-size:40px}
+
+  footer{padding:45px 20px 30px}
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+    gap:30px 20px
+  }
+  .footer-grid>div:first-child{
+    grid-column:1/-1
+  }
+
+  .modal-content{
+    display:flex;
+    flex-direction:column;
+    overflow:auto
+  }
+  .gallery{
+    height:64svh;
+    min-height:0;
+    flex:0 0 64svh
+  }
+  .details{
+    padding:28px 20px 50px;
+    overflow:visible
+  }
+  .close{
+    top:8px;
+    right:8px
+  }
+
+  .bag-item{
+    grid-template-columns:75px 1fr auto
+  }
+  .bag-item img{
+    width:75px;
+    height:100px
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- DELIVERY BAR -->
+<div class="announcement">
+  Delivery takes 12-20 working days
+</div>
+
+<!-- HEADER -->
 <header>
-<div class="header">
+  <div class="header-left">
+    <button class="nav" onclick="goHome()">Home</button>
+    <button class="nav" onclick="shop()">Shop</button>
+  </div>
 
-<a class="logo" href="#" onclick="goHome(event)">ORRA</a>
+  <a href="#" class="logo" onclick="goHome();return false">ORRA</a>
 
-<nav class="nav">
-<a href="#new-in">NEW IN</a>
-<a href="#collections">COLLECTIONS</a>
-<a href="#shop">SHOP</a>
-</nav>
+  <div class="header-right">
+    <button class="icon" onclick="openSearch()" aria-label="Search">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7">
+        <circle cx="10.5" cy="10.5" r="6.5"/>
+        <path d="M15.5 15.5L21 21"/>
+      </svg>
+    </button>
 
-<div class="header-actions">
-
-<button class="icon-btn" onclick="toggleSearch()">
-<svg viewBox="0 0 24 24">
-<circle cx="11" cy="11" r="6.5"></circle>
-<path d="M16 16l5 5"></path>
-</svg>
-<span>SEARCH</span>
-</button>
-
-<button class="icon-btn" onclick="openBag()">
-<svg viewBox="0 0 24 24">
-<path d="M6 8h12l1 13H5L6 8z"></path>
-<path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
-</svg>
-<span>BAG (<b id="bagCount">0</b>)</span>
-</button>
-
-</div>
-</div>
-
-<div class="search-box" id="searchBox">
-<div class="search-inner">
-<input id="searchInput"
-placeholder="Search ORRA..."
-oninput="searchProducts()">
-</div>
-</div>
+    <button class="icon" onclick="openBag()" aria-label="Bag">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7">
+        <path d="M5 8h14l-1 13H6L5 8Z"/>
+        <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+      </svg>
+    </button>
+  </div>
 </header>
 
+<!-- HOME -->
+<main id="home">
 
 <section class="hero">
-<img src="IMG_3097.jpeg" alt="ORRA">
-
-<div class="hero-overlay">
-<div class="hero-content">
-
-<div class="hero-small">NEW COLLECTION</div>
-
-<div class="hero-title">ORRA</div>
-
-<a href="#new-in" class="hero-button">SHOP NOW</a>
-
-</div>
-</div>
+  <img src="IMG_3097.jpeg" alt="ORRA">
+  <div class="hero-text">
+    <div class="hero-small">NEW COLLECTION</div>
+    <h1>Made for<br>your style.</h1>
+    <button class="white-btn" onclick="shop()">SHOP NOW</button>
+  </div>
 </section>
 
+<section class="section">
+  <div class="section-head">
+    <h2 class="section-title">Collections</h2>
+    <span class="section-note">ORRA</span>
+  </div>
 
-<section class="section" id="collections">
+  <div class="collections">
+    <a class="collection" href="#shop" onclick="filterCategory('SETS')">
+      <img src="IMG_3097.jpeg" alt="Sets">
+      <span>Sets</span>
+    </a>
 
-<div class="section-title">COLLECTIONS</div>
+    <a class="collection" href="#shop" onclick="filterCategory('DRESSES')">
+      <img src="IMG_3098.jpeg" alt="Dresses">
+      <span>Dresses</span>
+    </a>
 
-<div class="collections">
-
-<a class="collection" href="#shop">
-<img src="IMG_3097.jpeg" alt="SETS">
-<div class="collection-overlay">
-<div class="collection-name">SETS</div>
-</div>
-</a>
-
-<a class="collection" href="#new-in">
-<img src="IMG_3098.jpeg" alt="NEW IN">
-<div class="collection-overlay">
-<div class="collection-name">NEW IN</div>
-</div>
-</a>
-
-<a class="collection" href="#shop">
-<img src="IMG_3099.jpeg" alt="SHOP ALL">
-<div class="collection-overlay">
-<div class="collection-name">SHOP ALL</div>
-</div>
-</a>
-
-</div>
+    <a class="collection" href="#shop" onclick="filterCategory('JACKETS')">
+      <img src="IMG_3099.jpeg" alt="Jackets">
+      <span>Jackets</span>
+    </a>
+  </div>
 </section>
-
-
-<section class="section" id="new-in">
-
-<div class="section-title">NEW IN</div>
-
-<div class="products" id="newProducts">
-<div class="loading">LOADING PRODUCTS...</div>
-</div>
-
-</section>
-
-
-<section class="image-break">
-<img src="IMG_3099.jpeg" alt="ORRA">
-</section>
-
 
 <section class="section" id="shop">
+  <div class="section-head">
+    <h2 class="section-title">New In</h2>
+    <span id="count" class="section-note">ORRA</span>
+  </div>
 
-<div class="section-title">SHOP ORRA</div>
-
-<div class="products" id="shopProducts">
-<div class="loading">LOADING PRODUCTS...</div>
-</div>
-
+  <div id="products" class="products">
+    <div class="loading">LOADING ORRA...</div>
+  </div>
 </section>
 
+<section class="editorial">
+  <img src="IMG_3097.jpeg" alt="ORRA">
+  <div class="editorial-text">
+    <h2>Simple.<br>Modern.<br>ORRA.</h2>
+    <button class="white-btn" onclick="shop()">SHOP COLLECTION</button>
+  </div>
+</section>
 
+<section class="section">
+  <h2 class="section-title">About ORRA</h2>
+  <p style="max-width:650px;color:#555;font-size:13px;line-height:1.9">
+    ORRA is a modern fashion store built around clean silhouettes,
+    effortless styling and pieces made to be worn your way.
+  </p>
+</section>
+
+</main>
+
+<!-- FOOTER -->
 <footer>
-<div class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">ORRA</div>
+      <p>Modern fashion. Clean style. Easy shopping.</p>
+    </div>
 
-<div class="footer-logo">ORRA</div>
+    <div>
+      <h4>SHOP</h4>
+      <a href="#shop" onclick="shop()">New In</a>
+      <a href="#shop" onclick="filterCategory('SETS')">Sets</a>
+      <a href="#shop" onclick="filterCategory('DRESSES')">Dresses</a>
+      <a href="#shop" onclick="filterCategory('JACKETS')">Jackets</a>
+    </div>
 
-<div class="footer-links">
-<a href="#new-in">NEW IN</a>
-<a href="#collections">COLLECTIONS</a>
-<a href="#shop">SHOP</a>
-</div>
+    <div>
+      <h4>INFO</h4>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
 
-<div class="footer-bottom">
-© 2026 ORRA. ALL RIGHTS RESERVED.
-</div>
-
-</div>
+  <div class="copy">
+    © 2026 ORRA. ALL RIGHTS RESERVED.
+  </div>
 </footer>
 
-
 <!-- PRODUCT MODAL -->
+<div id="productModal" class="modal">
 
-<div class="modal" id="productModal">
+  <button class="close" onclick="closeProduct()">×</button>
 
-<div class="modal-box">
+  <div class="modal-content">
 
-<button class="close" onclick="closeProduct()">×</button>
+    <div id="gallery" class="gallery">
+      <img id="galleryImg" src="" alt="">
+      <div id="dots" class="dots"></div>
+    </div>
 
-<div class="gallery" id="gallery">
+    <div class="details">
+      <div id="detailCategory" class="category"></div>
+      <h2 id="detailName"></h2>
+      <div id="detailPrice" class="price"></div>
+      <div id="detailDescription" class="description"></div>
 
-<div class="track" id="track"></div>
+      <div class="option">Size</div>
+      <div id="sizes" class="sizes"></div>
 
-<div class="dots" id="dots"></div>
+      <button class="add" onclick="addToBag()">
+        ADD TO BAG
+      </button>
+    </div>
 
+  </div>
 </div>
-
-<div class="details">
-
-<div class="category" id="detailCategory"></div>
-
-<div class="name" id="detailName"></div>
-
-<div class="price" id="detailPrice"></div>
-
-<div class="description" id="detailDescription"></div>
-
-<div class="size-label">SELECT SIZE</div>
-
-<div class="sizes" id="sizes"></div>
-
-<button class="add" onclick="addToBag()">ADD TO BAG</button>
-
-</div>
-</div>
-</div>
-
 
 <!-- BAG -->
+<div id="bagPanel" class="panel">
 
-<div class="bag-modal" id="bagModal">
+  <div class="panel-head">
+    <strong>Your Bag</strong>
+    <button class="panel-close" onclick="closeBag()">×</button>
+  </div>
 
-<div class="bag">
-
-<div class="bag-head">
-
-<div class="bag-title">YOUR BAG</div>
-
-<button class="bag-close" onclick="closeBag()">×</button>
-
-</div>
-
-<div class="bag-items" id="bagItems">
-Your bag is empty.
-</div>
-
-<button class="checkout" onclick="checkout()">
-CHECKOUT
-</button>
+  <div class="bag">
+    <div id="bagItems"></div>
+    <div id="bagSummary"></div>
+  </div>
 
 </div>
-</div>
-
 
 <!-- CHECKOUT -->
+<div id="checkoutPanel" class="panel">
 
-<div class="checkout-modal" id="checkoutModal">
+  <div class="panel-head">
+    <strong>Checkout</strong>
+    <button class="panel-close" onclick="closeCheckout()">×</button>
+  </div>
 
-<div class="checkout-box">
+  <div class="checkout-content">
 
-<button class="checkout-close" onclick="closeCheckout()">×</button>
+    <h2 class="checkout-title">Delivery details</h2>
 
-<div class="checkout-title">CHECKOUT</div>
+    <div class="field">
+      <label>Full name *</label>
+      <input id="fullName" type="text">
+    </div>
 
-<div class="checkout-content">
+    <div class="field">
+      <label>Phone number *</label>
+      <input id="phone" type="tel">
+    </div>
 
-<div class="checkout-order">
+    <div class="field">
+      <label>City *</label>
+      <input id="city" type="text">
+    </div>
 
-<div class="checkout-section-title">YOUR ORDER</div>
+    <div class="field">
+      <label>Area *</label>
+      <input id="area" type="text">
+    </div>
 
-<div id="checkoutItems"></div>
+    <div class="field">
+      <label>Full address *</label>
+      <textarea id="address"></textarea>
+    </div>
 
-<div class="checkout-subtotal">
-<span>SUBTOTAL</span>
-<strong id="checkoutSubtotal">$0.00</strong>
+    <div class="field">
+      <label>Delivery notes</label>
+      <textarea id="notes"></textarea>
+    </div>
+
+    <div class="cod">
+      PAYMENT METHOD: CASH ON DELIVERY
+    </div>
+
+    <div class="summary">
+      <div>
+        <span>Subtotal</span>
+        <span id="subtotal">$0</span>
+      </div>
+
+      <div>
+        <span>Delivery</span>
+        <span>$5</span>
+      </div>
+
+      <div class="grand">
+        <strong>Total</strong>
+        <strong id="total">$0</strong>
+      </div>
+    </div>
+
+    <button class="checkout-btn" onclick="placeOrder()">
+      PLACE ORDER
+    </button>
+
+  </div>
 </div>
 
-<div class="checkout-delivery">
-<span>DELIVERY</span>
-<strong id="checkoutDelivery">$5.00</strong>
-</div>
+<!-- SEARCH -->
+<div id="searchPanel" class="search">
 
-<div class="checkout-total">
-<span>TOTAL</span>
-<strong id="checkoutTotal">$0.00</strong>
-</div>
+  <button class="search-x" onclick="closeSearch()">×</button>
 
-</div>
+  <input
+    id="searchInput"
+    type="search"
+    placeholder="Search ORRA..."
+    oninput="searchProducts()"
+  >
 
-
-<div class="checkout-form">
-
-<div class="checkout-section-title">
-CUSTOMER INFORMATION
-</div>
-
-<label>FULL NAME *</label>
-<input id="customerName" type="text" placeholder="Your full name">
-
-<label>PHONE NUMBER *</label>
-<input id="customerPhone" type="tel" placeholder="Your phone number">
-
-<label>CITY *</label>
-<input id="customerCity" type="text" placeholder="City">
-
-<label>AREA *</label>
-<input id="customerArea" type="text" placeholder="Area">
-
-<label>FULL ADDRESS *</label>
-<textarea id="customerAddress" placeholder="Building, street, floor..."></textarea>
-
-<label>DELIVERY NOTES</label>
-<textarea id="deliveryNotes" placeholder="Optional"></textarea>
-
-<div class="payment-box">
-
-<div class="payment-title">PAYMENT METHOD</div>
-
-<div class="payment-method">
-<span class="payment-radio"></span>
-CASH ON DELIVERY
-</div>
+  <div id="searchResults"></div>
 
 </div>
-
-<button class="place-order" onclick="placeOrder()">
-PLACE ORDER
-</button>
-
-</div>
-
-</div>
-</div>
-</div>
-
 
 <!-- NOTIFICATION -->
-
-<div class="notification" id="bagNotification">
-ADDED TO BAG
+<div id="notice" class="notice">
+  ADDED TO BAG
 </div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-/* ================================
+/* =========================================================
    SUPABASE
-================================ */
+   ========================================================= */
 
 const SUPABASE_URL =
 "https://zkgjtrpmonhnmtxtdjnf.supabase.co";
@@ -708,1508 +938,1165 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_ojC9Dvnetb5aHKLTwCRo4Q_ce";
 
-const supabaseClient =
-window.supabase.createClient(
- SUPABASE_URL,
- SUPABASE_KEY
-);
-
-
-/* ================================
-   DELIVERY
-================================ */
-
 const DELIVERY_CHARGE = 5;
 
-
-/* ================================
-   VARIABLES
-================================ */
+const GITHUB =
+"https://raw.githubusercontent.com/orrafashion/Orra/main/";
 
 let products = [];
-let selectedProduct = null;
-let selectedSize = null;
+let shownProducts = [];
+let selectedCategory = "ALL";
 
-let images = [];
-let currentImage = 0;
+let activeProduct = null;
+let activeImages = [];
+let imageIndex = 0;
+let selectedSize = "";
 
 let bag = [];
 
-let notificationTimer = null;
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
-let galleryStartX = 0;
+function goHome(){
 
+  closeProduct();
+  closeBag();
+  closeCheckout();
+  closeSearch();
 
-/* ================================
-   HOME
-================================ */
+  history.replaceState(
+    null,
+    "",
+    location.pathname + location.search
+  );
 
-function goHome(event){
-
- if(event){
-  event.preventDefault();
- }
-
- closeProduct();
- closeBag();
- closeCheckout();
-
- document.getElementById("searchBox")
- .classList.remove("active");
-
- window.scrollTo({
-  top:0,
-  behavior:"smooth"
- });
-
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
+function shop(){
 
-/* ================================
-   PRODUCT IMAGES
-================================ */
+  closeProduct();
+  closeBag();
+  closeCheckout();
+  closeSearch();
 
-function getImages(product){
-
- /*
-   Supports:
-
-   1. image_urls column
-      Example:
-      IMG_1.jpeg,IMG_2.jpeg,IMG_3.jpeg
-
-   2. image_url containing several
-      comma-separated images
-
-   3. normal single image_url
-
-   4. White Stitch product
- */
-
- if(
-  product.name === "White Stitch Detail Set" ||
-  String(product.image_url || "")
-  .includes("IMG_3097.jpeg")
- ){
-
-  return [
-   "IMG_3097.jpeg",
-   "IMG_3098.jpeg",
-   "IMG_3099.jpeg"
-  ];
-
- }
-
-
- if(product.image_urls){
-
-  if(Array.isArray(product.image_urls)){
-
-   return product.image_urls
-   .map(x=>String(x).trim())
-   .filter(Boolean);
-
-  }
-
-  if(typeof product.image_urls === "string"){
-
-   return product.image_urls
-   .split(",")
-   .map(x=>x.trim())
-   .filter(Boolean);
-
-  }
-
- }
-
-
- if(product.image_url){
-
-  const value =
-  String(product.image_url).trim();
-
-  if(value.includes(",")){
-
-   return value
-   .split(",")
-   .map(x=>x.trim())
-   .filter(Boolean);
-
-  }
-
-  return [value];
-
- }
-
-
- return [];
-
+  document.getElementById("shop")
+    .scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
 }
 
+function filterCategory(category){
 
-/* ================================
-   LOAD PRODUCTS
-================================ */
+  selectedCategory = category;
+
+  shop();
+
+  renderProducts();
+}
+
+/* =========================================================
+   LOAD PRODUCTS FROM SUPABASE
+   ========================================================= */
 
 async function loadProducts(){
 
- const newBox =
- document.getElementById("newProducts");
-
- const shopBox =
- document.getElementById("shopProducts");
-
-
- newBox.innerHTML =
- '<div class="loading">LOADING PRODUCTS...</div>';
-
- shopBox.innerHTML =
- '<div class="loading">LOADING PRODUCTS...</div>';
-
-
- try{
-
-  let result =
-  await supabaseClient
-  .from("Products")
-  .select("*")
-  .order(
-   "created_at",
-   {ascending:false}
-  );
-
-
-  /*
-    Some Supabase setups may expose
-    the table using lowercase.
-  */
-
-  if(result.error){
-
-   result =
-   await supabaseClient
-   .from("products")
-   .select("*")
-   .order(
-    "created_at",
-    {ascending:false}
-   );
-
-  }
-
-
-  if(result.error){
-
-   console.error(
-    "SUPABASE ERROR:",
-    result.error
-   );
-
-   products = [];
-
-   const errorHTML = `
-    <div class="error">
-     COULD NOT LOAD PRODUCTS.<br>
-     PLEASE CHECK THE SUPABASE PRODUCTS TABLE.
-    </div>
-   `;
-
-   newBox.innerHTML = errorHTML;
-   shopBox.innerHTML = errorHTML;
-
-   return;
-
-  }
-
-
-  products =
-  Array.isArray(result.data)
-  ? result.data
-  : [];
-
-
-  if(!products.length){
-
-   newBox.innerHTML =
-   '<div class="loading">NO PRODUCTS YET.</div>';
-
-   shopBox.innerHTML =
-   '<div class="loading">NO PRODUCTS YET.</div>';
-
-   return;
-
-  }
-
-
-  renderProducts(
-   products,
-   newBox
-  );
-
-  renderProducts(
-   products,
-   shopBox
-  );
-
-
- }catch(error){
-
-  console.error(
-   "PRODUCT LOAD ERROR:",
-   error
-  );
-
-  const errorHTML = `
-   <div class="error">
-    COULD NOT LOAD PRODUCTS.<br>
-    PLEASE TRY AGAIN.
-   </div>
-  `;
-
-  newBox.innerHTML = errorHTML;
-  shopBox.innerHTML = errorHTML;
-
- }
-
-}
-
-
-/* ================================
-   RENDER PRODUCTS
-================================ */
-
-function renderProducts(list, box){
-
- if(!list.length){
+  const box = document.getElementById("products");
 
   box.innerHTML =
-  '<div class="loading">NO PRODUCTS FOUND.</div>';
+    '<div class="loading">LOADING ORRA...</div>';
 
-  return;
+  const urls = [
+    SUPABASE_URL + "/rest/v1/Products?select=*",
+    SUPABASE_URL + "/rest/v1/products?select=*"
+  ];
 
- }
+  let errorMessage = "";
 
+  for(const url of urls){
 
- box.innerHTML = "";
+    try{
 
+      const response = await fetch(url,{
+        method:"GET",
+        headers:{
+          "apikey":SUPABASE_KEY,
+          "Authorization":"Bearer " + SUPABASE_KEY,
+          "Accept":"application/json"
+        },
+        cache:"no-store"
+      });
 
- list.forEach(product=>{
+      const text = await response.text();
 
-  const card =
-  document.createElement("div");
+      if(!response.ok){
 
-  card.className =
-  "product-card";
+        errorMessage =
+          "HTTP " +
+          response.status +
+          ": " +
+          text;
 
+        continue;
+      }
 
-  const image =
-  document.createElement("img");
+      const data = JSON.parse(text);
 
-  image.className =
-  "product-image";
+      if(!Array.isArray(data)){
 
+        errorMessage =
+          "Supabase returned invalid data.";
 
-  const productImages =
-  getImages(product);
+        continue;
+      }
 
+      products = data.map(p=>({
 
-  image.src =
-  productImages[0] || "";
+        ...p,
 
-  image.alt =
-  product.name || "ORRA";
+        name:p.name || "ORRA PRODUCT",
 
+        price:Number(p.price) || 0,
 
-  image.onerror = function(){
+        category:p.category || "ORRA",
 
-   this.style.background="#f3f3f3";
+        sizes:p.sizes || "",
 
-  };
+        description:
+          p.description ||
+          "A piece from the ORRA collection."
 
+      }));
 
-  const info =
-  document.createElement("div");
+      products.sort((a,b)=>
+        new Date(b.created_at || 0) -
+        new Date(a.created_at || 0)
+      );
 
-  info.className =
-  "product-info";
+      renderProducts();
 
+      return;
 
-  const category =
-  document.createElement("div");
+    }catch(error){
 
-  category.className =
-  "product-category";
+      errorMessage =
+        error.message || String(error);
 
-  category.textContent =
-  product.category || "ORRA";
-
-
-  const name =
-  document.createElement("div");
-
-  name.className =
-  "product-name";
-
-  name.textContent =
-  product.name || "Product";
-
-
-  const price =
-  document.createElement("div");
-
-  price.className =
-  "product-price";
-
-  price.textContent =
-  "$" +
-  Number(
-   product.price || 0
-  ).toFixed(2);
-
-
-  info.appendChild(category);
-  info.appendChild(name);
-  info.appendChild(price);
-
-  card.appendChild(image);
-  card.appendChild(info);
-
-
-  card.onclick = function(){
-
-   openProduct(product);
-
-  };
-
-
-  box.appendChild(card);
-
- });
-
-}
-
-
-/* ================================
-   OPEN PRODUCT
-================================ */
-
-function openProduct(product){
-
- selectedProduct =
- product;
-
- selectedSize =
- null;
-
- currentImage =
- 0;
-
- images =
- getImages(product);
-
-
- document.getElementById(
-  "detailCategory"
- ).textContent =
- product.category || "ORRA";
-
-
- document.getElementById(
-  "detailName"
- ).textContent =
- product.name || "Product";
-
-
- document.getElementById(
-  "detailPrice"
- ).textContent =
- "$" +
- Number(
-  product.price || 0
- ).toFixed(2);
-
-
- document.getElementById(
-  "detailDescription"
- ).textContent =
- product.description ||
- "Designed by ORRA. Simple, modern and made for your style.";
-
-
- renderGallery();
- renderSizes();
-
-
- document.getElementById(
-  "productModal"
- ).classList.add("active");
-
-
- document.body.style.overflow =
- "hidden";
-
-}
-
-
-/* ================================
-   CLOSE PRODUCT
-================================ */
-
-function closeProduct(){
-
- document.getElementById(
-  "productModal"
- ).classList.remove("active");
-
-
- document.body.style.overflow =
- "";
-
-}
-
-
-/* ================================
-   GALLERY
-================================ */
-
-function renderGallery(){
-
- const track =
- document.getElementById("track");
-
- const dots =
- document.getElementById("dots");
-
-
- track.innerHTML = "";
- dots.innerHTML = "";
-
-
- if(!images.length){
-
-  images = [""];
-
- }
-
-
- images.forEach(
- (url,index)=>{
-
-  const slide =
-  document.createElement("div");
-
-  slide.className =
-  "slide";
-
-
-  const img =
-  document.createElement("img");
-
-  img.src = url;
-
-  img.alt =
-  selectedProduct?.name ||
-  "ORRA";
-
-
-  slide.appendChild(img);
-  track.appendChild(slide);
-
-
-  if(images.length > 1){
-
-   const dot =
-   document.createElement("button");
-
-   dot.className =
-   "dot";
-
-
-   if(index === 0){
-
-    dot.classList.add("active");
-
-   }
-
-
-   dot.onclick = function(){
-
-    currentImage = index;
-
-    updateGallery();
-
-   };
-
-
-   dots.appendChild(dot);
+    }
 
   }
 
- });
+  box.innerHTML =
+    `<div class="error">
+      <strong>COULD NOT LOAD PRODUCTS</strong>
+      <br><br>
+      ${escapeHtml(errorMessage)}
+      <br><br>
+      Please check Supabase Products SELECT access.
+    </div>`;
 
-
- updateGallery();
-
+  document.getElementById("count").textContent="ERROR";
 }
 
+/* =========================================================
+   PRODUCT IMAGES
+   ========================================================= */
 
-function updateGallery(){
-
- const track =
- document.getElementById("track");
-
-
- track.style.transform =
- "translateX(-" +
- (currentImage * 100) +
- "%)";
-
-
- document
- .querySelectorAll(".dot")
- .forEach(
- (dot,index)=>{
-
-  dot.classList.toggle(
-   "active",
-   index === currentImage
-  );
-
- });
-
-}
-
-
-function nextImage(){
-
- if(images.length < 2)
- return;
-
-
- currentImage =
- (currentImage + 1) %
- images.length;
-
-
- updateGallery();
-
-}
-
-
-function previousImage(){
-
- if(images.length < 2)
- return;
-
-
- currentImage =
- (
-  currentImage -
-  1 +
-  images.length
- ) %
- images.length;
-
-
- updateGallery();
-
-}
-
-
-/* ================================
-   PRODUCT IMAGE SWIPE
-================================ */
-
-document
-.getElementById("gallery")
-.addEventListener(
- "touchstart",
- function(e){
-
-  galleryStartX =
-  e.changedTouches[0].screenX;
-
- },
- {passive:true}
-);
-
-
-document
-.getElementById("gallery")
-.addEventListener(
- "touchend",
- function(e){
-
-  const endX =
-  e.changedTouches[0].screenX;
-
-  const difference =
-  galleryStartX - endX;
-
-
-  if(Math.abs(difference) < 40)
-  return;
-
-
-  if(difference > 0){
-
-   nextImage();
-
-  }else{
-
-   previousImage();
-
-  }
-
- },
- {passive:true}
-);
-
-
-/* ================================
-   LEFT EDGE SWIPE → HOME
-================================ */
-
-let edgeStartX = 0;
-let edgeStartY = 0;
-let edgeTracking = false;
-
-
-document.addEventListener(
- "touchstart",
- function(e){
-
-  if(!e.touches.length)
-  return;
-
-
-  const touch =
-  e.touches[0];
-
+function getImages(product){
 
   /*
-    Only begin if the finger starts
-    very close to the LEFT EDGE.
-  */
-
-  if(touch.clientX <= 35){
-
-   edgeStartX =
-   touch.clientX;
-
-   edgeStartY =
-   touch.clientY;
-
-   edgeTracking = true;
-
-  }else{
-
-   edgeTracking = false;
-
-  }
-
- },
- {passive:true}
-);
-
-
-document.addEventListener(
- "touchend",
- function(e){
-
-  if(!edgeTracking)
-  return;
-
-
-  edgeTracking = false;
-
-
-  const touch =
-  e.changedTouches[0];
-
-
-  const endX =
-  touch.clientX;
-
-  const endY =
-  touch.clientY;
-
-
-  const moveX =
-  endX - edgeStartX;
-
-  const moveY =
-  Math.abs(endY - edgeStartY);
-
-
-  /*
-    Clear horizontal movement only.
-    This prevents normal vertical scrolling
-    from triggering Home.
+   White Stitch Detail Set:
+   3 photos grouped together.
   */
 
   if(
-   moveX >= 90 &&
-   moveX > moveY * 1.4
+    product.name === "White Stitch Detail Set" ||
+    String(product.image_url || "")
+      .includes("IMG_3097.jpeg")
   ){
 
-   /*
-     Don't interfere with Bag or Checkout.
-   */
+    return [
+      GITHUB+"IMG_3097.jpeg",
+      GITHUB+"IMG_3098.jpeg",
+      GITHUB+"IMG_3099.jpeg"
+    ];
+  }
 
-   if(
-    document.getElementById("bagModal")
-    .classList.contains("active")
-   ){
+  let images = [];
 
-    return;
+  if(Array.isArray(product.image_urls)){
 
-   }
+    images = product.image_urls;
 
+  }else if(
+    typeof product.image_urls === "string" &&
+    product.image_urls.trim()
+  ){
 
-   if(
-    document.getElementById("checkoutModal")
-    .classList.contains("active")
-   ){
+    try{
 
-    return;
+      const parsed =
+        JSON.parse(product.image_urls);
 
-   }
+      if(Array.isArray(parsed))
+        images=parsed;
 
+    }catch{
 
-   closeProduct();
+      images =
+        product.image_urls.split(",");
 
-   window.scrollTo({
-    top:0,
-    behavior:"smooth"
-   });
+    }
 
   }
 
- },
- {passive:true}
-);
+  if(
+    !images.length &&
+    typeof product.image_url === "string"
+  ){
 
+    images =
+      product.image_url.split(",");
+  }
 
-/* ================================
+  images =
+    images
+      .map(x=>String(x).trim())
+      .filter(Boolean)
+      .map(normalizeImage);
+
+  if(!images.length){
+
+    images=[
+      GITHUB+"IMG_3097.jpeg"
+    ];
+  }
+
+  return [...new Set(images)];
+}
+
+function normalizeImage(url){
+
+  if(/^https?:\/\//i.test(url))
+    return url;
+
+  return GITHUB +
+    url.replace(/^\/+/,"");
+}
+
+/* =========================================================
+   RENDER PRODUCTS
+   ========================================================= */
+
+function renderProducts(){
+
+  let list=[...products];
+
+  if(selectedCategory !== "ALL"){
+
+    list=list.filter(product=>
+      String(product.category || "")
+        .toUpperCase()
+        .includes(selectedCategory)
+    );
+
+  }
+
+  shownProducts=list;
+
+  document.getElementById("count").textContent =
+    list.length +
+    (list.length===1 ? " ITEM" : " ITEMS");
+
+  if(!list.length){
+
+    document.getElementById("products").innerHTML =
+      '<div class="loading">NO PRODUCTS IN THIS COLLECTION YET.</div>';
+
+    return;
+  }
+
+  document.getElementById("products").innerHTML =
+    list.map((product,index)=>{
+
+      const image=getImages(product)[0];
+
+      return `
+        <button class="product"
+          onclick="openProductByIndex(${index})">
+
+          <div class="product-img">
+
+            <img
+              src="${escapeAttr(image)}"
+              alt="${escapeAttr(product.name)}"
+              loading="lazy"
+              onerror="this.src='${GITHUB}IMG_3097.jpeg'"
+            >
+
+          </div>
+
+          <div class="product-info">
+
+            <div class="product-name">
+              ${escapeHtml(product.name)}
+            </div>
+
+            <div class="product-price">
+              $${formatPrice(product.price)}
+            </div>
+
+            <div class="product-cat">
+              ${escapeHtml(product.category)}
+            </div>
+
+          </div>
+
+        </button>
+      `;
+
+    }).join("");
+}
+
+function openProductByIndex(index){
+
+  const product=shownProducts[index];
+
+  if(product)
+    openProduct(product);
+}
+
+/* =========================================================
+   PRODUCT PAGE
+   ========================================================= */
+
+function openProduct(product){
+
+  activeProduct=product;
+
+  activeImages=getImages(product);
+
+  imageIndex=0;
+
+  selectedSize="";
+
+  document.getElementById("detailCategory")
+    .textContent=
+    product.category || "ORRA";
+
+  document.getElementById("detailName")
+    .textContent=
+    product.name;
+
+  document.getElementById("detailPrice")
+    .textContent=
+    "$"+formatPrice(product.price);
+
+  document.getElementById("detailDescription")
+    .textContent=
+    product.description ||
+    "A piece from the ORRA collection.";
+
+  renderSizes();
+
+  updateGallery();
+
+  document.getElementById("productModal")
+    .classList.add("active");
+
+  document.body.classList.add("lock");
+
+}
+
+function closeProduct(){
+
+  document.getElementById("productModal")
+    .classList.remove("active");
+
+  document.body.classList.remove("lock");
+
+  activeProduct=null;
+  activeImages=[];
+  imageIndex=0;
+  selectedSize="";
+}
+
+/* =========================================================
    SIZES
-================================ */
+   ========================================================= */
 
 function renderSizes(){
 
- const box =
- document.getElementById("sizes");
+  const box=
+    document.getElementById("sizes");
 
- box.innerHTML = "";
+  let sizes=[];
 
+  if(Array.isArray(activeProduct.sizes)){
 
- let sizes = [];
+    sizes=activeProduct.sizes;
 
+  }else if(typeof activeProduct.sizes==="string"){
 
- if(selectedProduct?.sizes){
-
-  sizes =
-  String(selectedProduct.sizes)
-  .split(",")
-  .map(x=>x.trim())
-  .filter(Boolean);
-
- }
-
-
- if(!sizes.length){
-
-  sizes = [
-   "S",
-   "M",
-   "L"
-  ];
-
- }
-
-
- sizes.forEach(size=>{
-
-  const button =
-  document.createElement("button");
-
-  button.className =
-  "size";
-
-  button.textContent =
-  size;
-
-
-  button.onclick =
-  function(){
-
-   document
-   .querySelectorAll(".size")
-   .forEach(
-    x =>
-    x.classList.remove("selected")
-   );
-
-
-   button.classList.add(
-    "selected"
-   );
-
-
-   selectedSize =
-   size;
-
-  };
-
-
-  box.appendChild(button);
-
- });
-
-}
-
-
-/* ================================
-   ADD TO BAG
-================================ */
-
-function addToBag(){
-
- if(!selectedProduct)
- return;
-
-
- if(!selectedSize){
-
-  showNotification(
-   "PLEASE SELECT A SIZE"
-  );
-
-  return;
-
- }
-
-
- bag.push({
-
-  id:
-  selectedProduct.id,
-
-  name:
-  selectedProduct.name,
-
-  price:
-  Number(
-   selectedProduct.price || 0
-  ),
-
-  size:
-  selectedSize,
-
-  image:
-  getImages(selectedProduct)[0] || ""
-
- });
-
-
- updateBagCount();
-
- closeProduct();
-
-
- showNotification(
-  "ADDED TO BAG"
- );
-
-}
-
-
-/* ================================
-   BAG COUNT
-================================ */
-
-function updateBagCount(){
-
- document.getElementById(
-  "bagCount"
- ).textContent =
- bag.length;
-
-}
-
-
-/* ================================
-   NOTIFICATION
-================================ */
-
-function showNotification(message){
-
- const notification =
- document.getElementById(
-  "bagNotification"
- );
-
-
- notification.textContent =
- message;
-
-
- notification.classList.add(
-  "show"
- );
-
-
- if(notificationTimer){
-
-  clearTimeout(
-   notificationTimer
-  );
-
- }
-
-
- notificationTimer =
- setTimeout(
-  function(){
-
-   notification.classList.remove(
-    "show"
-   );
-
-  },
-  2200
- );
-
-}
-
-
-/* ================================
-   OPEN BAG
-================================ */
-
-function openBag(){
-
- const box =
- document.getElementById(
-  "bagItems"
- );
-
-
- if(!bag.length){
-
-  box.innerHTML =
-  "Your bag is empty.";
-
- }else{
-
-  box.innerHTML = "";
-
-
-  bag.forEach(
-  (item,index)=>{
-
-   const row =
-   document.createElement("div");
-
-   row.className =
-   "bag-item";
-
-
-   const left =
-   document.createElement("div");
-
-   left.className =
-   "bag-item-left";
-
-
-   const image =
-   document.createElement("img");
-
-   image.className =
-   "bag-item-image";
-
-   image.src =
-   item.image || "";
-
-   image.alt =
-   item.name || "ORRA";
-
-
-   const info =
-   document.createElement("div");
-
-   info.className =
-   "bag-item-info";
-
-
-   info.innerHTML =
-   "<div>" +
-   item.name +
-   "</div>" +
-   "<div>Size: " +
-   item.size +
-   "</div>";
-
-
-   left.appendChild(image);
-   left.appendChild(info);
-
-
-   const price =
-   document.createElement("div");
-
-   price.className =
-   "bag-item-price";
-
-   price.textContent =
-   "$" +
-   item.price.toFixed(2);
-
-
-   row.appendChild(left);
-   row.appendChild(price);
-
-
-   box.appendChild(row);
-
-  });
-
- }
-
-
- document.getElementById(
-  "bagModal"
- ).classList.add("active");
-
-}
-
-
-function closeBag(){
-
- document.getElementById(
-  "bagModal"
- ).classList.remove("active");
-
-}
-
-
-/* ================================
-   CHECKOUT
-================================ */
-
-function checkout(){
-
- if(!bag.length){
-
-  showNotification(
-   "YOUR BAG IS EMPTY"
-  );
-
-  return;
-
- }
-
-
- closeBag();
-
- renderCheckout();
-
-
- document.getElementById(
-  "checkoutModal"
- ).classList.add("active");
-
-
- document.body.style.overflow =
- "hidden";
-
-}
-
-
-function renderCheckout(){
-
- const box =
- document.getElementById(
-  "checkoutItems"
- );
-
- const subtotalBox =
- document.getElementById(
-  "checkoutSubtotal"
- );
-
- const deliveryBox =
- document.getElementById(
-  "checkoutDelivery"
- );
-
- const totalBox =
- document.getElementById(
-  "checkoutTotal"
- );
-
-
- box.innerHTML = "";
-
-
- let subtotal = 0;
-
-
- bag.forEach(item=>{
-
-  subtotal +=
-  Number(
-   item.price || 0
-  );
-
-
-  const row =
-  document.createElement("div");
-
-  row.className =
-  "checkout-item";
-
-
-  const image =
-  document.createElement("img");
-
-  image.className =
-  "checkout-item-image";
-
-  image.src =
-  item.image || "";
-
-  image.alt =
-  item.name || "ORRA";
-
-
-  const info =
-  document.createElement("div");
-
-  info.className =
-  "checkout-item-info";
-
-
-  info.innerHTML =
-  '<div class="checkout-item-name">' +
-  item.name +
-  '</div>' +
-
-  '<div class="checkout-item-meta">' +
-  'Size: ' +
-  item.size +
-  '</div>' +
-
-  '<div class="checkout-item-price">$' +
-  Number(item.price).toFixed(2) +
-  '</div>';
-
-
-  row.appendChild(image);
-  row.appendChild(info);
-
-  box.appendChild(row);
-
- });
-
-
- const delivery =
- Number(DELIVERY_CHARGE) || 0;
-
-
- const total =
- subtotal + delivery;
-
-
- subtotalBox.textContent =
- "$" +
- subtotal.toFixed(2);
-
-
- deliveryBox.textContent =
- "$" +
- delivery.toFixed(2);
-
-
- totalBox.textContent =
- "$" +
- total.toFixed(2);
-
-}
-
-
-function closeCheckout(){
-
- document.getElementById(
-  "checkoutModal"
- ).classList.remove("active");
-
-
- document.body.style.overflow =
- "";
-
-}
-
-
-/* ================================
-   PLACE ORDER
-================================ */
-
-function placeOrder(){
-
- const name =
- document.getElementById(
-  "customerName"
- ).value.trim();
-
-
- const phone =
- document.getElementById(
-  "customerPhone"
- ).value.trim();
-
-
- const city =
- document.getElementById(
-  "customerCity"
- ).value.trim();
-
-
- const area =
- document.getElementById(
-  "customerArea"
- ).value.trim();
-
-
- const address =
- document.getElementById(
-  "customerAddress"
- ).value.trim();
-
-
- if(
-  !name ||
-  !phone ||
-  !city ||
-  !area ||
-  !address
- ){
-
-  showNotification(
-   "PLEASE FILL IN ALL REQUIRED INFORMATION"
-  );
-
-  return;
-
- }
-
-
- const subtotal =
- bag.reduce(
-  (sum,item)=>
-   sum +
-   Number(item.price || 0),
-  0
- );
-
-
- const delivery =
- Number(DELIVERY_CHARGE) || 0;
-
-
- const total =
- subtotal + delivery;
-
-
- alert(
-  "Thank you for your order, " +
-  name +
-  "!\n\n" +
-
-  "Subtotal: $" +
-  subtotal.toFixed(2) +
-
-  "\nDelivery: $" +
-  delivery.toFixed(2) +
-
-  "\nTotal: $" +
-  total.toFixed(2)
- );
-
-
- bag = [];
-
-
- updateBagCount();
-
- closeCheckout();
-
-}
-
-
-/* ================================
-   SEARCH
-================================ */
-
-function toggleSearch(){
-
- const box =
- document.getElementById(
-  "searchBox"
- );
-
-
- box.classList.toggle("active");
-
-
- if(
-  box.classList.contains("active")
- ){
-
-  setTimeout(
-   function(){
-
-    document.getElementById(
-     "searchInput"
-    ).focus();
-
-   },
-   100
-  );
-
- }
-
-}
-
-
-function searchProducts(){
-
- const value =
- document.getElementById(
-  "searchInput"
- ).value
- .toLowerCase()
- .trim();
-
-
- const filtered =
- products.filter(product=>{
-
-  const name =
-  String(
-   product.name || ""
-  ).toLowerCase();
-
-
-  const category =
-  String(
-   product.category || ""
-  ).toLowerCase();
-
-
-  return(
-   name.includes(value) ||
-   category.includes(value)
-  );
-
- });
-
-
- renderProducts(
-  filtered,
-  document.getElementById(
-   "newProducts"
-  )
- );
-
-
- renderProducts(
-  filtered,
-  document.getElementById(
-   "shopProducts"
-  )
- );
-
-}
-
-
-/* ================================
-   MODAL BACKGROUND CLOSE
-================================ */
-
-document.getElementById(
- "productModal"
-).onclick =
-function(e){
-
- if(
-  e.target ===
-  e.currentTarget
- ){
-
-  closeProduct();
-
- }
-
-};
-
-
-document.getElementById(
- "bagModal"
-).onclick =
-function(e){
-
- if(
-  e.target ===
-  e.currentTarget
- ){
-
-  closeBag();
-
- }
-
-};
-
-
-document.getElementById(
- "checkoutModal"
-).onclick =
-function(e){
-
- if(
-  e.target ===
-  e.currentTarget
- ){
-
-  closeCheckout();
-
- }
-
-};
-
-
-/* ================================
-   ESCAPE
-================================ */
-
-document.addEventListener(
- "keydown",
- function(e){
-
-  if(e.key === "Escape"){
-
-   closeProduct();
-   closeBag();
-   closeCheckout();
+    sizes=
+      activeProduct.sizes
+        .split(",")
+        .map(x=>x.trim())
+        .filter(Boolean);
 
   }
 
- });
+  if(!sizes.length)
+    sizes=["ONE SIZE"];
 
+  selectedSize=sizes[0];
 
-/* ================================
+  box.innerHTML=
+    sizes.map((size,index)=>`
+
+      <button
+        class="size ${index===0?"selected":""}"
+        onclick="selectSize(this,'${escapeAttr(size)}')">
+
+        ${escapeHtml(size)}
+
+      </button>
+
+    `).join("");
+}
+
+function selectSize(button,size){
+
+  document
+    .querySelectorAll(".size")
+    .forEach(x=>
+      x.classList.remove("selected")
+    );
+
+  button.classList.add("selected");
+
+  selectedSize=size;
+}
+
+/* =========================================================
+   GALLERY
+   ========================================================= */
+
+function updateGallery(){
+
+  if(!activeImages.length)
+    return;
+
+  document.getElementById("galleryImg")
+    .src=
+    activeImages[imageIndex];
+
+  document.getElementById("galleryImg")
+    .alt=
+    activeProduct ?
+    activeProduct.name :
+    "ORRA";
+
+  document.getElementById("dots")
+    .innerHTML=
+    activeImages.map((x,index)=>
+      `<span class="dot ${
+        index===imageIndex?"active":""
+      }"></span>`
+    ).join("");
+}
+
+function nextImage(){
+
+  if(activeImages.length<=1)
+    return;
+
+  imageIndex=
+    (imageIndex+1)%
+    activeImages.length;
+
+  updateGallery();
+}
+
+function previousImage(){
+
+  if(activeImages.length<=1)
+    return;
+
+  imageIndex=
+    (imageIndex-1+
+     activeImages.length)%
+     activeImages.length;
+
+  updateGallery();
+}
+
+/* =========================================================
+   PRODUCT PHOTO SWIPE
+   ========================================================= */
+
+let galleryStartX=0;
+let galleryStartY=0;
+
+const gallery=
+  document.getElementById("gallery");
+
+gallery.addEventListener(
+  "touchstart",
+  event=>{
+
+    if(!event.touches[0])
+      return;
+
+    galleryStartX=
+      event.touches[0].clientX;
+
+    galleryStartY=
+      event.touches[0].clientY;
+
+  },
+  {passive:true}
+);
+
+gallery.addEventListener(
+  "touchend",
+  event=>{
+
+    if(!event.changedTouches[0])
+      return;
+
+    const x=
+      event.changedTouches[0].clientX;
+
+    const y=
+      event.changedTouches[0].clientY;
+
+    const dx=x-galleryStartX;
+    const dy=y-galleryStartY;
+
+    if(Math.abs(dx)<55)
+      return;
+
+    if(Math.abs(dx)<
+       Math.abs(dy)*1.35)
+      return;
+
+    if(dx<0)
+      nextImage();
+    else
+      previousImage();
+
+  },
+  {passive:true}
+);
+
+/* =========================================================
+   LEFT EDGE SWIPE -> HOME
+   ========================================================= */
+
+let edgeX=0;
+let edgeY=0;
+let edgeActive=false;
+
+document.addEventListener(
+  "touchstart",
+  event=>{
+
+    if(!event.touches[0])
+      return;
+
+    const target=event.target;
+
+    /*
+      Do NOT interfere with product image swipe.
+    */
+    if(
+      target.closest &&
+      target.closest("#gallery")
+    ){
+      edgeActive=false;
+      return;
+    }
+
+    /*
+      Do NOT interfere with typing.
+    */
+    if(
+      target.closest &&
+      target.closest("input,textarea")
+    ){
+      edgeActive=false;
+      return;
+    }
+
+    edgeX=
+      event.touches[0].clientX;
+
+    edgeY=
+      event.touches[0].clientY;
+
+    /*
+      Must start VERY close to left edge.
+    */
+    edgeActive=
+      edgeX<=30;
+
+  },
+  {passive:true}
+);
+
+document.addEventListener(
+  "touchend",
+  event=>{
+
+    if(
+      !edgeActive ||
+      !event.changedTouches[0]
+    ){
+
+      edgeActive=false;
+      return;
+    }
+
+    const x=
+      event.changedTouches[0].clientX;
+
+    const y=
+      event.changedTouches[0].clientY;
+
+    const dx=x-edgeX;
+    const dy=y-edgeY;
+
+    edgeActive=false;
+
+    /*
+      Clear horizontal swipe from left to right.
+    */
+    if(
+      dx>=100 &&
+      dx>Math.abs(dy)*1.5
+    ){
+
+      goHome();
+
+    }
+
+  },
+  {passive:true}
+);
+
+/* =========================================================
+   ADD TO BAG
+   ========================================================= */
+
+function addToBag(){
+
+  if(!activeProduct)
+    return;
+
+  bag.push({
+
+    id:
+      activeProduct.id ||
+      Date.now(),
+
+    name:
+      activeProduct.name,
+
+    price:
+      Number(activeProduct.price)||0,
+
+    size:
+      selectedSize ||
+      "ONE SIZE",
+
+    image:
+      getImages(activeProduct)[0]
+
+  });
+
+  closeProduct();
+
+  showNotice("ADDED TO BAG");
+}
+
+/* =========================================================
+   BAG
+   ========================================================= */
+
+function openBag(){
+
+  closeProduct();
+  closeCheckout();
+  closeSearch();
+
+  renderBag();
+
+  document.getElementById("bagPanel")
+    .classList.add("active");
+
+  document.body.classList.add("lock");
+}
+
+function closeBag(){
+
+  document.getElementById("bagPanel")
+    .classList.remove("active");
+
+  if(
+    !document.getElementById("checkoutPanel")
+      .classList.contains("active") &&
+    !document.getElementById("productModal")
+      .classList.contains("active")
+  ){
+
+    document.body.classList.remove("lock");
+
+  }
+}
+
+function removeItem(index){
+
+  bag.splice(index,1);
+
+  renderBag();
+}
+
+function subtotal(){
+
+  return bag.reduce(
+    (sum,item)=>
+      sum+(Number(item.price)||0),
+    0
+  );
+}
+
+function renderBag(){
+
+  const box=
+    document.getElementById("bagItems");
+
+  const summary=
+    document.getElementById("bagSummary");
+
+  if(!bag.length){
+
+    box.innerHTML=
+      '<div class="loading">YOUR BAG IS EMPTY.</div>';
+
+    summary.innerHTML="";
+
+    return;
+  }
+
+  box.innerHTML=
+    bag.map((item,index)=>`
+
+      <div class="bag-item">
+
+        <img
+          src="${escapeAttr(item.image)}"
+          alt="${escapeAttr(item.name)}"
+        >
+
+        <div>
+
+          <div class="bag-name">
+            ${escapeHtml(item.name)}
+          </div>
+
+          <div class="bag-meta">
+            SIZE: ${escapeHtml(item.size)}<br>
+            PRICE: $${formatPrice(item.price)}
+          </div>
+
+          <button
+            class="remove"
+            onclick="removeItem(${index})">
+
+            REMOVE
+
+          </button>
+
+        </div>
+
+        <div>
+          $${formatPrice(item.price)}
+        </div>
+
+      </div>
+
+    `).join("");
+
+  const sub=subtotal();
+
+  summary.innerHTML=`
+
+    <div class="total">
+      <span>Subtotal</span>
+      <span>$${formatPrice(sub)}</span>
+    </div>
+
+    <div class="total">
+      <span>Delivery</span>
+      <span>$${DELIVERY_CHARGE}</span>
+    </div>
+
+    <div
+      class="total"
+      style="border-top:1px solid #000">
+
+      <strong>Total</strong>
+      <strong>
+        $${formatPrice(sub+DELIVERY_CHARGE)}
+      </strong>
+
+    </div>
+
+    <button
+      class="checkout-btn"
+      onclick="openCheckout()">
+
+      CHECKOUT
+
+    </button>
+  `;
+}
+
+/* =========================================================
+   CHECKOUT
+   ========================================================= */
+
+function openCheckout(){
+
+  if(!bag.length){
+
+    showNotice("YOUR BAG IS EMPTY");
+
+    return;
+  }
+
+  closeBag();
+
+  document.getElementById("checkoutPanel")
+    .classList.add("active");
+
+  document.body.classList.add("lock");
+
+  const sub=subtotal();
+
+  document.getElementById("subtotal")
+    .textContent=
+    "$"+formatPrice(sub);
+
+  document.getElementById("total")
+    .textContent=
+    "$"+formatPrice(
+      sub+DELIVERY_CHARGE
+    );
+}
+
+function closeCheckout(){
+
+  document.getElementById("checkoutPanel")
+    .classList.remove("active");
+
+  if(
+    !document.getElementById("bagPanel")
+      .classList.contains("active") &&
+    !document.getElementById("productModal")
+      .classList.contains("active")
+  ){
+
+    document.body.classList.remove("lock");
+
+  }
+}
+
+function placeOrder(){
+
+  const fields=[
+    ["fullName","Full name"],
+    ["phone","Phone number"],
+    ["city","City"],
+    ["area","Area"],
+    ["address","Full address"]
+  ];
+
+  for(const field of fields){
+
+    const element=
+      document.getElementById(field[0]);
+
+    if(!element.value.trim()){
+
+      element.focus();
+
+      showNotice(
+        field[1].toUpperCase()+
+        " REQUIRED"
+      );
+
+      return;
+    }
+  }
+
+  /*
+    Current version validates the order
+    and clears the bag.
+
+    Orders can later be saved permanently
+    inside Supabase.
+  */
+
+  showNotice("ORDER RECEIVED");
+
+  setTimeout(()=>{
+
+    bag=[];
+
+    closeCheckout();
+
+    renderBag();
+
+    fields.forEach(field=>{
+      document.getElementById(field[0])
+        .value="";
+    });
+
+    document.getElementById("notes")
+      .value="";
+
+    goHome();
+
+  },1000);
+}
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+function openSearch(){
+
+  closeProduct();
+  closeBag();
+  closeCheckout();
+
+  document.getElementById("searchPanel")
+    .classList.add("active");
+
+  document.body.classList.add("lock");
+
+  setTimeout(()=>{
+    document.getElementById("searchInput")
+      .focus();
+  },50);
+
+}
+
+function closeSearch(){
+
+  document.getElementById("searchPanel")
+    .classList.remove("active");
+
+  if(
+    !document.getElementById("bagPanel")
+      .classList.contains("active") &&
+    !document.getElementById("checkoutPanel")
+      .classList.contains("active") &&
+    !document.getElementById("productModal")
+      .classList.contains("active")
+  ){
+
+    document.body.classList.remove("lock");
+
+  }
+}
+
+function searchProducts(){
+
+  const query=
+    document.getElementById("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const box=
+    document.getElementById("searchResults");
+
+  if(!query){
+
+    box.innerHTML="";
+
+    return;
+  }
+
+  const matches=
+    products.filter(product=>
+      String(product.name||"")
+        .toLowerCase()
+        .includes(query) ||
+
+      String(product.category||"")
+        .toLowerCase()
+        .includes(query)
+    );
+
+  if(!matches.length){
+
+    box.innerHTML=
+      '<div class="loading">NO RESULTS</div>';
+
+    return;
+  }
+
+  window.searchMatches=matches;
+
+  box.innerHTML=
+    matches.map((product,index)=>{
+
+      const image=
+        getImages(product)[0];
+
+      return `
+
+        <button
+          style="
+          display:flex;
+          width:100%;
+          gap:15px;
+          padding:12px 0;
+          border:0;
+          border-bottom:1px solid #eee;
+          background:#fff;
+          text-align:left"
+          onclick="openSearchProduct(${index})">
+
+          <img
+            src="${escapeAttr(image)}"
+            style="
+            width:70px;
+            height:90px;
+            object-fit:cover"
+          >
+
+          <span>
+
+            <strong
+              style="
+              display:block;
+              font-size:12px;
+              margin:5px 0 8px">
+
+              ${escapeHtml(product.name)}
+
+            </strong>
+
+            <span style="font-size:11px">
+              $${formatPrice(product.price)}
+            </span>
+
+          </span>
+
+        </button>
+
+      `;
+
+    }).join("");
+}
+
+function openSearchProduct(index){
+
+  const product=
+    window.searchMatches[index];
+
+  if(!product)
+    return;
+
+  closeSearch();
+
+  openProduct(product);
+}
+
+/* =========================================================
+   NOTIFICATION
+   ========================================================= */
+
+let noticeTimer;
+
+function showNotice(text){
+
+  const notice=
+    document.getElementById("notice");
+
+  notice.textContent=text;
+
+  notice.classList.add("show");
+
+  clearTimeout(noticeTimer);
+
+  noticeTimer=
+    setTimeout(()=>{
+      notice.classList.remove("show");
+    },1200);
+}
+
+/* =========================================================
+   HELPERS
+   ========================================================= */
+
+function formatPrice(value){
+
+  const n=
+    Number(value)||0;
+
+  return n%1===0
+    ? String(n)
+    : n.toFixed(2);
+}
+
+function escapeHtml(value){
+
+  return String(value??"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function escapeAttr(value){
+
+  return escapeHtml(value);
+}
+
+/* =========================================================
+   ESC KEY
+   ========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(event.key!=="Escape")
+      return;
+
+    closeProduct();
+    closeBag();
+    closeCheckout();
+    closeSearch();
+
+  }
+);
+
+/* =========================================================
    START
-================================ */
+   ========================================================= */
 
 loadProducts();
 
