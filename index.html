@@ -10,9 +10,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;
-  background:#fff;
-  color:#000;
+  margin:0;background:#fff;color:#000;
   font-family:Arial,Helvetica,sans-serif;
   overflow-x:hidden
 }
@@ -21,584 +19,300 @@ button,input,textarea{font:inherit}
 button{cursor:pointer}
 a{text-decoration:none;color:inherit}
 
-/* TOP DELIVERY BAR */
 .announcement{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  height:34px;
-  background:#000;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  font-size:10px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  padding:0 10px
+  position:sticky;top:0;z-index:1000;height:34px;
+  background:#000;color:#fff;display:flex;
+  align-items:center;justify-content:center;
+  font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;padding:0 10px
 }
 
-/* HEADER */
 header{
-  position:sticky;
-  top:34px;
-  z-index:900;
-  height:70px;
-  background:#fff;
-  border-bottom:1px solid #eee;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  padding:0 22px
+  position:sticky;top:34px;z-index:900;height:70px;
+  background:#fff;border-bottom:1px solid #eee;
+  display:grid;grid-template-columns:1fr auto 1fr;
+  align-items:center;padding:0 22px
 }
-.logo{
-  font-size:25px;
-  font-weight:700;
-  letter-spacing:5px
-}
-.header-left,.header-right{
-  display:flex;
-  align-items:center;
-  gap:18px
-}
+.logo{font-size:25px;font-weight:700;letter-spacing:5px}
+.header-left,.header-right{display:flex;align-items:center;gap:18px}
 .header-right{justify-content:flex-end}
 .nav{
-  border:0;
-  background:none;
-  font-size:11px;
-  letter-spacing:1.5px;
-  text-transform:uppercase
+  border:0;background:none;font-size:11px;
+  letter-spacing:1.5px;text-transform:uppercase
 }
-.icon{
-  width:34px;
-  height:34px;
-  border:0;
-  background:#fff;
-  padding:5px
-}
+.icon{width:34px;height:34px;border:0;background:#fff;padding:5px}
 .icon svg{width:100%;height:100%;stroke:#000}
 
-/* HERO */
 .hero{
-  height:calc(100vh - 104px);
-  min-height:560px;
-  position:relative;
-  overflow:hidden;
-  background:#eee
+  height:calc(100vh - 104px);min-height:560px;
+  position:relative;overflow:hidden;background:#eee
 }
-.hero img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block
+.hero img,.collection img,.editorial img{
+  width:100%;height:100%;object-fit:cover;display:block
 }
 .hero-text{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  align-items:flex-start;
-  padding:45px 7vw;
-  color:#fff;
+  position:absolute;inset:0;display:flex;
+  flex-direction:column;justify-content:flex-end;
+  align-items:flex-start;padding:45px 7vw;color:#fff;
   background:linear-gradient(transparent 40%,rgba(0,0,0,.5))
 }
-.hero-small{
-  font-size:11px;
-  letter-spacing:2px;
-  margin-bottom:12px
-}
+.hero-small{font-size:11px;letter-spacing:2px;margin-bottom:12px}
 .hero h1{
-  font-size:clamp(42px,7vw,90px);
-  line-height:.92;
-  font-weight:400;
-  letter-spacing:-3px;
-  margin:0 0 25px
+  font-size:clamp(42px,7vw,90px);line-height:.92;
+  font-weight:400;letter-spacing:-3px;margin:0 0 25px
 }
 .white-btn,.black-btn{
-  border:1px solid #000;
-  padding:14px 25px;
-  font-size:10px;
-  letter-spacing:1.6px;
-  text-transform:uppercase
+  border:1px solid #000;padding:14px 25px;
+  font-size:10px;letter-spacing:1.6px;text-transform:uppercase
 }
 .white-btn{background:#fff;color:#000;border-color:#fff}
 .black-btn{background:#000;color:#fff}
 
-/* SECTIONS */
 .section{padding:75px 6vw}
 .section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-bottom:25px
+  display:flex;justify-content:space-between;
+  align-items:end;margin-bottom:25px
 }
-.section-title{
-  margin:0;
-  font-size:25px;
-  font-weight:400
-}
+.section-title{margin:0;font-size:25px;font-weight:400}
 .section-note{
-  font-size:10px;
-  letter-spacing:1.3px;
-  text-transform:uppercase
+  font-size:10px;letter-spacing:1.3px;text-transform:uppercase
 }
 
-/* COLLECTIONS */
 .collections{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px
 }
 .collection{
-  position:relative;
-  height:430px;
-  overflow:hidden;
-  background:#eee
-}
-.collection img{
-  width:100%;
-  height:100%;
-  object-fit:cover
+  position:relative;height:430px;overflow:hidden;background:#eee
 }
 .collection span{
-  position:absolute;
-  left:20px;
-  bottom:20px;
-  color:#fff;
-  font-size:12px;
-  letter-spacing:1.7px;
-  text-transform:uppercase
+  position:absolute;left:20px;bottom:20px;color:#fff;
+  font-size:12px;letter-spacing:1.7px;text-transform:uppercase
 }
 
-/* PRODUCTS */
 .products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
+  display:grid;grid-template-columns:repeat(4,1fr);
   gap:25px 12px
 }
 .product{
-  border:0;
-  background:#fff;
-  padding:0;
-  text-align:left
+  border:0;background:#fff;padding:0;text-align:left
 }
 .product-img{
-  aspect-ratio:3/4;
-  background:#eee;
-  overflow:hidden
+  aspect-ratio:3/4;background:#eee;overflow:hidden
 }
 .product-img img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block
+  width:100%;height:100%;object-fit:cover;display:block
 }
 .product-info{padding:10px 2px}
 .product-name{font-size:12px;margin-bottom:6px}
 .product-price{font-size:12px}
 .product-cat{
-  color:#777;
-  font-size:9px;
-  letter-spacing:1.2px;
-  margin-top:5px;
-  text-transform:uppercase
+  color:#777;font-size:9px;letter-spacing:1.2px;
+  margin-top:5px;text-transform:uppercase
 }
 .loading{
-  grid-column:1/-1;
-  padding:50px;
-  text-align:center;
-  font-size:11px;
-  letter-spacing:1.3px
+  grid-column:1/-1;padding:50px;text-align:center;
+  font-size:11px;letter-spacing:1.3px
 }
 .error{
-  grid-column:1/-1;
-  padding:25px;
-  border:1px solid #ddd;
-  text-align:center;
-  font-size:11px;
-  line-height:1.8
+  grid-column:1/-1;padding:25px;border:1px solid #ddd;
+  text-align:center;font-size:11px;line-height:1.8
 }
 
-/* EDITORIAL */
 .editorial{
-  margin:0 6vw;
-  height:58vh;
-  position:relative;
-  overflow:hidden;
-  background:#eee
-}
-.editorial img{
-  width:100%;
-  height:100%;
-  object-fit:cover
+  margin:0 6vw;height:58vh;position:relative;
+  overflow:hidden;background:#eee
 }
 .editorial-text{
-  position:absolute;
-  left:6%;
-  bottom:7%;
-  color:#fff
+  position:absolute;left:6%;bottom:7%;color:#fff
 }
 .editorial-text h2{
-  margin:0 0 18px;
-  font-size:55px;
-  line-height:.95;
-  font-weight:400
+  margin:0 0 18px;font-size:55px;
+  line-height:.95;font-weight:400
 }
 
-/* FOOTER */
 footer{
-  margin-top:75px;
-  padding:55px 6vw 30px;
-  background:#000;
-  color:#fff
+  margin-top:75px;padding:55px 6vw 30px;
+  background:#000;color:#fff
 }
 .footer-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:40px
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px
 }
 .footer-logo{
-  font-size:25px;
-  font-weight:700;
-  letter-spacing:5px;
-  margin-bottom:15px
+  font-size:25px;font-weight:700;
+  letter-spacing:5px;margin-bottom:15px
 }
 footer p,footer a{
-  color:#aaa;
-  font-size:11px;
-  line-height:1.8
+  color:#aaa;font-size:11px;line-height:1.8
 }
-footer h4{
-  font-size:10px;
-  letter-spacing:1.5px
-}
+footer h4{font-size:10px;letter-spacing:1.5px}
 footer a{display:block;margin-bottom:8px}
 .copy{
-  border-top:1px solid #222;
-  margin-top:40px;
-  padding-top:20px;
-  color:#666;
-  font-size:9px;
-  letter-spacing:1px
+  border-top:1px solid #222;margin-top:40px;
+  padding-top:20px;color:#666;font-size:9px;letter-spacing:1px
 }
 
-/* PRODUCT PAGE */
+/* PRODUCT */
 .modal{
-  position:fixed;
-  inset:0;
-  z-index:1800;
-  display:none;
-  background:#fff
+  position:fixed;inset:0;z-index:1800;
+  display:none;background:#fff
 }
 .modal.active{display:block}
 .close{
-  position:absolute;
-  right:15px;
-  top:12px;
-  z-index:30;
-  width:44px;
-  height:44px;
-  border:0;
-  background:#fff;
-  font-size:30px;
-  font-weight:300
+  position:absolute;right:15px;top:12px;z-index:50;
+  width:44px;height:44px;border:0;background:#fff;
+  font-size:30px;font-weight:300;line-height:1
 }
 .modal-content{
-  height:100%;
-  display:grid;
+  height:100%;display:grid;
   grid-template-columns:1.15fr .85fr
 }
 .gallery{
-  position:relative;
-  background:#f3f3f3;
-  overflow:hidden;
-  touch-action:pan-y
+  position:relative;background:#f3f3f3;
+  overflow:hidden;touch-action:pan-y
 }
 .gallery img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-  user-select:none;
-  -webkit-user-drag:none
+  width:100%;height:100%;object-fit:contain;
+  display:block;user-select:none;-webkit-user-drag:none
 }
 .dots{
-  position:absolute;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:7px
+  position:absolute;bottom:20px;left:50%;
+  transform:translateX(-50%);display:flex;gap:7px
 }
-.dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#bbb
-}
+.dot{width:6px;height:6px;border-radius:50%;background:#bbb}
 .dot.active{background:#000}
 .details{
-  padding:90px 7vw 50px 5vw;
-  overflow:auto
+  padding:90px 7vw 50px 5vw;overflow:auto
 }
 .category{
-  color:#777;
-  font-size:10px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  margin-bottom:12px
+  color:#777;font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;margin-bottom:12px
 }
-.details h2{
-  font-size:30px;
-  font-weight:400;
-  margin:0 0 12px
-}
-.price{
-  font-size:16px;
-  margin-bottom:30px
-}
+.details h2{font-size:30px;font-weight:400;margin:0 0 12px}
+.price{font-size:16px;margin-bottom:30px}
 .description{
-  color:#555;
-  font-size:12px;
-  line-height:1.7;
-  margin-bottom:30px
+  color:#555;font-size:12px;line-height:1.7;margin-bottom:30px
 }
 .option{
-  font-size:10px;
-  letter-spacing:1.3px;
-  text-transform:uppercase;
-  margin-bottom:10px
+  font-size:10px;letter-spacing:1.3px;
+  text-transform:uppercase;margin-bottom:10px
 }
-.sizes{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-bottom:30px
-}
+.sizes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
 .size{
-  min-width:48px;
-  height:40px;
-  background:#fff;
-  border:1px solid #ccc;
-  font-size:11px
+  min-width:48px;height:40px;background:#fff;
+  border:1px solid #ccc;font-size:11px
 }
-.size.selected{
-  background:#000;
-  color:#fff;
-  border-color:#000
-}
+.size.selected{background:#000;color:#fff;border-color:#000}
 .add{
-  width:100%;
-  height:50px;
-  background:#000;
-  color:#fff;
-  border:1px solid #000;
-  font-size:11px;
-  letter-spacing:1.5px
+  width:100%;height:50px;background:#000;color:#fff;
+  border:1px solid #000;font-size:11px;letter-spacing:1.5px
 }
 
-/* ADDED TO BAG */
+/* NOTICE */
 .notice{
-  position:fixed;
-  z-index:3000;
-  top:50%;
-  left:50%;
+  position:fixed;z-index:3000;top:50%;left:50%;
   transform:translate(-50%,-50%) scale(.95);
-  background:#000;
-  color:#fff;
-  padding:18px 28px;
-  font-size:11px;
-  letter-spacing:2px;
-  opacity:0;
-  pointer-events:none;
-  transition:.2s
+  background:#000;color:#fff;padding:18px 28px;
+  font-size:11px;letter-spacing:2px;opacity:0;
+  pointer-events:none;transition:.2s
 }
 .notice.show{
-  opacity:1;
-  transform:translate(-50%,-50%) scale(1)
+  opacity:1;transform:translate(-50%,-50%) scale(1)
 }
 
-/* BAG */
+/* PANELS */
 .panel{
-  position:fixed;
-  inset:0;
-  z-index:1700;
-  display:none;
-  background:#fff;
-  overflow:auto
+  position:fixed;inset:0;z-index:1700;
+  display:none;background:#fff;overflow:auto
 }
 .panel.active{display:block}
 .panel-head{
-  position:sticky;
-  top:0;
-  z-index:5;
-  height:70px;
-  padding:0 22px;
-  background:#fff;
-  border-bottom:1px solid #eee;
-  display:flex;
-  align-items:center;
-  justify-content:space-between
+  position:sticky;top:0;z-index:5;height:70px;
+  padding:0 22px;background:#fff;border-bottom:1px solid #eee;
+  display:flex;align-items:center;justify-content:space-between
 }
 .panel-head strong{
-  font-size:13px;
-  letter-spacing:1.5px;
-  text-transform:uppercase
+  font-size:13px;letter-spacing:1.5px;text-transform:uppercase
 }
 .panel-close{
-  border:0;
-  background:none;
-  font-size:28px
+  border:0;background:none;font-size:28px;width:45px;height:45px
 }
-.bag{
-  max-width:760px;
-  margin:auto;
-  padding:35px 22px 70px
-}
+.bag{max-width:760px;margin:auto;padding:35px 22px 70px}
 .bag-item{
-  display:grid;
-  grid-template-columns:90px 1fr auto;
-  gap:15px;
-  padding:15px 0;
-  border-bottom:1px solid #eee
+  display:grid;grid-template-columns:90px 1fr auto;
+  gap:15px;padding:15px 0;border-bottom:1px solid #eee
 }
 .bag-item img{
-  width:90px;
-  height:120px;
-  object-fit:cover;
-  background:#eee
+  width:90px;height:120px;object-fit:cover;background:#eee
 }
-.bag-name{
-  font-size:12px;
-  margin-bottom:8px
-}
-.bag-meta{
-  color:#777;
-  font-size:10px;
-  line-height:1.7
-}
+.bag-name{font-size:12px;margin-bottom:8px}
+.bag-meta{color:#777;font-size:10px;line-height:1.7}
 .remove{
-  border:0;
-  background:none;
-  text-decoration:underline;
-  padding:0;
-  margin-top:10px;
-  font-size:10px
+  border:0;background:none;text-decoration:underline;
+  padding:0;margin-top:10px;font-size:10px
 }
 .total{
-  display:flex;
-  justify-content:space-between;
-  padding:14px 0;
-  font-size:13px
+  display:flex;justify-content:space-between;
+  padding:14px 0;font-size:13px
 }
 .checkout-btn{
-  width:100%;
-  height:50px;
-  background:#000;
-  color:#fff;
-  border:0;
-  font-size:11px;
-  letter-spacing:1.5px;
-  margin-top:15px
+  width:100%;height:50px;background:#000;color:#fff;
+  border:0;font-size:11px;letter-spacing:1.5px;margin-top:15px
 }
 
 /* CHECKOUT */
 .checkout-content{
-  max-width:700px;
-  margin:auto;
-  padding:40px 22px 70px
+  max-width:700px;margin:auto;padding:40px 22px 70px
 }
-.checkout-title{
-  font-size:25px;
-  font-weight:400;
-  margin:0 0 30px
-}
+.checkout-title{font-size:25px;font-weight:400;margin:0 0 30px}
 .field{margin-bottom:17px}
 .field label{
-  display:block;
-  font-size:9px;
-  letter-spacing:1.3px;
-  margin-bottom:7px;
-  text-transform:uppercase
+  display:block;font-size:9px;letter-spacing:1.3px;
+  margin-bottom:7px;text-transform:uppercase
 }
 .field input,.field textarea{
-  width:100%;
-  border:1px solid #ccc;
-  padding:13px;
-  outline:0;
-  background:#fff;
-  font-size:12px
+  width:100%;border:1px solid #ccc;padding:13px;
+  outline:0;background:#fff;font-size:12px
 }
-.field textarea{
-  min-height:90px;
-  resize:vertical
-}
+.field textarea{min-height:90px;resize:vertical}
 .cod{
-  border:1px solid #000;
-  padding:14px;
-  font-size:10px;
-  letter-spacing:1px;
-  margin:25px 0
+  border:1px solid #000;padding:14px;font-size:10px;
+  letter-spacing:1px;margin:25px 0
 }
-.summary{
-  border-top:1px solid #000;
-  padding-top:18px
-}
+.summary{border-top:1px solid #000;padding-top:18px}
 .summary div{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:11px;
-  font-size:12px
+  display:flex;justify-content:space-between;
+  margin-bottom:11px;font-size:12px
 }
 .summary .grand{
-  border-top:1px solid #eee;
-  padding-top:15px;
-  font-size:14px
+  border-top:1px solid #eee;padding-top:15px;font-size:14px
 }
 
 /* SEARCH */
 .search{
-  position:fixed;
-  inset:0;
-  z-index:2000;
-  background:#fff;
-  display:none;
-  padding:110px 7vw 40px
+  position:fixed;inset:0;z-index:2000;background:#fff;
+  display:none;padding:110px 7vw 40px;overflow:auto
 }
 .search.active{display:block}
 .search-x{
-  position:absolute;
-  top:75px;
-  right:20px;
-  background:none;
-  border:0;
-  font-size:30px
+  position:absolute;top:75px;right:20px;
+  background:none;border:0;font-size:30px
 }
 .search input{
-  width:100%;
-  border:0;
-  border-bottom:1px solid #000;
-  outline:0;
-  font-size:28px;
-  padding:15px 0
+  width:100%;border:0;border-bottom:1px solid #000;
+  outline:0;font-size:28px;padding:15px 0
 }
 
 /* MOBILE */
 @media(max-width:850px){
   header{
-    height:62px;
-    top:34px;
-    padding:0 14px
+    height:62px;top:34px;padding:0 14px
   }
   .logo{font-size:21px;letter-spacing:4px}
   .header-left .nav{display:none}
   .header-right{gap:4px}
 
   .hero{
-    height:calc(100svh - 96px);
-    min-height:540px
+    height:calc(100svh - 96px);min-height:540px
   }
   .hero-text{padding:30px 22px}
   .hero h1{font-size:48px}
@@ -606,13 +320,10 @@ footer a{display:block;margin-bottom:8px}
   .section{padding:55px 16px}
   .section-title{font-size:22px}
 
-  .collections{
-    grid-template-columns:1fr 1fr
-  }
+  .collections{grid-template-columns:1fr 1fr}
   .collection{height:260px}
   .collection:first-child{
-    grid-column:1/-1;
-    height:390px
+    grid-column:1/-1;height:390px
   }
 
   .products{
@@ -621,8 +332,7 @@ footer a{display:block;margin-bottom:8px}
   }
 
   .editorial{
-    margin:0 16px;
-    height:58vh
+    margin:0 16px;height:58vh
   }
   .editorial-text h2{font-size:40px}
 
@@ -631,35 +341,22 @@ footer a{display:block;margin-bottom:8px}
     grid-template-columns:1fr 1fr;
     gap:30px 20px
   }
-  .footer-grid>div:first-child{
-    grid-column:1/-1
-  }
+  .footer-grid>div:first-child{grid-column:1/-1}
 
   .modal-content{
-    display:flex;
-    flex-direction:column;
-    overflow:auto
+    display:flex;flex-direction:column;overflow:auto
   }
   .gallery{
-    height:64svh;
-    min-height:0;
-    flex:0 0 64svh
+    height:64svh;min-height:0;flex:0 0 64svh
   }
-  .details{
-    padding:28px 20px 50px;
-    overflow:visible
-  }
-  .close{
-    top:8px;
-    right:8px
-  }
+  .details{padding:28px 20px 50px;overflow:visible}
+  .close{top:8px;right:8px}
 
   .bag-item{
     grid-template-columns:75px 1fr auto
   }
   .bag-item img{
-    width:75px;
-    height:100px
+    width:75px;height:100px
   }
 }
 </style>
@@ -667,12 +364,10 @@ footer a{display:block;margin-bottom:8px}
 
 <body>
 
-<!-- DELIVERY BAR -->
 <div class="announcement">
   Delivery takes 12-20 working days
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="header-left">
     <button class="nav" onclick="goHome()">Home</button>
@@ -698,7 +393,6 @@ footer a{display:block;margin-bottom:8px}
   </div>
 </header>
 
-<!-- HOME -->
 <main id="home">
 
 <section class="hero">
@@ -717,24 +411,30 @@ footer a{display:block;margin-bottom:8px}
   </div>
 
   <div class="collections">
-    <a class="collection" href="#shop" onclick="filterCategory('SETS')">
+
+    <a class="collection" href="#shop"
+       onclick="filterCategory('SETS')">
       <img src="IMG_3097.jpeg" alt="Sets">
       <span>Sets</span>
     </a>
 
-    <a class="collection" href="#shop" onclick="filterCategory('DRESSES')">
+    <a class="collection" href="#shop"
+       onclick="filterCategory('DRESSES')">
       <img src="IMG_3098.jpeg" alt="Dresses">
       <span>Dresses</span>
     </a>
 
-    <a class="collection" href="#shop" onclick="filterCategory('JACKETS')">
+    <a class="collection" href="#shop"
+       onclick="filterCategory('JACKETS')">
       <img src="IMG_3099.jpeg" alt="Jackets">
       <span>Jackets</span>
     </a>
+
   </div>
 </section>
 
 <section class="section" id="shop">
+
   <div class="section-head">
     <h2 class="section-title">New In</h2>
     <span id="count" class="section-note">ORRA</span>
@@ -743,19 +443,29 @@ footer a{display:block;margin-bottom:8px}
   <div id="products" class="products">
     <div class="loading">LOADING ORRA...</div>
   </div>
+
 </section>
 
 <section class="editorial">
   <img src="IMG_3097.jpeg" alt="ORRA">
+
   <div class="editorial-text">
     <h2>Simple.<br>Modern.<br>ORRA.</h2>
-    <button class="white-btn" onclick="shop()">SHOP COLLECTION</button>
+    <button class="white-btn" onclick="shop()">
+      SHOP COLLECTION
+    </button>
   </div>
 </section>
 
 <section class="section">
   <h2 class="section-title">About ORRA</h2>
-  <p style="max-width:650px;color:#555;font-size:13px;line-height:1.9">
+
+  <p style="
+    max-width:650px;
+    color:#555;
+    font-size:13px;
+    line-height:1.9
+  ">
     ORRA is a modern fashion store built around clean silhouettes,
     effortless styling and pieces made to be worn your way.
   </p>
@@ -763,9 +473,10 @@ footer a{display:block;margin-bottom:8px}
 
 </main>
 
-<!-- FOOTER -->
 <footer>
+
   <div class="footer-grid">
+
     <div>
       <div class="footer-logo">ORRA</div>
       <p>Modern fashion. Clean style. Easy shopping.</p>
@@ -781,71 +492,114 @@ footer a{display:block;margin-bottom:8px}
 
     <div>
       <h4>INFO</h4>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+      <a href="#home" onclick="goHome()">About</a>
+      <a href="#home" onclick="goHome()">Contact</a>
     </div>
+
   </div>
 
   <div class="copy">
     © 2026 ORRA. ALL RIGHTS RESERVED.
   </div>
+
 </footer>
 
 <!-- PRODUCT MODAL -->
+
 <div id="productModal" class="modal">
 
-  <button class="close" onclick="closeProduct()">×</button>
+  <button
+    type="button"
+    class="close"
+    onclick="closeProduct()"
+    aria-label="Close"
+  >×</button>
 
   <div class="modal-content">
 
     <div id="gallery" class="gallery">
-      <img id="galleryImg" src="" alt="">
+
+      <img
+        id="galleryImg"
+        src=""
+        alt=""
+      >
+
       <div id="dots" class="dots"></div>
+
     </div>
 
     <div class="details">
+
       <div id="detailCategory" class="category"></div>
+
       <h2 id="detailName"></h2>
+
       <div id="detailPrice" class="price"></div>
-      <div id="detailDescription" class="description"></div>
+
+      <div
+        id="detailDescription"
+        class="description"
+      ></div>
 
       <div class="option">Size</div>
+
       <div id="sizes" class="sizes"></div>
 
-      <button class="add" onclick="addToBag()">
+      <button
+        class="add"
+        onclick="addToBag()"
+      >
         ADD TO BAG
       </button>
+
     </div>
 
   </div>
+
 </div>
 
 <!-- BAG -->
+
 <div id="bagPanel" class="panel">
 
   <div class="panel-head">
     <strong>Your Bag</strong>
-    <button class="panel-close" onclick="closeBag()">×</button>
+
+    <button
+      class="panel-close"
+      onclick="closeBag()"
+    >×</button>
   </div>
 
   <div class="bag">
+
     <div id="bagItems"></div>
+
     <div id="bagSummary"></div>
+
   </div>
 
 </div>
 
 <!-- CHECKOUT -->
+
 <div id="checkoutPanel" class="panel">
 
   <div class="panel-head">
     <strong>Checkout</strong>
-    <button class="panel-close" onclick="closeCheckout()">×</button>
+
+    <button
+      class="panel-close"
+      onclick="closeCheckout()"
+    >×</button>
   </div>
 
   <div class="checkout-content">
 
-    <h2 class="checkout-title">Delivery details</h2>
+    <h2 class="checkout-title">
+      Delivery details
+    </h2>
 
     <div class="field">
       <label>Full name *</label>
@@ -882,6 +636,7 @@ footer a{display:block;margin-bottom:8px}
     </div>
 
     <div class="summary">
+
       <div>
         <span>Subtotal</span>
         <span id="subtotal">$0</span>
@@ -896,19 +651,28 @@ footer a{display:block;margin-bottom:8px}
         <strong>Total</strong>
         <strong id="total">$0</strong>
       </div>
+
     </div>
 
-    <button class="checkout-btn" onclick="placeOrder()">
+    <button
+      class="checkout-btn"
+      onclick="placeOrder()"
+    >
       PLACE ORDER
     </button>
 
   </div>
+
 </div>
 
 <!-- SEARCH -->
+
 <div id="searchPanel" class="search">
 
-  <button class="search-x" onclick="closeSearch()">×</button>
+  <button
+    class="search-x"
+    onclick="closeSearch()"
+  >×</button>
 
   <input
     id="searchInput"
@@ -921,46 +685,77 @@ footer a{display:block;margin-bottom:8px}
 
 </div>
 
-<!-- NOTIFICATION -->
 <div id="notice" class="notice">
   ADDED TO BAG
 </div>
 
+
 <script>
 
-/* =========================================================
+/* =====================================================
    SUPABASE
-   ========================================================= */
+===================================================== */
 
 const SUPABASE_URL =
 "https://zkgjtrpmonhnmtxtdjnf.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_ojC9Dvnetb5aHKLTwCRo4Q_ce";
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InprZ2p0cnBtb25obm10eHRkam5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2MDMyNjIsImV4cCI6MjEwNjE3OTI2Mn0.6v7t3gTxgE6YtgBNDLQm8NwdK8vQlovlzgCoeGNxzWk";
 
-const DELIVERY_CHARGE = 5;
+const DELIVERY_CHARGE=5;
 
-const GITHUB =
+const GITHUB=
 "https://raw.githubusercontent.com/orrafashion/Orra/main/";
 
-let products = [];
-let shownProducts = [];
-let selectedCategory = "ALL";
+let products=[];
+let shownProducts=[];
+let selectedCategory="ALL";
 
-let activeProduct = null;
-let activeImages = [];
-let imageIndex = 0;
-let selectedSize = "";
+let activeProduct=null;
+let activeImages=[];
+let imageIndex=0;
+let selectedSize="";
 
-let bag = [];
+let bag=[];
 
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
+let lastScrollY=0;
+
+
+/* =====================================================
+   BASIC
+===================================================== */
+
+function isOpen(id){
+  return document
+    .getElementById(id)
+    .classList.contains("active");
+}
+
+function lockPage(){
+  document.body.classList.add("lock");
+}
+
+function unlockPage(){
+
+  if(
+    !isOpen("productModal") &&
+    !isOpen("bagPanel") &&
+    !isOpen("checkoutPanel") &&
+    !isOpen("searchPanel")
+  ){
+    document.body.classList.remove("lock");
+  }
+
+}
+
+
+/* =====================================================
+   HOME / SHOP
+===================================================== */
 
 function goHome(){
 
-  closeProduct();
+  closeProduct(false);
   closeBag();
   closeCheckout();
   closeSearch();
@@ -968,104 +763,124 @@ function goHome(){
   history.replaceState(
     null,
     "",
-    location.pathname + location.search
+    location.pathname+
+    location.search
   );
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
+
 }
+
 
 function shop(){
 
-  closeProduct();
+  closeProduct(false);
   closeBag();
   closeCheckout();
   closeSearch();
 
-  document.getElementById("shop")
-    .scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
+  setTimeout(()=>{
+
+    document
+      .getElementById("shop")
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+  },30);
+
 }
+
 
 function filterCategory(category){
 
-  selectedCategory = category;
+  selectedCategory=category;
 
   shop();
 
   renderProducts();
+
 }
 
-/* =========================================================
-   LOAD PRODUCTS FROM SUPABASE
-   ========================================================= */
+
+/* =====================================================
+   LOAD PRODUCTS
+===================================================== */
 
 async function loadProducts(){
 
-  const box = document.getElementById("products");
+  const box=
+    document.getElementById("products");
 
-  box.innerHTML =
+  box.innerHTML=
     '<div class="loading">LOADING ORRA...</div>';
 
-  const urls = [
-    SUPABASE_URL + "/rest/v1/Products?select=*",
-    SUPABASE_URL + "/rest/v1/products?select=*"
-  ];
+  const url=
+    SUPABASE_URL+
+    "/rest/v1/Products?select=*";
 
-  let errorMessage = "";
+  try{
 
-  for(const url of urls){
-
-    try{
-
-      const response = await fetch(url,{
+    const response=
+      await fetch(url,{
         method:"GET",
         headers:{
           "apikey":SUPABASE_KEY,
-          "Authorization":"Bearer " + SUPABASE_KEY,
+          "Authorization":
+            "Bearer "+SUPABASE_KEY,
           "Accept":"application/json"
         },
         cache:"no-store"
       });
 
-      const text = await response.text();
+    const text=
+      await response.text();
 
-      if(!response.ok){
+    if(!response.ok){
 
-        errorMessage =
-          "HTTP " +
-          response.status +
-          ": " +
-          text;
+      throw new Error(
+        "HTTP "+
+        response.status+
+        ": "+
+        text
+      );
 
-        continue;
-      }
+    }
 
-      const data = JSON.parse(text);
+    const data=
+      JSON.parse(text);
 
-      if(!Array.isArray(data)){
+    if(!Array.isArray(data)){
 
-        errorMessage =
-          "Supabase returned invalid data.";
+      throw new Error(
+        "Supabase returned invalid data."
+      );
 
-        continue;
-      }
+    }
 
-      products = data.map(p=>({
+    products=
+      data.map(p=>({
 
         ...p,
 
-        name:p.name || "ORRA PRODUCT",
+        name:
+          p.name ||
+          "ORRA PRODUCT",
 
-        price:Number(p.price) || 0,
+        price:
+          Number(p.price)||0,
 
-        category:p.category || "ORRA",
+        category:
+          p.category ||
+          "ORRA",
 
-        sizes:p.sizes || "",
+        sizes:
+          p.sizes ||
+          "",
 
         description:
           p.description ||
@@ -1073,275 +888,406 @@ async function loadProducts(){
 
       }));
 
-      products.sort((a,b)=>
-        new Date(b.created_at || 0) -
-        new Date(a.created_at || 0)
-      );
 
-      renderProducts();
+    products.sort((a,b)=>
+      new Date(b.created_at||0)-
+      new Date(a.created_at||0)
+    );
 
-      return;
 
-    }catch(error){
+    renderProducts();
 
-      errorMessage =
-        error.message || String(error);
+  }catch(error){
 
-    }
+    box.innerHTML=
+      `<div class="error">
+        <strong>COULD NOT LOAD PRODUCTS</strong>
+        <br><br>
+        ${escapeHtml(error.message)}
+        <br><br>
+        Please check Supabase Products SELECT access.
+      </div>`;
+
+    document
+      .getElementById("count")
+      .textContent="ERROR";
 
   }
 
-  box.innerHTML =
-    `<div class="error">
-      <strong>COULD NOT LOAD PRODUCTS</strong>
-      <br><br>
-      ${escapeHtml(errorMessage)}
-      <br><br>
-      Please check Supabase Products SELECT access.
-    </div>`;
-
-  document.getElementById("count").textContent="ERROR";
 }
 
-/* =========================================================
-   PRODUCT IMAGES
-   ========================================================= */
+
+/* =====================================================
+   IMAGES
+===================================================== */
 
 function getImages(product){
 
-  /*
-   White Stitch Detail Set:
-   3 photos grouped together.
-  */
-
   if(
-    product.name === "White Stitch Detail Set" ||
-    String(product.image_url || "")
+    product.name===
+      "White Stitch Detail Set" ||
+
+    String(product.image_url||"")
       .includes("IMG_3097.jpeg")
   ){
 
-    return [
+    return[
       GITHUB+"IMG_3097.jpeg",
       GITHUB+"IMG_3098.jpeg",
       GITHUB+"IMG_3099.jpeg"
     ];
+
   }
 
-  let images = [];
 
-  if(Array.isArray(product.image_urls)){
+  let images=[];
 
-    images = product.image_urls;
 
-  }else if(
-    typeof product.image_urls === "string" &&
+  if(
+    Array.isArray(product.image_urls)
+  ){
+
+    images=
+      product.image_urls;
+
+  }
+
+
+  else if(
+    typeof product.image_urls===
+      "string" &&
     product.image_urls.trim()
   ){
 
     try{
 
-      const parsed =
-        JSON.parse(product.image_urls);
+      const parsed=
+        JSON.parse(
+          product.image_urls
+        );
 
       if(Array.isArray(parsed))
         images=parsed;
 
     }catch{
 
-      images =
-        product.image_urls.split(",");
+      images=
+        product.image_urls
+          .split(",");
 
     }
 
   }
 
+
   if(
     !images.length &&
-    typeof product.image_url === "string"
+    typeof product.image_url===
+      "string"
   ){
 
-    images =
-      product.image_url.split(",");
+    images=
+      product.image_url
+        .split(",");
+
   }
 
-  images =
+
+  images=
     images
       .map(x=>String(x).trim())
       .filter(Boolean)
       .map(normalizeImage);
+
 
   if(!images.length){
 
     images=[
       GITHUB+"IMG_3097.jpeg"
     ];
+
   }
 
-  return [...new Set(images)];
+
+  return[
+    ...new Set(images)
+  ];
+
 }
+
 
 function normalizeImage(url){
 
-  if(/^https?:\/\//i.test(url))
+  if(
+    /^https?:\/\//i.test(url)
+  )
     return url;
 
-  return GITHUB +
+  return GITHUB+
     url.replace(/^\/+/,"");
+
 }
 
-/* =========================================================
-   RENDER PRODUCTS
-   ========================================================= */
+
+/* =====================================================
+   PRODUCTS
+===================================================== */
 
 function renderProducts(){
 
-  let list=[...products];
+  let list=[
+    ...products
+  ];
 
-  if(selectedCategory !== "ALL"){
 
-    list=list.filter(product=>
-      String(product.category || "")
+  if(selectedCategory!=="ALL"){
+
+    list=
+      list.filter(product=>
+        String(
+          product.category||""
+        )
         .toUpperCase()
-        .includes(selectedCategory)
-    );
+        .includes(
+          selectedCategory
+        )
+      );
 
   }
+
 
   shownProducts=list;
 
-  document.getElementById("count").textContent =
-    list.length +
-    (list.length===1 ? " ITEM" : " ITEMS");
+
+  document
+    .getElementById("count")
+    .textContent=
+      list.length+
+      (
+        list.length===1
+        ?" ITEM"
+        :" ITEMS"
+      );
+
 
   if(!list.length){
 
-    document.getElementById("products").innerHTML =
-      '<div class="loading">NO PRODUCTS IN THIS COLLECTION YET.</div>';
+    document
+      .getElementById("products")
+      .innerHTML=
+        '<div class="loading">'+
+        'NO PRODUCTS IN THIS COLLECTION YET.'+
+        '</div>';
 
     return;
+
   }
 
-  document.getElementById("products").innerHTML =
-    list.map((product,index)=>{
 
-      const image=getImages(product)[0];
+  document
+    .getElementById("products")
+    .innerHTML=
 
-      return `
-        <button class="product"
-          onclick="openProductByIndex(${index})">
+    list.map(
+      (product,index)=>{
 
-          <div class="product-img">
+        const image=
+          getImages(product)[0];
 
-            <img
-              src="${escapeAttr(image)}"
-              alt="${escapeAttr(product.name)}"
-              loading="lazy"
-              onerror="this.src='${GITHUB}IMG_3097.jpeg'"
-            >
+        return`
 
-          </div>
+          <button
+            class="product"
+            onclick="
+              openProductByIndex(${index})
+            "
+          >
 
-          <div class="product-info">
+            <div class="product-img">
 
-            <div class="product-name">
-              ${escapeHtml(product.name)}
+              <img
+                src="${escapeAttr(image)}"
+                alt="${escapeAttr(product.name)}"
+                loading="lazy"
+              >
+
             </div>
 
-            <div class="product-price">
-              $${formatPrice(product.price)}
+            <div class="product-info">
+
+              <div class="product-name">
+                ${escapeHtml(product.name)}
+              </div>
+
+              <div class="product-price">
+                $${formatPrice(product.price)}
+              </div>
+
+              <div class="product-cat">
+                ${escapeHtml(product.category)}
+              </div>
+
             </div>
 
-            <div class="product-cat">
-              ${escapeHtml(product.category)}
-            </div>
+          </button>
 
-          </div>
+        `;
 
-        </button>
-      `;
+      }
+    ).join("");
 
-    }).join("");
 }
+
 
 function openProductByIndex(index){
 
-  const product=shownProducts[index];
+  const product=
+    shownProducts[index];
 
   if(product)
     openProduct(product);
+
 }
 
-/* =========================================================
-   PRODUCT PAGE
-   ========================================================= */
+
+/* =====================================================
+   PRODUCT
+===================================================== */
 
 function openProduct(product){
 
+  lastScrollY=
+    window.scrollY||
+    window.pageYOffset||
+    0;
+
+
   activeProduct=product;
 
-  activeImages=getImages(product);
+  activeImages=
+    getImages(product);
 
   imageIndex=0;
 
   selectedSize="";
 
-  document.getElementById("detailCategory")
-    .textContent=
-    product.category || "ORRA";
 
-  document.getElementById("detailName")
+  document
+    .getElementById("detailCategory")
     .textContent=
-    product.name;
+      product.category||
+      "ORRA";
 
-  document.getElementById("detailPrice")
-    .textContent=
-    "$"+formatPrice(product.price);
 
-  document.getElementById("detailDescription")
+  document
+    .getElementById("detailName")
     .textContent=
-    product.description ||
-    "A piece from the ORRA collection.";
+      product.name;
+
+
+  document
+    .getElementById("detailPrice")
+    .textContent=
+      "$"+
+      formatPrice(
+        product.price
+      );
+
+
+  document
+    .getElementById("detailDescription")
+    .textContent=
+      product.description||
+      "A piece from the ORRA collection.";
+
 
   renderSizes();
 
   updateGallery();
 
-  document.getElementById("productModal")
-    .classList.add("active");
 
-  document.body.classList.add("lock");
+  document
+    .getElementById("productModal")
+    .classList
+    .add("active");
+
+
+  lockPage();
 
 }
 
-function closeProduct(){
 
-  document.getElementById("productModal")
-    .classList.remove("active");
+function closeProduct(
+  restore=true
+){
 
-  document.body.classList.remove("lock");
+  const wasOpen=
+    isOpen("productModal");
+
+
+  document
+    .getElementById("productModal")
+    .classList
+    .remove("active");
+
 
   activeProduct=null;
   activeImages=[];
   imageIndex=0;
   selectedSize="";
+
+
+  unlockPage();
+
+
+  if(
+    wasOpen &&
+    restore
+  ){
+
+    requestAnimationFrame(()=>{
+
+      window.scrollTo({
+        top:lastScrollY,
+        behavior:"instant"
+      });
+
+    });
+
+  }
+
 }
 
-/* =========================================================
+
+/* =====================================================
    SIZES
-   ========================================================= */
+===================================================== */
 
 function renderSizes(){
 
   const box=
-    document.getElementById("sizes");
+    document.getElementById(
+      "sizes"
+    );
 
   let sizes=[];
 
-  if(Array.isArray(activeProduct.sizes)){
 
-    sizes=activeProduct.sizes;
+  if(
+    Array.isArray(
+      activeProduct.sizes
+    )
+  ){
 
-  }else if(typeof activeProduct.sizes==="string"){
+    sizes=
+      activeProduct.sizes;
+
+  }
+
+  else if(
+    typeof activeProduct.sizes===
+      "string"
+  ){
 
     sizes=
       activeProduct.sizes
@@ -1351,65 +1297,105 @@ function renderSizes(){
 
   }
 
+
   if(!sizes.length)
     sizes=["ONE SIZE"];
 
-  selectedSize=sizes[0];
+
+  selectedSize=
+    sizes[0];
+
 
   box.innerHTML=
-    sizes.map((size,index)=>`
+    sizes.map(
+      (size,index)=>`
 
-      <button
-        class="size ${index===0?"selected":""}"
-        onclick="selectSize(this,'${escapeAttr(size)}')">
+        <button
+          class="size ${
+            index===0
+            ?"selected"
+            :""
+          }"
+          onclick="
+            selectSize(
+              this,
+              '${escapeAttr(size)}'
+            )
+          "
+        >
+          ${escapeHtml(size)}
+        </button>
 
-        ${escapeHtml(size)}
+      `
+    ).join("");
 
-      </button>
-
-    `).join("");
 }
+
 
 function selectSize(button,size){
 
   document
-    .querySelectorAll(".size")
+    .querySelectorAll(
+      "#sizes .size"
+    )
     .forEach(x=>
-      x.classList.remove("selected")
+      x.classList
+        .remove("selected")
     );
 
-  button.classList.add("selected");
+  button
+    .classList
+    .add("selected");
 
   selectedSize=size;
+
 }
 
-/* =========================================================
+
+/* =====================================================
    GALLERY
-   ========================================================= */
+===================================================== */
 
 function updateGallery(){
 
   if(!activeImages.length)
     return;
 
-  document.getElementById("galleryImg")
+
+  document
+    .getElementById("galleryImg")
     .src=
-    activeImages[imageIndex];
+      activeImages[imageIndex];
 
-  document.getElementById("galleryImg")
+
+  document
+    .getElementById("galleryImg")
     .alt=
-    activeProduct ?
-    activeProduct.name :
-    "ORRA";
+      activeProduct
+      ?activeProduct.name
+      :"ORRA";
 
-  document.getElementById("dots")
+
+  document
+    .getElementById("dots")
     .innerHTML=
-    activeImages.map((x,index)=>
-      `<span class="dot ${
-        index===imageIndex?"active":""
-      }"></span>`
-    ).join("");
+
+      activeImages.map(
+        (x,index)=>`
+
+          <span
+            class="dot ${
+              index===imageIndex
+              ?"active"
+              :""
+            }"
+          ></span>
+
+        `
+      ).join("");
+
 }
+
 
 function nextImage(){
 
@@ -1421,7 +1407,9 @@ function nextImage(){
     activeImages.length;
 
   updateGallery();
+
 }
+
 
 function previousImage(){
 
@@ -1430,61 +1418,68 @@ function previousImage(){
 
   imageIndex=
     (imageIndex-1+
-     activeImages.length)%
-     activeImages.length;
+    activeImages.length)%
+    activeImages.length;
 
   updateGallery();
+
 }
 
-/* =========================================================
-   PRODUCT PHOTO SWIPE
-   ========================================================= */
+
+/* =====================================================
+   PRODUCT IMAGE SWIPE
+===================================================== */
 
 let galleryStartX=0;
 let galleryStartY=0;
 
 const gallery=
-  document.getElementById("gallery");
+  document.getElementById(
+    "gallery"
+  );
+
 
 gallery.addEventListener(
   "touchstart",
-  event=>{
+  e=>{
 
-    if(!event.touches[0])
+    if(!e.touches[0])
       return;
 
     galleryStartX=
-      event.touches[0].clientX;
+      e.touches[0].clientX;
 
     galleryStartY=
-      event.touches[0].clientY;
+      e.touches[0].clientY;
 
   },
   {passive:true}
 );
 
+
 gallery.addEventListener(
   "touchend",
-  event=>{
+  e=>{
 
-    if(!event.changedTouches[0])
+    if(!e.changedTouches[0])
       return;
 
-    const x=
-      event.changedTouches[0].clientX;
+    const dx=
+      e.changedTouches[0].clientX-
+      galleryStartX;
 
-    const y=
-      event.changedTouches[0].clientY;
+    const dy=
+      e.changedTouches[0].clientY-
+      galleryStartY;
 
-    const dx=x-galleryStartX;
-    const dy=y-galleryStartY;
 
-    if(Math.abs(dx)<55)
+    if(
+      Math.abs(dx)<55 ||
+      Math.abs(dx)<
+      Math.abs(dy)*1.35
+    )
       return;
 
-    if(Math.abs(dx)<
-       Math.abs(dy)*1.35)
-      return;
 
     if(dx<0)
       nextImage();
@@ -1495,90 +1490,147 @@ gallery.addEventListener(
   {passive:true}
 );
 
-/* =========================================================
-   LEFT EDGE SWIPE -> HOME
-   ========================================================= */
 
-let edgeX=0;
-let edgeY=0;
+/* =====================================================
+   LEFT EDGE SWIPE -> HOME
+===================================================== */
+
+let edgeStartX=0;
+let edgeStartY=0;
 let edgeActive=false;
+
 
 document.addEventListener(
   "touchstart",
-  event=>{
+  e=>{
 
-    if(!event.touches[0])
+    edgeActive=false;
+
+
+    if(!e.touches[0])
       return;
 
-    const target=event.target;
+
+    const target=e.target;
+
 
     /*
-      Do NOT interfere with product image swipe.
+      Never activate this gesture
+      inside product gallery,
+      bag, checkout, search,
+      inputs or buttons.
     */
+
     if(
       target.closest &&
-      target.closest("#gallery")
+      target.closest(
+        "#gallery,"+
+        "#bagPanel,"+
+        "#checkoutPanel,"+
+        "#searchPanel,"+
+        "button,input,textarea"
+      )
     ){
-      edgeActive=false;
       return;
     }
 
-    /*
-      Do NOT interfere with typing.
-    */
+
     if(
-      target.closest &&
-      target.closest("input,textarea")
+      isOpen("productModal")||
+      isOpen("bagPanel")||
+      isOpen("checkoutPanel")||
+      isOpen("searchPanel")
     ){
-      edgeActive=false;
       return;
     }
 
-    edgeX=
-      event.touches[0].clientX;
 
-    edgeY=
-      event.touches[0].clientY;
+    edgeStartX=
+      e.touches[0].clientX;
+
+    edgeStartY=
+      e.touches[0].clientY;
+
 
     /*
-      Must start VERY close to left edge.
+      Must begin very close
+      to the left edge.
     */
+
     edgeActive=
-      edgeX<=30;
+      edgeStartX<=35;
 
   },
   {passive:true}
 );
 
+
 document.addEventListener(
-  "touchend",
-  event=>{
+  "touchmove",
+  e=>{
 
     if(
-      !edgeActive ||
-      !event.changedTouches[0]
+      !edgeActive||
+      !e.touches[0]
+    )
+      return;
+
+
+    const dx=
+      e.touches[0].clientX-
+      edgeStartX;
+
+    const dy=
+      e.touches[0].clientY-
+      edgeStartY;
+
+
+    /*
+      Cancel if it becomes
+      mostly vertical.
+    */
+
+    if(
+      Math.abs(dy)>
+      Math.abs(dx)*1.2
+    ){
+      edgeActive=false;
+    }
+
+  },
+  {passive:true}
+);
+
+
+document.addEventListener(
+  "touchend",
+  e=>{
+
+    if(
+      !edgeActive||
+      !e.changedTouches[0]
     ){
 
       edgeActive=false;
       return;
+
     }
 
-    const x=
-      event.changedTouches[0].clientX;
 
-    const y=
-      event.changedTouches[0].clientY;
+    const dx=
+      e.changedTouches[0].clientX-
+      edgeStartX;
 
-    const dx=x-edgeX;
-    const dy=y-edgeY;
+    const dy=
+      e.changedTouches[0].clientY-
+      edgeStartY;
+
 
     edgeActive=false;
 
-    /*
-      Clear horizontal swipe from left to right.
-    */
+
     if(
-      dx>=100 &&
+      dx>=110 &&
       dx>Math.abs(dy)*1.5
     ){
 
@@ -1590,150 +1642,181 @@ document.addEventListener(
   {passive:true}
 );
 
-/* =========================================================
-   ADD TO BAG
-   ========================================================= */
+
+/* =====================================================
+   BAG
+===================================================== */
 
 function addToBag(){
 
   if(!activeProduct)
     return;
 
+
   bag.push({
 
     id:
-      activeProduct.id ||
+      activeProduct.id||
       Date.now(),
 
     name:
       activeProduct.name,
 
     price:
-      Number(activeProduct.price)||0,
+      Number(
+        activeProduct.price
+      )||0,
 
     size:
-      selectedSize ||
+      selectedSize||
       "ONE SIZE",
 
     image:
-      getImages(activeProduct)[0]
+      getImages(
+        activeProduct
+      )[0]
 
   });
 
+
   closeProduct();
 
-  showNotice("ADDED TO BAG");
+  showNotice(
+    "ADDED TO BAG"
+  );
+
 }
 
-/* =========================================================
-   BAG
-   ========================================================= */
 
 function openBag(){
 
-  closeProduct();
+  closeProduct(false);
   closeCheckout();
   closeSearch();
 
   renderBag();
 
-  document.getElementById("bagPanel")
-    .classList.add("active");
 
-  document.body.classList.add("lock");
+  document
+    .getElementById("bagPanel")
+    .classList
+    .add("active");
+
+
+  lockPage();
+
 }
+
 
 function closeBag(){
 
-  document.getElementById("bagPanel")
-    .classList.remove("active");
+  document
+    .getElementById("bagPanel")
+    .classList
+    .remove("active");
 
-  if(
-    !document.getElementById("checkoutPanel")
-      .classList.contains("active") &&
-    !document.getElementById("productModal")
-      .classList.contains("active")
-  ){
+  unlockPage();
 
-    document.body.classList.remove("lock");
-
-  }
 }
+
 
 function removeItem(index){
 
   bag.splice(index,1);
 
   renderBag();
+
 }
+
 
 function subtotal(){
 
   return bag.reduce(
     (sum,item)=>
-      sum+(Number(item.price)||0),
+      sum+
+      (
+        Number(item.price)||0
+      ),
     0
   );
+
 }
+
 
 function renderBag(){
 
   const box=
-    document.getElementById("bagItems");
+    document.getElementById(
+      "bagItems"
+    );
 
   const summary=
-    document.getElementById("bagSummary");
+    document.getElementById(
+      "bagSummary"
+    );
+
 
   if(!bag.length){
 
     box.innerHTML=
-      '<div class="loading">YOUR BAG IS EMPTY.</div>';
+      '<div class="loading">'+
+      'YOUR BAG IS EMPTY.'+
+      '</div>';
 
     summary.innerHTML="";
 
     return;
+
   }
 
+
   box.innerHTML=
-    bag.map((item,index)=>`
+    bag.map(
+      (item,index)=>`
 
-      <div class="bag-item">
+        <div class="bag-item">
 
-        <img
-          src="${escapeAttr(item.image)}"
-          alt="${escapeAttr(item.name)}"
-        >
+          <img
+            src="${escapeAttr(item.image)}"
+            alt="${escapeAttr(item.name)}"
+          >
 
-        <div>
+          <div>
 
-          <div class="bag-name">
-            ${escapeHtml(item.name)}
+            <div class="bag-name">
+              ${escapeHtml(item.name)}
+            </div>
+
+            <div class="bag-meta">
+              SIZE:
+              ${escapeHtml(item.size)}
+              <br>
+              PRICE:
+              $${formatPrice(item.price)}
+            </div>
+
+            <button
+              class="remove"
+              onclick="removeItem(${index})"
+            >
+              REMOVE
+            </button>
+
           </div>
 
-          <div class="bag-meta">
-            SIZE: ${escapeHtml(item.size)}<br>
-            PRICE: $${formatPrice(item.price)}
+          <div>
+            $${formatPrice(item.price)}
           </div>
-
-          <button
-            class="remove"
-            onclick="removeItem(${index})">
-
-            REMOVE
-
-          </button>
 
         </div>
 
-        <div>
-          $${formatPrice(item.price)}
-        </div>
+      `
+    ).join("");
 
-      </div>
 
-    `).join("");
+  const sub=
+    subtotal();
 
-  const sub=subtotal();
 
   summary.innerHTML=`
 
@@ -1749,91 +1832,124 @@ function renderBag(){
 
     <div
       class="total"
-      style="border-top:1px solid #000">
-
+      style="border-top:1px solid #000"
+    >
       <strong>Total</strong>
-      <strong>
-        $${formatPrice(sub+DELIVERY_CHARGE)}
-      </strong>
 
+      <strong>
+        $${formatPrice(
+          sub+
+          DELIVERY_CHARGE
+        )}
+      </strong>
     </div>
 
     <button
       class="checkout-btn"
-      onclick="openCheckout()">
-
+      onclick="openCheckout()"
+    >
       CHECKOUT
-
     </button>
+
   `;
+
 }
 
-/* =========================================================
+
+/* =====================================================
    CHECKOUT
-   ========================================================= */
+===================================================== */
 
 function openCheckout(){
 
   if(!bag.length){
 
-    showNotice("YOUR BAG IS EMPTY");
+    showNotice(
+      "YOUR BAG IS EMPTY"
+    );
 
     return;
+
   }
+
 
   closeBag();
 
-  document.getElementById("checkoutPanel")
-    .classList.add("active");
 
-  document.body.classList.add("lock");
+  document
+    .getElementById(
+      "checkoutPanel"
+    )
+    .classList
+    .add("active");
 
-  const sub=subtotal();
 
-  document.getElementById("subtotal")
+  lockPage();
+
+
+  const sub=
+    subtotal();
+
+
+  document
+    .getElementById("subtotal")
     .textContent=
-    "$"+formatPrice(sub);
+      "$"+
+      formatPrice(sub);
 
-  document.getElementById("total")
+
+  document
+    .getElementById("total")
     .textContent=
-    "$"+formatPrice(
-      sub+DELIVERY_CHARGE
-    );
+      "$"+
+      formatPrice(
+        sub+
+        DELIVERY_CHARGE
+      );
+
 }
+
 
 function closeCheckout(){
 
-  document.getElementById("checkoutPanel")
-    .classList.remove("active");
+  document
+    .getElementById(
+      "checkoutPanel"
+    )
+    .classList
+    .remove("active");
 
-  if(
-    !document.getElementById("bagPanel")
-      .classList.contains("active") &&
-    !document.getElementById("productModal")
-      .classList.contains("active")
-  ){
+  unlockPage();
 
-    document.body.classList.remove("lock");
-
-  }
 }
+
 
 function placeOrder(){
 
   const fields=[
+
     ["fullName","Full name"],
     ["phone","Phone number"],
     ["city","City"],
     ["area","Area"],
     ["address","Full address"]
+
   ];
 
-  for(const field of fields){
+
+  for(
+    const field of fields
+  ){
 
     const element=
-      document.getElementById(field[0]);
+      document.getElementById(
+        field[0]
+      );
 
-    if(!element.value.trim()){
+
+    if(
+      !element.value.trim()
+    ){
 
       element.focus();
 
@@ -1843,18 +1959,16 @@ function placeOrder(){
       );
 
       return;
+
     }
+
   }
 
-  /*
-    Current version validates the order
-    and clears the bag.
 
-    Orders can later be saved permanently
-    inside Supabase.
-  */
+  showNotice(
+    "ORDER RECEIVED"
+  );
 
-  showNotice("ORDER RECEIVED");
 
   setTimeout(()=>{
 
@@ -1864,88 +1978,125 @@ function placeOrder(){
 
     renderBag();
 
+
     fields.forEach(field=>{
-      document.getElementById(field[0])
+
+      document
+        .getElementById(
+          field[0]
+        )
         .value="";
+
     });
 
-    document.getElementById("notes")
+
+    document
+      .getElementById("notes")
       .value="";
+
 
     goHome();
 
   },1000);
+
 }
 
-/* =========================================================
+
+/* =====================================================
    SEARCH
-   ========================================================= */
+===================================================== */
 
 function openSearch(){
 
-  closeProduct();
+  closeProduct(false);
   closeBag();
   closeCheckout();
 
-  document.getElementById("searchPanel")
-    .classList.add("active");
 
-  document.body.classList.add("lock");
+  document
+    .getElementById(
+      "searchPanel"
+    )
+    .classList
+    .add("active");
+
+
+  lockPage();
+
 
   setTimeout(()=>{
-    document.getElementById("searchInput")
+
+    document
+      .getElementById(
+        "searchInput"
+      )
       .focus();
+
   },50);
 
 }
 
+
 function closeSearch(){
 
-  document.getElementById("searchPanel")
-    .classList.remove("active");
+  document
+    .getElementById(
+      "searchPanel"
+    )
+    .classList
+    .remove("active");
 
-  if(
-    !document.getElementById("bagPanel")
-      .classList.contains("active") &&
-    !document.getElementById("checkoutPanel")
-      .classList.contains("active") &&
-    !document.getElementById("productModal")
-      .classList.contains("active")
-  ){
+  unlockPage();
 
-    document.body.classList.remove("lock");
-
-  }
 }
+
 
 function searchProducts(){
 
   const query=
-    document.getElementById("searchInput")
+    document
+      .getElementById(
+        "searchInput"
+      )
       .value
       .trim()
       .toLowerCase();
 
+
   const box=
-    document.getElementById("searchResults");
+    document.getElementById(
+      "searchResults"
+    );
+
 
   if(!query){
 
     box.innerHTML="";
 
     return;
+
   }
+
 
   const matches=
     products.filter(product=>
-      String(product.name||"")
-        .toLowerCase()
-        .includes(query) ||
 
-      String(product.category||"")
-        .toLowerCase()
-        .includes(query)
+      String(
+        product.name||""
+      )
+      .toLowerCase()
+      .includes(query)
+
+      ||
+
+      String(
+        product.category||""
+      )
+      .toLowerCase()
+      .includes(query)
+
     );
+
 
   if(!matches.length){
 
@@ -1953,62 +2104,75 @@ function searchProducts(){
       '<div class="loading">NO RESULTS</div>';
 
     return;
+
   }
 
-  window.searchMatches=matches;
+
+  window.searchMatches=
+    matches;
+
 
   box.innerHTML=
-    matches.map((product,index)=>{
+    matches.map(
+      (product,index)=>{
 
-      const image=
-        getImages(product)[0];
+        const image=
+          getImages(product)[0];
 
-      return `
+        return`
 
-        <button
-          style="
-          display:flex;
-          width:100%;
-          gap:15px;
-          padding:12px 0;
-          border:0;
-          border-bottom:1px solid #eee;
-          background:#fff;
-          text-align:left"
-          onclick="openSearchProduct(${index})">
-
-          <img
-            src="${escapeAttr(image)}"
+          <button
             style="
-            width:70px;
-            height:90px;
-            object-fit:cover"
+              display:flex;
+              width:100%;
+              gap:15px;
+              padding:12px 0;
+              border:0;
+              border-bottom:1px solid #eee;
+              background:#fff;
+              text-align:left
+            "
+            onclick="
+              openSearchProduct(${index})
+            "
           >
 
-          <span>
-
-            <strong
+            <img
+              src="${escapeAttr(image)}"
               style="
-              display:block;
-              font-size:12px;
-              margin:5px 0 8px">
+                width:70px;
+                height:90px;
+                object-fit:cover
+              "
+            >
 
-              ${escapeHtml(product.name)}
+            <span>
 
-            </strong>
+              <strong
+                style="
+                  display:block;
+                  font-size:12px;
+                  margin:5px 0 8px
+                "
+              >
+                ${escapeHtml(product.name)}
+              </strong>
 
-            <span style="font-size:11px">
-              $${formatPrice(product.price)}
+              <span style="font-size:11px">
+                $${formatPrice(product.price)}
+              </span>
+
             </span>
 
-          </span>
+          </button>
 
-        </button>
+        `;
 
-      `;
+      }
+    ).join("");
 
-    }).join("");
 }
+
 
 function openSearchProduct(index){
 
@@ -2021,34 +2185,51 @@ function openSearchProduct(index){
   closeSearch();
 
   openProduct(product);
+
 }
 
-/* =========================================================
-   NOTIFICATION
-   ========================================================= */
+
+/* =====================================================
+   NOTICE
+===================================================== */
 
 let noticeTimer;
+
 
 function showNotice(text){
 
   const notice=
-    document.getElementById("notice");
+    document.getElementById(
+      "notice"
+    );
 
-  notice.textContent=text;
+
+  notice.textContent=
+    text;
+
 
   notice.classList.add("show");
 
-  clearTimeout(noticeTimer);
+
+  clearTimeout(
+    noticeTimer
+  );
+
 
   noticeTimer=
     setTimeout(()=>{
-      notice.classList.remove("show");
+
+      notice.classList
+        .remove("show");
+
     },1200);
+
 }
 
-/* =========================================================
+
+/* =====================================================
    HELPERS
-   ========================================================= */
+===================================================== */
 
 function formatPrice(value){
 
@@ -2056,9 +2237,11 @@ function formatPrice(value){
     Number(value)||0;
 
   return n%1===0
-    ? String(n)
-    : n.toFixed(2);
+    ?String(n)
+    :n.toFixed(2);
+
 }
+
 
 function escapeHtml(value){
 
@@ -2068,22 +2251,26 @@ function escapeHtml(value){
     .replaceAll(">","&gt;")
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
+
 }
+
 
 function escapeAttr(value){
 
   return escapeHtml(value);
+
 }
 
-/* =========================================================
-   ESC KEY
-   ========================================================= */
+
+/* =====================================================
+   ESC
+===================================================== */
 
 document.addEventListener(
   "keydown",
-  event=>{
+  e=>{
 
-    if(event.key!=="Escape")
+    if(e.key!=="Escape")
       return;
 
     closeProduct();
@@ -2094,9 +2281,10 @@ document.addEventListener(
   }
 );
 
-/* =========================================================
+
+/* =====================================================
    START
-   ========================================================= */
+===================================================== */
 
 loadProducts();
 
