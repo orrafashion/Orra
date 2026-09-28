@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ORRA - Online Fashion Store">
+
   <title>ORRA</title>
+  <meta name="description" content="ORRA — Fashion Store">
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
       background: #fff;
-      color: #000;
+      color: #111;
     }
 
     a {
@@ -25,81 +30,72 @@
     }
 
     button {
-      font-family: inherit;
-      cursor: pointer;
+      font: inherit;
     }
 
-    /* TOP BAR */
-    .top-bar {
-      background: #000;
-      color: #fff;
-      text-align: center;
-      padding: 10px 15px;
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
+    /* ================= HEADER ================= */
 
-    /* HEADER */
     header {
-      height: 82px;
-      background: #fff;
-      border-bottom: 1px solid #eee;
+      height: 74px;
+      padding: 0 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 45px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
       position: sticky;
       top: 0;
-      z-index: 20;
-    }
-
-    .menu {
-      font-size: 25px;
-      border: 0;
-      background: none;
+      z-index: 100;
     }
 
     .logo {
       font-family: Georgia, serif;
-      font-size: 42px;
-      letter-spacing: 8px;
+      font-size: 32px;
+      letter-spacing: 7px;
       font-weight: normal;
     }
 
-    .header-actions {
+    .header-left,
+    .header-right {
       display: flex;
-      gap: 25px;
       align-items: center;
-      font-size: 22px;
+      gap: 22px;
     }
 
-    .cart-icon {
+    .header-button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .cart {
       position: relative;
     }
 
     .cart-count {
       position: absolute;
-      top: -9px;
-      right: -10px;
-      background: #000;
+      top: -8px;
+      right: -9px;
+      width: 16px;
+      height: 16px;
+      background: #111;
       color: #fff;
       border-radius: 50%;
-      width: 17px;
-      height: 17px;
-      font-size: 10px;
+      font-size: 9px;
       display: none;
       align-items: center;
       justify-content: center;
     }
 
-    /* HERO */
+    /* ================= HERO ================= */
+
     .hero {
-      height: 78vh;
-      min-height: 550px;
       position: relative;
+      height: 78vh;
+      min-height: 520px;
       overflow: hidden;
-      background: #111;
+      background: #eee;
     }
 
     .hero img {
@@ -109,97 +105,90 @@
       filter: grayscale(100%);
     }
 
-    .hero-overlay {
+    .hero-content {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        90deg,
-        rgba(0,0,0,.58),
-        rgba(0,0,0,.05)
-      );
       display: flex;
-      align-items: center;
-      padding-left: 9%;
-    }
-
-    .hero-content {
+      align-items: flex-end;
+      padding: 55px;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,.55),
+        rgba(0,0,0,0)
+      );
       color: #fff;
-      max-width: 480px;
     }
 
-    .hero-small {
-      font-size: 13px;
-      letter-spacing: 4px;
-      margin-bottom: 18px;
+    .hero-text {
+      max-width: 500px;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
     }
 
     .hero h1 {
       font-family: Georgia, serif;
-      font-size: clamp(50px, 7vw, 95px);
+      font-size: clamp(48px, 7vw, 86px);
       font-weight: normal;
       line-height: .95;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     .shop-button {
       display: inline-block;
       background: #fff;
-      color: #000;
-      padding: 16px 30px;
-      font-size: 12px;
+      color: #111;
+      padding: 15px 25px;
+      border: none;
+      font-size: 11px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      border: none;
+      cursor: pointer;
     }
 
-    /* SECTION */
+    /* ================= SECTION ================= */
+
     .section {
       padding: 75px 5%;
     }
 
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
+    .section-title {
       margin-bottom: 35px;
     }
 
-    .section-heading small {
-      font-size: 11px;
+    .section-label {
+      font-size: 10px;
       letter-spacing: 3px;
       text-transform: uppercase;
+      color: #777;
+      margin-bottom: 9px;
     }
 
-    .section-heading h2 {
+    .section-title h2 {
       font-family: Georgia, serif;
-      font-size: clamp(38px, 5vw, 65px);
+      font-size: clamp(36px, 5vw, 58px);
       font-weight: normal;
-      margin-top: 8px;
     }
 
-    .view-all {
-      font-size: 12px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-bottom: 1px solid #000;
-      padding-bottom: 4px;
-    }
+    /* ================= COLLECTIONS ================= */
 
-    /* CATEGORIES */
-    .categories {
+    .collections {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
     }
 
-    .category {
+    .collection {
       position: relative;
-      height: 420px;
+      height: 470px;
       overflow: hidden;
       background: #eee;
     }
 
-    .category img {
+    .collection img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -207,37 +196,42 @@
       transition: transform .5s ease;
     }
 
-    .category:hover img {
-      transform: scale(1.04);
+    .collection:hover img {
+      transform: scale(1.03);
     }
 
-    .category-title {
+    .collection-name {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      background: #000;
+      padding: 22px;
       color: #fff;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: linear-gradient(
+        transparent,
+        rgba(0,0,0,.75)
+      );
       font-family: Georgia, serif;
-      font-size: 22px;
+      font-size: 25px;
     }
 
-    /* PRODUCTS */
+    /* ================= PRODUCTS ================= */
+
     .products {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
     }
 
+    .product {
+      cursor: pointer;
+    }
+
     .product-image {
       position: relative;
       aspect-ratio: 3 / 4;
       overflow: hidden;
-      background: #eee;
+      background: #f1f1f1;
     }
 
     .product-image img {
@@ -245,43 +239,32 @@
       height: 100%;
       object-fit: cover;
       filter: grayscale(100%);
-      transition: transform .5s ease;
+      transition: transform .4s ease;
     }
 
     .product:hover img {
       transform: scale(1.03);
     }
 
-    .heart {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: #fff;
-      border: 0;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      font-size: 19px;
-    }
-
     .product-info {
-      padding: 15px 2px 25px;
+      padding: 14px 0 30px;
     }
 
     .product-name {
-      font-size: 14px;
-      margin-bottom: 7px;
+      font-size: 13px;
+      margin-bottom: 6px;
     }
 
     .product-price {
-      font-size: 13px;
-      color: #555;
+      font-size: 12px;
+      color: #666;
     }
 
-    /* EDITORIAL */
+    /* ================= EDITORIAL ================= */
+
     .editorial {
-      margin: 30px 5% 80px;
-      height: 520px;
+      margin: 20px 5% 75px;
+      height: 500px;
       position: relative;
       overflow: hidden;
     }
@@ -293,75 +276,76 @@
       filter: grayscale(100%);
     }
 
-    .editorial-content {
+    .editorial-text {
       position: absolute;
       inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0,0,0,.2);
-      color: white;
+      background: rgba(0,0,0,.18);
+      color: #fff;
       text-align: center;
     }
 
-    .editorial h2 {
+    .editorial-text h2 {
       font-family: Georgia, serif;
-      font-size: clamp(40px, 6vw, 80px);
+      font-size: clamp(45px, 7vw, 85px);
       font-weight: normal;
+      letter-spacing: 5px;
     }
 
-    /* FOOTER */
+    /* ================= FOOTER ================= */
+
     footer {
-      background: #000;
+      background: #111;
       color: #fff;
       padding: 60px 5%;
       text-align: center;
     }
 
-    footer .footer-logo {
+    .footer-logo {
       font-family: Georgia, serif;
-      font-size: 42px;
-      letter-spacing: 8px;
-      margin-bottom: 25px;
+      font-size: 34px;
+      letter-spacing: 7px;
+      margin-bottom: 20px;
     }
 
-    footer p {
+    .footer-text {
       color: #aaa;
       font-size: 12px;
-      letter-spacing: 1px;
+      margin-bottom: 30px;
     }
 
     .footer-links {
-      margin-top: 30px;
       display: flex;
       justify-content: center;
-      gap: 30px;
-      font-size: 12px;
-      text-transform: uppercase;
+      gap: 28px;
+      font-size: 11px;
       letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    /* MOBILE */
+    /* ================= MOBILE ================= */
+
     @media (max-width: 700px) {
 
-      .top-bar {
-        font-size: 9px;
-        padding: 9px;
-      }
-
       header {
-        height: 68px;
+        height: 64px;
         padding: 0 18px;
       }
 
       .logo {
-        font-size: 28px;
+        font-size: 25px;
         letter-spacing: 5px;
       }
 
-      .header-actions {
+      .header-left,
+      .header-right {
         gap: 15px;
-        font-size: 19px;
+      }
+
+      .header-button {
+        font-size: 18px;
       }
 
       .hero {
@@ -369,44 +353,38 @@
         min-height: 500px;
       }
 
-      .hero-overlay {
+      .hero-content {
         padding: 25px;
-        align-items: end;
-        padding-bottom: 50px;
+        padding-bottom: 40px;
       }
 
       .hero h1 {
-        font-size: 55px;
+        font-size: 52px;
       }
 
-      .hero-small {
-        font-size: 10px;
+      .hero-label {
+        font-size: 9px;
       }
 
       .section {
         padding: 55px 18px;
       }
 
-      .section-heading {
-        display: block;
+      .section-title {
+        margin-bottom: 25px;
       }
 
-      .section-heading h2 {
-        margin-bottom: 18px;
+      .collections {
+        gap: 9px;
       }
 
-      .categories {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-
-      .category {
+      .collection {
         height: 300px;
       }
 
-      .category-title {
-        padding: 13px;
-        font-size: 17px;
+      .collection-name {
+        padding: 15px;
+        font-size: 18px;
       }
 
       .products {
@@ -415,7 +393,7 @@
       }
 
       .product-info {
-        padding-bottom: 18px;
+        padding-bottom: 22px;
       }
 
       .product-name {
@@ -426,22 +404,14 @@
         font-size: 11px;
       }
 
-      .heart {
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-        top: 9px;
-        right: 9px;
-      }
-
       .editorial {
-        margin: 10px 18px 50px;
-        height: 430px;
+        margin: 10px 18px 55px;
+        height: 400px;
       }
 
       .footer-links {
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 18px;
       }
     }
   </style>
@@ -449,50 +419,55 @@
 
 <body>
 
-  <div class="top-bar">
-    Free delivery on orders over $100
-  </div>
+  <!-- HEADER -->
 
   <header>
-    <button class="menu">☰</button>
 
-    <div class="logo">ORRA</div>
+    <div class="header-left">
+      <button class="header-button">☰</button>
+    </div>
 
-    <div class="header-actions">
-      <span>⌕</span>
+    <a href="#" class="logo">ORRA</a>
 
-      <span class="cart-icon">
+    <div class="header-right">
+
+      <button class="header-button">⌕</button>
+
+      <button class="header-button cart">
         ♡
         <span class="cart-count" id="cartCount">0</span>
-      </span>
+      </button>
+
     </div>
+
   </header>
 
+
   <!-- HERO -->
+
   <section class="hero">
 
     <img
       src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=85"
-      alt="ORRA Fashion"
+      alt="ORRA Collection"
     >
 
-    <div class="hero-overlay">
+    <div class="hero-content">
 
-      <div class="hero-content">
+      <div class="hero-text">
 
-        <div class="hero-small">NEW COLLECTION</div>
+        <div class="hero-label">
+          NEW COLLECTION
+        </div>
 
         <h1>
-          Effortless<br>
-          Elegance
+          Made for<br>
+          your style.
         </h1>
 
-        <button
-          class="shop-button"
-          onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})"
-        >
-          Shop Now →
-        </button>
+        <a href="#shop" class="shop-button">
+          Shop Now
+        </a>
 
       </div>
 
@@ -501,65 +476,78 @@
   </section>
 
 
-  <!-- CATEGORIES -->
+  <!-- COLLECTIONS -->
 
   <section class="section">
 
-    <div class="section-heading">
-      <div>
-        <small>Explore</small>
-        <h2>Collections</h2>
+    <div class="section-title">
+
+      <div class="section-label">
+        Explore
       </div>
+
+      <h2>
+        Collections
+      </h2>
+
     </div>
 
-    <div class="categories">
 
-      <a class="category" href="#shop">
-        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85">
-        <div class="category-title">
-          <span>New Arrivals</span>
-          <span>→</span>
+    <div class="collections">
+
+      <a href="#shop" class="collection">
+
+        <img
+          src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1000&q=85"
+          alt="New Arrivals"
+        >
+
+        <div class="collection-name">
+          New Arrivals
         </div>
+
       </a>
 
-      <a class="category" href="#shop">
-        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=85">
-        <div class="category-title">
-          <span>Dresses</span>
-          <span>→</span>
+
+      <a href="#shop" class="collection">
+
+        <img
+          src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1000&q=85"
+          alt="Dresses"
+        >
+
+        <div class="collection-name">
+          Dresses
         </div>
+
       </a>
 
-      <a class="category" href="#shop">
-        <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85">
-        <div class="category-title">
-          <span>Sets</span>
-          <span>→</span>
+
+      <a href="#shop" class="collection">
+
+        <img
+          src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1000&q=85"
+          alt="Sets"
+        >
+
+        <div class="collection-name">
+          Sets
         </div>
+
       </a>
 
-      <a class="category" href="#shop">
-        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85">
-        <div class="category-title">
-          <span>Tops</span>
-          <span>→</span>
-        </div>
-      </a>
 
-      <a class="category" href="#shop">
-        <img src="https://images.unsplash.com/photo-1583496661160-fb5886a13d27?auto=format&fit=crop&w=900&q=85">
-        <div class="category-title">
-          <span>Skirts</span>
-          <span>→</span>
-        </div>
-      </a>
+      <a href="#shop" class="collection">
 
-      <a class="category" href="#shop">
-        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85">
-        <div class="category-title">
-          <span>Best Sellers</span>
-          <span>→</span>
+        <img
+          src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85"
+          alt="Tops"
+        >
+
+        <div class="collection-name">
+          Tops
         </div>
+
       </a>
 
     </div>
@@ -573,28 +561,29 @@
 
     <img
       src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1800&q=85"
-      alt="ORRA Collection"
+      alt="ORRA"
     >
 
-    <div class="editorial-content">
+    <div class="editorial-text">
       <h2>ORRA</h2>
     </div>
 
   </div>
 
 
-  <!-- SHOP -->
+  <!-- PRODUCTS -->
 
   <section class="section" id="shop">
 
-    <div class="section-heading">
+    <div class="section-title">
 
-      <div>
-        <small>Our Favorites</small>
-        <h2>Best Sellers</h2>
+      <div class="section-label">
+        Shop
       </div>
 
-      <a href="#shop" class="view-all">View All →</a>
+      <h2>
+        New In
+      </h2>
 
     </div>
 
@@ -605,15 +594,23 @@
 
         <div class="product-image">
 
-          <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=800&q=85">
-
-          <button class="heart">♡</button>
+          <img
+            src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=900&q=85"
+            alt="ORRA Dress"
+          >
 
         </div>
 
         <div class="product-info">
-          <div class="product-name">Signature Dress</div>
-          <div class="product-price">$89</div>
+
+          <div class="product-name">
+            Signature Dress
+          </div>
+
+          <div class="product-price">
+            $89
+          </div>
+
         </div>
 
       </div>
@@ -623,15 +620,23 @@
 
         <div class="product-image">
 
-          <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85">
-
-          <button class="heart">♡</button>
+          <img
+            src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=900&q=85"
+            alt="ORRA Dress"
+          >
 
         </div>
 
         <div class="product-info">
-          <div class="product-name">Classic Set</div>
-          <div class="product-price">$95</div>
+
+          <div class="product-name">
+            Essential Dress
+          </div>
+
+          <div class="product-price">
+            $79
+          </div>
+
         </div>
 
       </div>
@@ -641,15 +646,23 @@
 
         <div class="product-image">
 
-          <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=85">
-
-          <button class="heart">♡</button>
+          <img
+            src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=900&q=85"
+            alt="ORRA Look"
+          >
 
         </div>
 
         <div class="product-info">
-          <div class="product-name">Essential Dress</div>
-          <div class="product-price">$79</div>
+
+          <div class="product-name">
+            Evening Look
+          </div>
+
+          <div class="product-price">
+            $110
+          </div>
+
         </div>
 
       </div>
@@ -659,15 +672,23 @@
 
         <div class="product-image">
 
-          <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=85">
-
-          <button class="heart">♡</button>
+          <img
+            src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85"
+            alt="ORRA Set"
+          >
 
         </div>
 
         <div class="product-info">
-          <div class="product-name">Evening Look</div>
-          <div class="product-price">$110</div>
+
+          <div class="product-name">
+            Classic Set
+          </div>
+
+          <div class="product-price">
+            $95
+          </div>
+
         </div>
 
       </div>
@@ -681,43 +702,27 @@
 
   <footer>
 
-    <div class="footer-logo">ORRA</div>
+    <div class="footer-logo">
+      ORRA
+    </div>
 
-    <p>Effortless fashion. Timeless style.</p>
+    <div class="footer-text">
+      Fashion made simple.
+    </div>
 
     <div class="footer-links">
-      <a href="#">Shop</a>
+
+      <a href="#shop">Shop</a>
+
       <a href="#">About</a>
+
       <a href="#">Contact</a>
+
       <a href="#">Instagram</a>
+
     </div>
 
   </footer>
-
-
-  <script>
-
-    let cart = 0;
-
-    const buttons = document.querySelectorAll('.product');
-
-    buttons.forEach(product => {
-
-      product.addEventListener('click', () => {
-
-        cart++;
-
-        const counter = document.getElementById('cartCount');
-
-        counter.textContent = cart;
-
-        counter.style.display = 'flex';
-
-      });
-
-    });
-
-  </script>
 
 </body>
 </html>
