@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>ORRA</title>
   <meta name="description" content="ORRA — Fashion Store">
 
@@ -110,7 +111,11 @@
       display: flex;
       align-items: flex-end;
       padding: 55px;
-      background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,.55),
+        rgba(0,0,0,0)
+      );
       color: #fff;
     }
 
@@ -198,7 +203,10 @@
       right: 0;
       padding: 22px;
       color: #fff;
-      background: linear-gradient(transparent, rgba(0,0,0,.75));
+      background: linear-gradient(
+        transparent,
+        rgba(0,0,0,.75)
+      );
       font-family: Georgia, serif;
       font-size: 25px;
     }
@@ -251,6 +259,22 @@
       text-transform: uppercase;
       color: #777;
       margin-top: 8px;
+    }
+
+    .loading {
+      grid-column: 1 / -1;
+      padding: 40px 0;
+      text-align: center;
+      color: #777;
+      font-size: 12px;
+    }
+
+    .empty-products {
+      grid-column: 1 / -1;
+      padding: 40px 0;
+      text-align: center;
+      color: #777;
+      font-size: 12px;
     }
 
     .editorial {
@@ -426,11 +450,13 @@
       display: flex;
       gap: 8px;
       margin-bottom: 28px;
+      flex-wrap: wrap;
     }
 
     .size {
-      width: 48px;
+      min-width: 48px;
       height: 42px;
+      padding: 0 12px;
       background: #fff;
       border: 1px solid #ccc;
       cursor: pointer;
@@ -568,7 +594,10 @@
 
 <body>
 
+  <!-- HEADER -->
+
   <header>
+
     <div class="header-left">
       <button class="header-button">☰</button>
     </div>
@@ -576,208 +605,296 @@
     <a href="#" class="logo">ORRA</a>
 
     <div class="header-right">
+
       <button class="header-button">⌕</button>
 
       <button class="header-button cart">
         ♡
         <span class="cart-count" id="cartCount">0</span>
       </button>
+
     </div>
+
   </header>
 
+
+  <!-- HERO -->
+
   <section class="hero">
+
     <img
       src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=85"
       alt="ORRA Collection"
     >
 
     <div class="hero-content">
+
       <div class="hero-text">
-        <div class="hero-label">NEW COLLECTION</div>
+
+        <div class="hero-label">
+          NEW COLLECTION
+        </div>
 
         <h1>
           Made for<br>
           your style.
         </h1>
 
-        <a href="#shop" class="shop-button">Shop Now</a>
+        <a href="#shop" class="shop-button">
+          Shop Now
+        </a>
+
       </div>
+
     </div>
+
   </section>
 
+
+  <!-- COLLECTIONS -->
+
   <section class="section">
+
     <div class="section-title">
-      <div class="section-label">Explore</div>
-      <h2>Collections</h2>
+
+      <div class="section-label">
+        Explore
+      </div>
+
+      <h2>
+        Collections
+      </h2>
+
     </div>
 
     <div class="collections">
 
       <a href="#shop" class="collection">
+
         <img
           src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1000&q=85"
           alt="New Arrivals"
         >
-        <div class="collection-name">New Arrivals</div>
+
+        <div class="collection-name">
+          New Arrivals
+        </div>
+
       </a>
 
+
       <a href="#shop" class="collection">
+
         <img
           src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1000&q=85"
           alt="Dresses"
         >
-        <div class="collection-name">Dresses</div>
+
+        <div class="collection-name">
+          Dresses
+        </div>
+
       </a>
 
+
       <a href="#shop" class="collection">
+
         <img
           src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1000&q=85"
           alt="Sets"
         >
-        <div class="collection-name">Sets</div>
+
+        <div class="collection-name">
+          Sets
+        </div>
+
       </a>
 
+
       <a href="#shop" class="collection">
+
         <img
           src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85"
           alt="Tops"
         >
-        <div class="collection-name">Tops</div>
+
+        <div class="collection-name">
+          Tops
+        </div>
+
       </a>
 
     </div>
+
   </section>
 
+
+  <!-- EDITORIAL -->
+
   <div class="editorial">
+
     <img
       src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1800&q=85"
       alt="ORRA"
     >
 
     <div class="editorial-text">
-      <h2>ORRA</h2>
+
+      <h2>
+        ORRA
+      </h2>
+
     </div>
+
   </div>
+
+
+  <!-- PRODUCTS -->
 
   <section class="section" id="shop">
 
     <div class="section-title">
-      <div class="section-label">Shop</div>
-      <h2>New In</h2>
+
+      <div class="section-label">
+        Shop
+      </div>
+
+      <h2>
+        New In
+      </h2>
+
     </div>
 
-    <div class="products">
+    <div class="products" id="products">
 
-      <!-- WHITE STITCH DETAIL SET -->
-
-      <div class="product" onclick="openProduct()">
-
-        <div class="product-image">
-          <img
-            src="IMG_3097.jpeg"
-            alt="White Stitch Detail Set"
-          >
-        </div>
-
-        <div class="product-info">
-          <div class="product-name">
-            White Stitch Detail Set
-          </div>
-
-          <div class="product-price">
-            $35
-          </div>
-
-          <div class="product-tag">
-            SETS
-          </div>
-        </div>
-
+      <div class="loading">
+        Loading products...
       </div>
 
     </div>
 
   </section>
 
+
+  <!-- FOOTER -->
+
   <footer>
 
-    <div class="footer-logo">ORRA</div>
+    <div class="footer-logo">
+      ORRA
+    </div>
 
     <div class="footer-text">
       Fashion made simple.
     </div>
 
     <div class="footer-links">
-      <a href="#shop">Shop</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-      <a href="#">Instagram</a>
+
+      <a href="#shop">
+        Shop
+      </a>
+
+      <a href="#">
+        About
+      </a>
+
+      <a href="#">
+        Contact
+      </a>
+
+      <a href="#">
+        Instagram
+      </a>
+
     </div>
 
   </footer>
 
-  <!-- PRODUCT DETAILS -->
+
+  <!-- PRODUCT DETAILS MODAL -->
 
   <div class="modal" id="productModal">
 
     <div class="modal-box">
 
-      <button class="close-modal" onclick="closeProduct()">×</button>
+      <button
+        class="close-modal"
+        onclick="closeProduct()"
+      >
+        ×
+      </button>
+
 
       <div class="gallery">
 
         <img
           id="galleryImage"
-          src="IMG_3097.jpeg"
-          alt="White Stitch Detail Set"
+          src=""
+          alt="ORRA Product"
         >
 
         <div class="gallery-buttons">
-          <button onclick="previousImage()">‹</button>
-          <button onclick="nextImage()">›</button>
+
+          <button onclick="previousImage()">
+            ‹
+          </button>
+
+          <button onclick="nextImage()">
+            ›
+          </button>
+
         </div>
 
       </div>
 
+
       <div class="product-details">
 
-        <div class="details-label">
-          ORRA / SETS
+        <div
+          class="details-label"
+          id="detailsLabel"
+        >
+          ORRA
         </div>
 
-        <h2>
-          White Stitch Detail Set
+
+        <h2 id="detailsName">
+          Product
         </h2>
 
-        <div class="details-price">
-          $35
+
+        <div
+          class="details-price"
+          id="detailsPrice"
+        >
+          $0
         </div>
 
-        <div class="details-description">
-          White stitch detail set with a clean and modern ORRA look.
+
+        <div
+          class="details-description"
+          id="detailsDescription"
+        >
+          ORRA fashion piece.
         </div>
+
 
         <div class="size-title">
           Select Size
         </div>
 
-        <div class="sizes">
 
-          <button class="size" onclick="selectSize(this)">
-            S
-          </button>
-
-          <button class="size" onclick="selectSize(this)">
-            M
-          </button>
-
-          <button class="size" onclick="selectSize(this)">
-            L
-          </button>
-
+        <div
+          class="sizes"
+          id="sizes"
+        >
         </div>
 
-        <button class="add-cart" onclick="addToCart()">
+
+        <button
+          class="add-cart"
+          onclick="addToCart()"
+        >
           Add to Cart
         </button>
 
@@ -787,118 +904,505 @@
 
   </div>
 
+
+  <!-- SUPABASE -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
   <script>
 
-    const productImages = [
-      "IMG_3097.jpeg",
-      "IMG_3098.jpeg",
-      "IMG_3099.jpeg"
-    ];
+    const SUPABASE_URL =
+      "https://zkgjtrpmonhnmtxtdjnf.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_ojC9Dvnetb5aHKLTwCRo4Q_ce3-byCe";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    let currentProduct = null;
+
+    let productImages = [];
 
     let currentImage = 0;
+
     let selectedSize = "";
 
-    function openProduct() {
-      document.getElementById("productModal").classList.add("active");
-      currentImage = 0;
-      document.getElementById("galleryImage").src = productImages[currentImage];
-      document.body.style.overflow = "hidden";
+
+    /*
+      GET PRODUCT IMAGES
+
+      For the current White Stitch Detail Set,
+      we already have 3 images in GitHub.
+
+      Later, we can make this fully automatic
+      from Supabase.
+    */
+
+    function getProductImages(product) {
+
+      if (
+        product.name === "White Stitch Detail Set" &&
+        product.image_url &&
+        product.image_url.includes("IMG_3097")
+      ) {
+
+        return [
+          "IMG_3097.jpeg",
+          "IMG_3098.jpeg",
+          "IMG_3099.jpeg"
+        ];
+
+      }
+
+
+      /*
+        If later we add an image_urls column
+        containing comma-separated image URLs,
+        the website will support it automatically.
+      */
+
+      if (product.image_urls) {
+
+        return product.image_urls
+          .split(",")
+          .map(function(url) {
+            return url.trim();
+          })
+          .filter(Boolean);
+
+      }
+
+
+      return [product.image_url];
+
     }
 
-    function closeProduct() {
-      document.getElementById("productModal").classList.remove("active");
-      document.body.style.overflow = "";
-    }
 
-    function nextImage() {
-      currentImage = (currentImage + 1) % productImages.length;
-      document.getElementById("galleryImage").src = productImages[currentImage];
-    }
+    /*
+      LOAD PRODUCTS FROM SUPABASE
+    */
 
-    function previousImage() {
-      currentImage =
-        (currentImage - 1 + productImages.length) % productImages.length;
+    async function loadProducts() {
 
-      document.getElementById("galleryImage").src = productImages[currentImage];
-    }
+      const container =
+        document.getElementById("products");
 
-    function selectSize(button) {
 
-      document.querySelectorAll(".size").forEach(function(size) {
-        size.classList.remove("selected");
+      const result =
+        await supabaseClient
+          .from("Products")
+          .select("*")
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      const data = result.data;
+
+      const error = result.error;
+
+
+      if (error) {
+
+        console.error(
+          "Supabase error:",
+          error
+        );
+
+        container.innerHTML = `
+          <div class="empty-products">
+            Unable to load products.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      if (!data || data.length === 0) {
+
+        container.innerHTML = `
+          <div class="empty-products">
+            No products available yet.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      container.innerHTML = "";
+
+
+      data.forEach(function(product) {
+
+        const card =
+          document.createElement("div");
+
+
+        card.className =
+          "product";
+
+
+        card.onclick = function() {
+
+          openSupabaseProduct(product);
+
+        };
+
+
+        card.innerHTML = `
+
+          <div class="product-image">
+
+            <img
+              src="${product.image_url || ""}"
+              alt="${product.name || "ORRA Product"}"
+            >
+
+          </div>
+
+
+          <div class="product-info">
+
+            <div class="product-name">
+              ${product.name || ""}
+            </div>
+
+            <div class="product-price">
+              $${product.price || "0"}
+            </div>
+
+            <div class="product-tag">
+              ${product.category || ""}
+            </div>
+
+          </div>
+
+        `;
+
+
+        container.appendChild(card);
+
       });
 
-      button.classList.add("selected");
-      selectedSize = button.innerText;
     }
 
-    function addToCart() {
 
-      if (!selectedSize) {
-        alert("Please select a size.");
+    /*
+      OPEN PRODUCT
+    */
+
+    function openSupabaseProduct(product) {
+
+      currentProduct = product;
+
+
+      productImages =
+        getProductImages(product);
+
+
+      currentImage = 0;
+
+
+      selectedSize = "";
+
+
+      document
+        .getElementById("productModal")
+        .classList
+        .add("active");
+
+
+      document.body.style.overflow =
+        "hidden";
+
+
+      document.getElementById(
+        "detailsName"
+      ).innerText =
+        product.name || "ORRA Product";
+
+
+      document.getElementById(
+        "detailsPrice"
+      ).innerText =
+        "$" + (product.price || "0");
+
+
+      document.getElementById(
+        "detailsLabel"
+      ).innerText =
+        "ORRA / " +
+        (product.category || "");
+
+
+      document.getElementById(
+        "detailsDescription"
+      ).innerText =
+        product.description ||
+        "ORRA fashion piece with a clean and modern look.";
+
+
+      document.getElementById(
+        "galleryImage"
+      ).src =
+        productImages[0] || "";
+
+
+      const sizesContainer =
+        document.getElementById("sizes");
+
+
+      sizesContainer.innerHTML = "";
+
+
+      let sizes = [];
+
+
+      if (product.sizes) {
+
+        sizes =
+          product.sizes
+            .split(",")
+            .map(function(size) {
+              return size.trim();
+            })
+            .filter(Boolean);
+
+      }
+
+
+      if (sizes.length === 0) {
+
+        sizes = ["S", "M", "L"];
+
+      }
+
+
+      sizes.forEach(function(sizeName) {
+
+        const button =
+          document.createElement("button");
+
+
+        button.className =
+          "size";
+
+
+        button.innerText =
+          sizeName;
+
+
+        button.onclick =
+          function() {
+
+            selectSize(button);
+
+          };
+
+
+        sizesContainer.appendChild(button);
+
+      });
+
+    }
+
+
+    /*
+      CLOSE PRODUCT
+    */
+
+    function closeProduct() {
+
+      document
+        .getElementById("productModal")
+        .classList
+        .remove("active");
+
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    /*
+      NEXT IMAGE
+    */
+
+    function nextImage() {
+
+      if (productImages.length <= 1) {
         return;
       }
 
-      const cartCount = document.getElementById("cartCount");
 
-      cartCount.innerText = "1";
-      cartCount.style.display = "flex";
+      currentImage =
+        (currentImage + 1)
+        % productImages.length;
 
-      alert(
-        "White Stitch Detail Set added to cart — Size " +
-        selectedSize
-      );
+
+      document.getElementById(
+        "galleryImage"
+      ).src =
+        productImages[currentImage];
+
     }
 
+
+    /*
+      PREVIOUS IMAGE
+    */
+
+    function previousImage() {
+
+      if (productImages.length <= 1) {
+        return;
+      }
+
+
+      currentImage =
+        (
+          currentImage -
+          1 +
+          productImages.length
+        )
+        % productImages.length;
+
+
+      document.getElementById(
+        "galleryImage"
+      ).src =
+        productImages[currentImage];
+
+    }
+
+
+    /*
+      SELECT SIZE
+    */
+
+    function selectSize(button) {
+
+      document
+        .querySelectorAll(".size")
+        .forEach(function(size) {
+
+          size.classList.remove(
+            "selected"
+          );
+
+        });
+
+
+      button.classList.add(
+        "selected"
+      );
+
+
+      selectedSize =
+        button.innerText.trim();
+
+    }
+
+
+    /*
+      ADD TO CART
+    */
+
+    function addToCart() {
+
+      if (!currentProduct) {
+        return;
+      }
+
+
+      if (!selectedSize) {
+
+        alert(
+          "Please select a size."
+        );
+
+        return;
+
+      }
+
+
+      const cartCount =
+        document.getElementById(
+          "cartCount"
+        );
+
+
+      let currentCount =
+        parseInt(
+          cartCount.innerText || "0"
+        );
+
+
+      currentCount++;
+
+
+      cartCount.innerText =
+        currentCount;
+
+
+      cartCount.style.display =
+        "flex";
+
+
+      alert(
+        currentProduct.name +
+        " added to cart — Size " +
+        selectedSize
+      );
+
+    }
+
+
+    /*
+      CLOSE MODAL WHEN CLICKING
+      OUTSIDE THE PRODUCT BOX
+    */
+
+    document
+      .getElementById("productModal")
+      .addEventListener(
+        "click",
+        function(event) {
+
+          if (
+            event.target ===
+            this
+          ) {
+
+            closeProduct();
+
+          }
+
+        }
+      );
+
+
+    /*
+      START
+    */
+
+    loadProducts();
+
   </script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-const SUPABASE_URL = "https://zkgjtrpmonhnmtxtdjnf.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ojC9Dvnetb5aHKLTwCRo4Q_ce3-byCe";
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
-</script>
-
-<script>
-async function loadProducts() {
-  const { data, error } = await supabaseClient
-    .from("Products")
-    .select("*")
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    console.error("Supabase error:", error);
-    return;
-  }
-
-  const container = document.querySelector(".products");
-  container.innerHTML = "";
-
-  data.forEach(function(product) {
-    const card = document.createElement("div");
-    card.className = "product";
-
-    card.innerHTML = `
-      <div class="product-image">
-        <img src="${product.image_url}" alt="${product.name}">
-      </div>
-      <div class="product-info">
-        <div class="product-name">${product.name}</div>
-        <div class="product-price">$${product.price}</div>
-        <div class="product-tag">${product.category || ""}</div>
-      </div>
-    `;
-
-    container.appendChild(card);
-  });
-}
-
-loadProducts();
-</script> 
-  
 </body>
 </html>
