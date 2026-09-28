@@ -8,492 +8,1362 @@
 
 <style>
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:#fff;color:#000;
-  font-family:Arial,Helvetica,sans-serif;
-  overflow-x:hidden
+
+html{
+  scroll-behavior:smooth;
+  overscroll-behavior-x:none;
 }
-body.lock{overflow:hidden}
-button,input,textarea{font:inherit}
-button{cursor:pointer}
-a{text-decoration:none;color:inherit}
+
+body{
+  margin:0;
+  background:#fff;
+  color:#000;
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
+}
+
+body.lock{
+  overflow:hidden;
+}
+
+button,
+input,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
+  -webkit-appearance:none;
+  appearance:none;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* =========================
+   ANNOUNCEMENT
+========================= */
 
 .announcement{
-  position:sticky;top:0;z-index:1000;height:34px;
-  background:#000;color:#fff;display:flex;
-  align-items:center;justify-content:center;
-  font-size:10px;letter-spacing:1.5px;
-  text-transform:uppercase;padding:0 10px
+  position:sticky;
+  top:0;
+  z-index:1000;
+  height:34px;
+  background:#000;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:0 10px;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 header{
-  position:sticky;top:34px;z-index:900;height:70px;
-  background:#fff;border-bottom:1px solid #eee;
-  display:grid;grid-template-columns:1fr auto 1fr;
-  align-items:center;padding:0 22px
+  position:sticky;
+  top:34px;
+  z-index:900;
+  height:70px;
+  background:#fff;
+  border-bottom:1px solid #eee;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  padding:0 22px;
 }
-.logo{font-size:25px;font-weight:700;letter-spacing:5px}
-.header-left,.header-right{display:flex;align-items:center;gap:18px}
-.header-right{justify-content:flex-end}
+
+.logo{
+  font-size:25px;
+  font-weight:700;
+  letter-spacing:5px;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
+}
+
+.header-left,
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.header-right{
+  justify-content:flex-end;
+}
+
 .nav{
-  border:0;background:none;font-size:11px;
-  letter-spacing:1.5px;text-transform:uppercase
+  border:0;
+  background:none;
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
 }
-.icon{width:34px;height:34px;border:0;background:#fff;padding:5px}
-.icon svg{width:100%;height:100%;stroke:#000}
+
+.icon{
+  position:relative;
+  width:34px;
+  height:34px;
+  border:0;
+  background:#fff;
+  padding:5px;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
+}
+
+.icon svg{
+  width:100%;
+  height:100%;
+  stroke:#000;
+}
+
+.bag-icon{
+  position:relative;
+}
+
+.bag-count{
+  position:absolute;
+  right:-2px;
+  top:-2px;
+  min-width:15px;
+  height:15px;
+  padding:0 3px;
+  border-radius:50%;
+  background:#000;
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  font-size:8px;
+  line-height:15px;
+  text-align:center;
+  font-weight:400;
+  display:none;
+}
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
-  height:calc(100vh - 104px);min-height:560px;
-  position:relative;overflow:hidden;background:#eee
+  height:calc(100vh - 104px);
+  min-height:560px;
+  position:relative;
+  overflow:hidden;
+  background:#eee;
 }
-.hero img,.collection img,.editorial img{
-  width:100%;height:100%;object-fit:cover;display:block
-}
-.hero-text{
-  position:absolute;inset:0;display:flex;
-  flex-direction:column;justify-content:flex-end;
-  align-items:flex-start;padding:45px 7vw;color:#fff;
-  background:linear-gradient(transparent 40%,rgba(0,0,0,.5))
-}
-.hero-small{font-size:11px;letter-spacing:2px;margin-bottom:12px}
-.hero h1{
-  font-size:clamp(42px,7vw,90px);line-height:.92;
-  font-weight:400;letter-spacing:-3px;margin:0 0 25px
-}
-.white-btn,.black-btn{
-  border:1px solid #000;padding:14px 25px;
-  font-size:10px;letter-spacing:1.6px;text-transform:uppercase
-}
-.white-btn{background:#fff;color:#000;border-color:#fff}
-.black-btn{background:#000;color:#fff}
 
-.section{padding:75px 6vw}
+.hero img,
+.collection img,
+.editorial img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.hero-text{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-start;
+  padding:45px 7vw;
+  color:#fff;
+  background:linear-gradient(
+    transparent 40%,
+    rgba(0,0,0,.5)
+  );
+}
+
+.hero-small{
+  font-size:11px;
+  letter-spacing:2px;
+  margin-bottom:12px;
+}
+
+.hero h1{
+  font-size:clamp(42px,7vw,90px);
+  line-height:.92;
+  font-weight:400;
+  letter-spacing:-3px;
+  margin:0 0 25px;
+}
+
+.white-btn,
+.black-btn{
+  border:1px solid #000;
+  padding:14px 25px;
+  font-size:10px;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+}
+
+.white-btn{
+  background:#fff;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
+  border-color:#fff;
+}
+
+.black-btn{
+  background:#000;
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+  padding:75px 6vw;
+}
+
 .section-head{
-  display:flex;justify-content:space-between;
-  align-items:end;margin-bottom:25px
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:25px;
 }
-.section-title{margin:0;font-size:25px;font-weight:400}
+
+.section-title{
+  margin:0;
+  font-size:25px;
+  font-weight:400;
+  color:#000;
+}
+
 .section-note{
-  font-size:10px;letter-spacing:1.3px;text-transform:uppercase
+  font-size:10px;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  color:#000;
 }
+
+/* =========================
+   COLLECTIONS
+========================= */
 
 .collections{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:12px
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
+
 .collection{
-  position:relative;height:430px;overflow:hidden;background:#eee
+  position:relative;
+  height:430px;
+  overflow:hidden;
+  background:#eee;
 }
+
 .collection span{
-  position:absolute;left:20px;bottom:20px;color:#fff;
-  font-size:12px;letter-spacing:1.7px;text-transform:uppercase
+  position:absolute;
+  left:20px;
+  bottom:20px;
+  color:#fff;
+  font-size:12px;
+  letter-spacing:1.7px;
+  text-transform:uppercase;
 }
+
+/* =========================
+   PRODUCTS
+========================= */
 
 .products{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:25px 12px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:25px 12px;
 }
+
 .product{
-  border:0;background:#fff;padding:0;text-align:left
+  border:0;
+  background:#fff;
+  padding:0;
+  text-align:left;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
 }
+
 .product-img{
-  aspect-ratio:3/4;background:#eee;overflow:hidden
+  aspect-ratio:3/4;
+  background:#eee;
+  overflow:hidden;
 }
+
 .product-img img{
-  width:100%;height:100%;object-fit:cover;display:block
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
-.product-info{padding:10px 2px}
-.product-name{font-size:12px;margin-bottom:6px}
-.product-price{font-size:12px}
+
+.product-info{
+  padding:10px 2px;
+}
+
+.product-name,
+.product-price,
 .product-cat{
-  color:#777;font-size:9px;letter-spacing:1.2px;
-  margin-top:5px;text-transform:uppercase
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
 }
+
+.product-name{
+  font-size:12px;
+  margin-bottom:6px;
+}
+
+.product-price{
+  font-size:12px;
+}
+
+.product-cat{
+  font-size:9px;
+  letter-spacing:1.2px;
+  margin-top:5px;
+  text-transform:uppercase;
+}
+
 .loading{
-  grid-column:1/-1;padding:50px;text-align:center;
-  font-size:11px;letter-spacing:1.3px
+  grid-column:1/-1;
+  padding:50px;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:1.3px;
+  color:#000;
 }
+
 .error{
-  grid-column:1/-1;padding:25px;border:1px solid #ddd;
-  text-align:center;font-size:11px;line-height:1.8
+  grid-column:1/-1;
+  padding:25px;
+  border:1px solid #ddd;
+  text-align:center;
+  font-size:11px;
+  line-height:1.8;
+  color:#000;
 }
+
+/* =========================
+   EDITORIAL
+========================= */
 
 .editorial{
-  margin:0 6vw;height:58vh;position:relative;
-  overflow:hidden;background:#eee
+  margin:0 6vw;
+  height:58vh;
+  position:relative;
+  overflow:hidden;
+  background:#eee;
 }
+
 .editorial-text{
-  position:absolute;left:6%;bottom:7%;color:#fff
+  position:absolute;
+  left:6%;
+  bottom:7%;
+  color:#fff;
 }
+
 .editorial-text h2{
-  margin:0 0 18px;font-size:55px;
-  line-height:.95;font-weight:400
+  margin:0 0 18px;
+  font-size:55px;
+  line-height:.95;
+  font-weight:400;
 }
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
-  margin-top:75px;padding:55px 6vw 30px;
-  background:#000;color:#fff
+  margin-top:75px;
+  padding:55px 6vw 30px;
+  background:#000;
+  color:#fff;
 }
+
 .footer-grid{
-  display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:40px;
 }
+
 .footer-logo{
-  font-size:25px;font-weight:700;
-  letter-spacing:5px;margin-bottom:15px
+  font-size:25px;
+  font-weight:700;
+  letter-spacing:5px;
+  margin-bottom:15px;
 }
-footer p,footer a{
-  color:#aaa;font-size:11px;line-height:1.8
+
+footer p,
+footer a{
+  color:#aaa;
+  font-size:11px;
+  line-height:1.8;
 }
-footer h4{font-size:10px;letter-spacing:1.5px}
-footer a{display:block;margin-bottom:8px}
+
+footer h4{
+  font-size:10px;
+  letter-spacing:1.5px;
+}
+
+footer a{
+  display:block;
+  margin-bottom:8px;
+}
+
 .copy{
-  border-top:1px solid #222;margin-top:40px;
-  padding-top:20px;color:#666;font-size:9px;letter-spacing:1px
+  border-top:1px solid #222;
+  margin-top:40px;
+  padding-top:20px;
+  color:#666;
+  font-size:9px;
+  letter-spacing:1px;
 }
 
-/* PRODUCT */
+/* =========================
+   PRODUCT MODAL
+========================= */
+
 .modal{
-  position:fixed;inset:0;z-index:1800;
-  display:none;background:#fff
+  position:fixed;
+  inset:0;
+  z-index:1800;
+  display:none;
+  background:#fff;
 }
-.modal.active{display:block}
+
+.modal.active{
+  display:block;
+}
+
 .close{
-  position:absolute;right:15px;top:12px;z-index:50;
-  width:44px;height:44px;border:0;background:#fff;
-  font-size:30px;font-weight:300;line-height:1
+  position:absolute;
+  right:15px;
+  top:12px;
+  z-index:50;
+  width:44px;
+  height:44px;
+  border:0;
+  background:#fff;
+  font-size:30px;
+  font-weight:300;
+  line-height:1;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
 }
+
 .modal-content{
-  height:100%;display:grid;
-  grid-template-columns:1.15fr .85fr
+  height:100%;
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
 }
+
 .gallery{
-  position:relative;background:#f3f3f3;
-  overflow:hidden;touch-action:pan-y
+  position:relative;
+  background:#f3f3f3;
+  overflow:hidden;
+  touch-action:pan-y;
 }
+
 .gallery img{
-  width:100%;height:100%;object-fit:contain;
-  display:block;user-select:none;-webkit-user-drag:none
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  user-select:none;
+  -webkit-user-drag:none;
 }
+
 .dots{
-  position:absolute;bottom:20px;left:50%;
-  transform:translateX(-50%);display:flex;gap:7px
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:7px;
 }
-.dot{width:6px;height:6px;border-radius:50%;background:#bbb}
-.dot.active{background:#000}
+
+.dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#bbb;
+}
+
+.dot.active{
+  background:#000;
+}
+
 .details{
-  padding:90px 7vw 50px 5vw;overflow:auto
+  padding:90px 7vw 50px 5vw;
+  overflow:auto;
 }
+
 .category{
-  color:#777;font-size:10px;letter-spacing:1.5px;
-  text-transform:uppercase;margin-bottom:12px
+  color:#777;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:12px;
 }
-.details h2{font-size:30px;font-weight:400;margin:0 0 12px}
-.price{font-size:16px;margin-bottom:30px}
+
+.details h2{
+  font-size:30px;
+  font-weight:400;
+  margin:0 0 12px;
+  color:#000;
+}
+
+.price{
+  font-size:16px;
+  margin-bottom:30px;
+  color:#000;
+}
+
 .description{
-  color:#555;font-size:12px;line-height:1.7;margin-bottom:30px
+  color:#555;
+  font-size:12px;
+  line-height:1.7;
+  margin-bottom:30px;
 }
+
 .option{
-  font-size:10px;letter-spacing:1.3px;
-  text-transform:uppercase;margin-bottom:10px
+  font-size:10px;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  margin-bottom:10px;
 }
-.sizes{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+
+.sizes{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:30px;
+}
+
 .size{
-  min-width:48px;height:40px;background:#fff;
-  border:1px solid #ccc;font-size:11px
+  min-width:48px;
+  height:40px;
+  background:#fff;
+  border:1px solid #ccc;
+  font-size:11px;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
 }
-.size.selected{background:#000;color:#fff;border-color:#000}
+
+.size.selected{
+  background:#000;
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  border-color:#000;
+}
+
 .add{
-  width:100%;height:50px;background:#000;color:#fff;
-  border:1px solid #000;font-size:11px;letter-spacing:1.5px
+  width:100%;
+  height:50px;
+  background:#000;
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  border:1px solid #000;
+  font-size:11px;
+  letter-spacing:1.5px;
 }
 
-/* NOTICE */
+/* =========================
+   NOTICE
+========================= */
+
 .notice{
-  position:fixed;z-index:3000;top:50%;left:50%;
+  position:fixed;
+  z-index:3000;
+  top:50%;
+  left:50%;
   transform:translate(-50%,-50%) scale(.95);
-  background:#000;color:#fff;padding:18px 28px;
-  font-size:11px;letter-spacing:2px;opacity:0;
-  pointer-events:none;transition:.2s
+  background:#000;
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  padding:18px 28px;
+  font-size:11px;
+  letter-spacing:2px;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
 }
+
 .notice.show{
-  opacity:1;transform:translate(-50%,-50%) scale(1)
+  opacity:1;
+  transform:translate(-50%,-50%) scale(1);
 }
 
-/* PANELS */
+/* =========================
+   PANELS
+========================= */
+
 .panel{
-  position:fixed;inset:0;z-index:1700;
-  display:none;background:#fff;overflow:auto
+  position:fixed;
+  inset:0;
+  z-index:1700;
+  display:none;
+  background:#fff;
+  overflow:auto;
 }
-.panel.active{display:block}
+
+.panel.active{
+  display:block;
+}
+
 .panel-head{
-  position:sticky;top:0;z-index:5;height:70px;
-  padding:0 22px;background:#fff;border-bottom:1px solid #eee;
-  display:flex;align-items:center;justify-content:space-between
+  position:sticky;
+  top:0;
+  z-index:5;
+  height:70px;
+  padding:0 22px;
+  background:#fff;
+  border-bottom:1px solid #eee;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
+
 .panel-head strong{
-  font-size:13px;letter-spacing:1.5px;text-transform:uppercase
+  font-size:13px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#000;
 }
+
 .panel-close{
-  border:0;background:none;font-size:28px;width:45px;height:45px
+  border:0;
+  background:none;
+  font-size:28px;
+  width:45px;
+  height:45px;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
 }
-.bag{max-width:760px;margin:auto;padding:35px 22px 70px}
+
+.bag{
+  max-width:760px;
+  margin:auto;
+  padding:35px 22px 70px;
+}
+
 .bag-item{
-  display:grid;grid-template-columns:90px 1fr auto;
-  gap:15px;padding:15px 0;border-bottom:1px solid #eee
+  display:grid;
+  grid-template-columns:90px 1fr auto;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid #eee;
 }
+
 .bag-item img{
-  width:90px;height:120px;object-fit:cover;background:#eee
+  width:90px;
+  height:120px;
+  object-fit:cover;
+  background:#eee;
 }
-.bag-name{font-size:12px;margin-bottom:8px}
-.bag-meta{color:#777;font-size:10px;line-height:1.7}
+
+.bag-name{
+  font-size:12px;
+  margin-bottom:8px;
+  color:#000 !important;
+}
+
+.bag-meta{
+  color:#777;
+  font-size:10px;
+  line-height:1.7;
+}
+
 .remove{
-  border:0;background:none;text-decoration:underline;
-  padding:0;margin-top:10px;font-size:10px
+  border:0;
+  background:none;
+  text-decoration:underline;
+  padding:0;
+  margin-top:10px;
+  font-size:10px;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
 }
+
 .total{
-  display:flex;justify-content:space-between;
-  padding:14px 0;font-size:13px
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  font-size:13px;
+  color:#000;
 }
+
 .checkout-btn{
-  width:100%;height:50px;background:#000;color:#fff;
-  border:0;font-size:11px;letter-spacing:1.5px;margin-top:15px
+  width:100%;
+  height:50px;
+  background:#000;
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  border:0;
+  font-size:11px;
+  letter-spacing:1.5px;
+  margin-top:15px;
 }
 
-/* CHECKOUT */
+/* =========================
+   CHECKOUT
+========================= */
+
 .checkout-content{
-  max-width:700px;margin:auto;padding:40px 22px 70px
+  max-width:700px;
+  margin:auto;
+  padding:40px 22px 70px;
 }
-.checkout-title{font-size:25px;font-weight:400;margin:0 0 30px}
-.field{margin-bottom:17px}
+
+.checkout-title{
+  font-size:25px;
+  font-weight:400;
+  margin:0 0 30px;
+  color:#000;
+}
+
+.delivery-notice{
+  background:#000;
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+  padding:15px 16px;
+  margin-bottom:25px;
+  font-size:10px;
+  letter-spacing:1.4px;
+  line-height:1.6;
+  text-transform:uppercase;
+}
+
+.field{
+  margin-bottom:17px;
+}
+
 .field label{
-  display:block;font-size:9px;letter-spacing:1.3px;
-  margin-bottom:7px;text-transform:uppercase
+  display:block;
+  font-size:9px;
+  letter-spacing:1.3px;
+  margin-bottom:7px;
+  text-transform:uppercase;
+  color:#000;
 }
-.field input,.field textarea{
-  width:100%;border:1px solid #ccc;padding:13px;
-  outline:0;background:#fff;font-size:12px
+
+.field input,
+.field textarea{
+  width:100%;
+  border:1px solid #ccc;
+  padding:13px;
+  outline:0;
+  background:#fff;
+  font-size:12px;
+  color:#000;
 }
-.field textarea{min-height:90px;resize:vertical}
+
+.field textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
 .cod{
-  border:1px solid #000;padding:14px;font-size:10px;
-  letter-spacing:1px;margin:25px 0
+  border:1px solid #000;
+  padding:14px;
+  font-size:10px;
+  letter-spacing:1px;
+  margin:25px 0;
+  color:#000;
 }
-.summary{border-top:1px solid #000;padding-top:18px}
+
+.summary{
+  border-top:1px solid #000;
+  padding-top:18px;
+}
+
 .summary div{
-  display:flex;justify-content:space-between;
-  margin-bottom:11px;font-size:12px
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:11px;
+  font-size:12px;
+  color:#000;
 }
+
 .summary .grand{
-  border-top:1px solid #eee;padding-top:15px;font-size:14px
+  border-top:1px solid #eee;
+  padding-top:15px;
+  font-size:14px;
 }
 
-/* SEARCH */
+/* =========================
+   SEARCH
+========================= */
+
 .search{
-  position:fixed;inset:0;z-index:2000;background:#fff;
-  display:none;padding:110px 7vw 40px;overflow:auto
-}
-.search.active{display:block}
-.search-x{
-  position:absolute;top:75px;right:20px;
-  background:none;border:0;font-size:30px
-}
-.search input{
-  width:100%;border:0;border-bottom:1px solid #000;
-  outline:0;font-size:28px;padding:15px 0
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  background:#fff;
+  display:none;
+  padding:110px 7vw 40px;
+  overflow:auto;
 }
 
-/* MOBILE */
+.search.active{
+  display:block;
+}
+
+.search-x{
+  position:absolute;
+  top:75px;
+  right:20px;
+  background:none;
+  border:0;
+  font-size:30px;
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
+}
+
+.search input{
+  width:100%;
+  border:0;
+  border-bottom:1px solid #000;
+  outline:0;
+  font-size:28px;
+  padding:15px 0;
+  color:#000;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:850px){
+
   header{
-    height:62px;top:34px;padding:0 14px
+    height:62px;
+    top:34px;
+    padding:0 14px;
   }
-  .logo{font-size:21px;letter-spacing:4px}
-  .header-left .nav{display:none}
-  .header-right{gap:4px}
+
+  .logo{
+    font-size:21px;
+    letter-spacing:4px;
+  }
+
+  .header-left .nav{
+    display:none;
+  }
+
+  .header-right{
+    gap:4px;
+  }
 
   .hero{
-    height:calc(100svh - 96px);min-height:540px
+    height:calc(100svh - 96px);
+    min-height:540px;
   }
-  .hero-text{padding:30px 22px}
-  .hero h1{font-size:48px}
 
-  .section{padding:55px 16px}
-  .section-title{font-size:22px}
+  .hero-text{
+    padding:30px 22px;
+  }
 
-  .collections{grid-template-columns:1fr 1fr}
-  .collection{height:260px}
+  .hero h1{
+    font-size:48px;
+  }
+
+  .section{
+    padding:55px 16px;
+  }
+
+  .section-title{
+    font-size:22px;
+  }
+
+  .collections{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .collection{
+    height:260px;
+  }
+
   .collection:first-child{
-    grid-column:1/-1;height:390px
+    grid-column:1/-1;
+    height:390px;
   }
 
   .products{
     grid-template-columns:repeat(2,1fr);
-    gap:25px 9px
+    gap:25px 9px;
   }
 
   .editorial{
-    margin:0 16px;height:58vh
+    margin:0 16px;
+    height:58vh;
   }
-  .editorial-text h2{font-size:40px}
 
-  footer{padding:45px 20px 30px}
+  .editorial-text h2{
+    font-size:40px;
+  }
+
+  footer{
+    padding:45px 20px 30px;
+  }
+
   .footer-grid{
     grid-template-columns:1fr 1fr;
-    gap:30px 20px
+    gap:30px 20px;
   }
-  .footer-grid>div:first-child{grid-column:1/-1}
+
+  .footer-grid>div:first-child{
+    grid-column:1/-1;
+  }
 
   .modal-content{
-    display:flex;flex-direction:column;overflow:auto
+    display:flex;
+    flex-direction:column;
+    overflow:auto;
   }
+
   .gallery{
-    height:64svh;min-height:0;flex:0 0 64svh
+    height:64svh;
+    min-height:0;
+    flex:0 0 64svh;
   }
-  .details{padding:28px 20px 50px;overflow:visible}
-  .close{top:8px;right:8px}
+
+  .details{
+    padding:28px 20px 50px;
+    overflow:visible;
+  }
+
+  .close{
+    top:8px;
+    right:8px;
+  }
 
   .bag-item{
-    grid-template-columns:75px 1fr auto
+    grid-template-columns:75px 1fr auto;
   }
+
   .bag-item img{
-    width:75px;height:100px
+    width:75px;
+    height:100px;
   }
+
+}
+
+/* =========================
+   FORCE BLACK PRODUCT TEXT
+========================= */
+
+button.product,
+button.product:link,
+button.product:visited,
+button.product:hover,
+button.product:active,
+button.product:focus{
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
+  text-decoration:none !important;
+}
+
+button.product *{
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
+}
+
+.close,
+.panel-close,
+.search-x{
+  color:#000 !important;
+  -webkit-text-fill-color:#000 !important;
 }
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     ANNOUNCEMENT
+========================= -->
+
 <div class="announcement">
   Delivery takes 12-20 working days
 </div>
 
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
+
   <div class="header-left">
-    <button class="nav" onclick="goHome()">Home</button>
-    <button class="nav" onclick="shop()">Shop</button>
+
+    <button
+      class="nav"
+      onclick="goHome()"
+    >
+      Home
+    </button>
+
+    <button
+      class="nav"
+      onclick="shop()"
+    >
+      Shop
+    </button>
+
   </div>
 
-  <a href="#" class="logo" onclick="goHome();return false">ORRA</a>
+  <a
+    href="#"
+    class="logo"
+    onclick="goHome();return false"
+  >
+    ORRA
+  </a>
 
   <div class="header-right">
-    <button class="icon" onclick="openSearch()" aria-label="Search">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7">
-        <circle cx="10.5" cy="10.5" r="6.5"/>
-        <path d="M15.5 15.5L21 21"/>
+
+    <button
+      class="icon"
+      onclick="openSearch()"
+      aria-label="Search"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="1.7"
+      >
+        <circle
+          cx="10.5"
+          cy="10.5"
+          r="6.5"
+        />
+
+        <path
+          d="M15.5 15.5L21 21"
+        />
       </svg>
+
     </button>
 
-    <button class="icon" onclick="openBag()" aria-label="Bag">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7">
-        <path d="M5 8h14l-1 13H6L5 8Z"/>
-        <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+    <button
+      class="icon bag-icon"
+      onclick="openBag()"
+      aria-label="Bag"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="1.7"
+      >
+
+        <path
+          d="M5 8h14l-1 13H6L5 8Z"
+        />
+
+        <path
+          d="M9 8V6a3 3 0 0 1 6 0v2"
+        />
+
       </svg>
+
+      <span
+        id="bagCount"
+        class="bag-count"
+      >
+        0
+      </span>
+
     </button>
+
   </div>
+
 </header>
+
+<!-- =========================
+     HOME
+========================= -->
 
 <main id="home">
 
-<section class="hero">
-  <img src="IMG_3097.jpeg" alt="ORRA">
-  <div class="hero-text">
-    <div class="hero-small">NEW COLLECTION</div>
-    <h1>Made for<br>your style.</h1>
-    <button class="white-btn" onclick="shop()">SHOP NOW</button>
-  </div>
-</section>
+  <section class="hero">
 
-<section class="section">
-  <div class="section-head">
-    <h2 class="section-title">Collections</h2>
-    <span class="section-note">ORRA</span>
-  </div>
+    <img
+      src="IMG_3097.jpeg"
+      alt="ORRA"
+    >
 
-  <div class="collections">
+    <div class="hero-text">
 
-    <a class="collection" href="#shop"
-       onclick="filterCategory('SETS')">
-      <img src="IMG_3097.jpeg" alt="Sets">
-      <span>Sets</span>
-    </a>
+      <div class="hero-small">
+        NEW COLLECTION
+      </div>
 
-    <a class="collection" href="#shop"
-       onclick="filterCategory('DRESSES')">
-      <img src="IMG_3098.jpeg" alt="Dresses">
-      <span>Dresses</span>
-    </a>
+      <h1>
+        Made for<br>
+        your style.
+      </h1>
 
-    <a class="collection" href="#shop"
-       onclick="filterCategory('JACKETS')">
-      <img src="IMG_3099.jpeg" alt="Jackets">
-      <span>Jackets</span>
-    </a>
+      <button
+        class="white-btn"
+        onclick="shop()"
+      >
+        SHOP NOW
+      </button>
 
-  </div>
-</section>
+    </div>
 
-<section class="section" id="shop">
+  </section>
 
-  <div class="section-head">
-    <h2 class="section-title">New In</h2>
-    <span id="count" class="section-note">ORRA</span>
-  </div>
+  <!-- COLLECTIONS -->
 
-  <div id="products" class="products">
-    <div class="loading">LOADING ORRA...</div>
-  </div>
+  <section class="section">
 
-</section>
+    <div class="section-head">
 
-<section class="editorial">
-  <img src="IMG_3097.jpeg" alt="ORRA">
+      <h2 class="section-title">
+        Collections
+      </h2>
 
-  <div class="editorial-text">
-    <h2>Simple.<br>Modern.<br>ORRA.</h2>
-    <button class="white-btn" onclick="shop()">
-      SHOP COLLECTION
-    </button>
-  </div>
-</section>
+      <span class="section-note">
+        ORRA
+      </span>
 
-<section class="section">
-  <h2 class="section-title">About ORRA</h2>
+    </div>
 
-  <p style="
-    max-width:650px;
-    color:#555;
-    font-size:13px;
-    line-height:1.9
-  ">
-    ORRA is a modern fashion store built around clean silhouettes,
-    effortless styling and pieces made to be worn your way.
-  </p>
-</section>
+    <div class="collections">
+
+      <a
+        class="collection"
+        href="#shop"
+        onclick="filterCategory('SETS')"
+      >
+
+        <img
+          src="IMG_3097.jpeg"
+          alt="Sets"
+        >
+
+        <span>
+          Sets
+        </span>
+
+      </a>
+
+      <a
+        class="collection"
+        href="#shop"
+        onclick="filterCategory('DRESSES')"
+      >
+
+        <img
+          src="IMG_3098.jpeg"
+          alt="Dresses"
+        >
+
+        <span>
+          Dresses
+        </span>
+
+      </a>
+
+      <a
+        class="collection"
+        href="#shop"
+        onclick="filterCategory('JACKETS')"
+      >
+
+        <img
+          src="IMG_3099.jpeg"
+          alt="Jackets"
+        >
+
+        <span>
+          Jackets
+        </span>
+
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- SHOP -->
+
+  <section
+    class="section"
+    id="shop"
+  >
+
+    <div class="section-head">
+
+      <h2 class="section-title">
+        New In
+      </h2>
+
+      <span
+        id="count"
+        class="section-note"
+      >
+        ORRA
+      </span>
+
+    </div>
+
+    <div
+      id="products"
+      class="products"
+    >
+
+      <div class="loading">
+        LOADING ORRA...
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- EDITORIAL -->
+
+  <section class="editorial">
+
+    <img
+      src="IMG_3097.jpeg"
+      alt="ORRA"
+    >
+
+    <div class="editorial-text">
+
+      <h2>
+        Simple.<br>
+        Modern.<br>
+        ORRA.
+      </h2>
+
+      <button
+        class="white-btn"
+        onclick="shop()"
+      >
+        SHOP COLLECTION
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="section">
+
+    <h2 class="section-title">
+      About ORRA
+    </h2>
+
+    <p style="
+      max-width:650px;
+      color:#555;
+      font-size:13px;
+      line-height:1.9
+    ">
+      ORRA is a modern fashion store built around clean silhouettes,
+      effortless styling and pieces made to be worn your way.
+    </p>
+
+  </section>
 
 </main>
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
   <div class="footer-grid">
 
     <div>
-      <div class="footer-logo">ORRA</div>
-      <p>Modern fashion. Clean style. Easy shopping.</p>
+
+      <div class="footer-logo">
+        ORRA
+      </div>
+
+      <p>
+        Modern fashion. Clean style. Easy shopping.
+      </p>
+
     </div>
 
     <div>
-      <h4>SHOP</h4>
-      <a href="#shop" onclick="shop()">New In</a>
-      <a href="#shop" onclick="filterCategory('SETS')">Sets</a>
-      <a href="#shop" onclick="filterCategory('DRESSES')">Dresses</a>
-      <a href="#shop" onclick="filterCategory('JACKETS')">Jackets</a>
+
+      <h4>
+        SHOP
+      </h4>
+
+      <a
+        href="#shop"
+        onclick="shop()"
+      >
+        New In
+      </a>
+
+      <a
+        href="#shop"
+        onclick="filterCategory('SETS')"
+      >
+        Sets
+      </a>
+
+      <a
+        href="#shop"
+        onclick="filterCategory('DRESSES')"
+      >
+        Dresses
+      </a>
+
+      <a
+        href="#shop"
+        onclick="filterCategory('JACKETS')"
+      >
+        Jackets
+      </a>
+
     </div>
 
     <div>
-      <h4>INFO</h4>
-      <a href="#home" onclick="goHome()">About</a>
-      <a href="#home" onclick="goHome()">Contact</a>
+
+      <h4>
+        INFO
+      </h4>
+
+      <a
+        href="#home"
+        onclick="goHome()"
+      >
+        About
+      </a>
+
+      <a
+        href="#home"
+        onclick="goHome()"
+      >
+        Contact
+      </a>
+
     </div>
 
   </div>
@@ -504,20 +1374,30 @@ footer a{display:block;margin-bottom:8px}
 
 </footer>
 
-<!-- PRODUCT MODAL -->
+<!-- =========================
+     PRODUCT MODAL
+========================= -->
 
-<div id="productModal" class="modal">
+<div
+  id="productModal"
+  class="modal"
+>
 
   <button
     type="button"
     class="close"
     onclick="closeProduct()"
     aria-label="Close"
-  >×</button>
+  >
+    ×
+  </button>
 
   <div class="modal-content">
 
-    <div id="gallery" class="gallery">
+    <div
+      id="gallery"
+      class="gallery"
+    >
 
       <img
         id="galleryImg"
@@ -525,26 +1405,42 @@ footer a{display:block;margin-bottom:8px}
         alt=""
       >
 
-      <div id="dots" class="dots"></div>
+      <div
+        id="dots"
+        class="dots"
+      ></div>
 
     </div>
 
     <div class="details">
 
-      <div id="detailCategory" class="category"></div>
+      <div
+        id="detailCategory"
+        class="category"
+      ></div>
 
-      <h2 id="detailName"></h2>
+      <h2
+        id="detailName"
+      ></h2>
 
-      <div id="detailPrice" class="price"></div>
+      <div
+        id="detailPrice"
+        class="price"
+      ></div>
 
       <div
         id="detailDescription"
         class="description"
       ></div>
 
-      <div class="option">Size</div>
+      <div class="option">
+        Size
+      </div>
 
-      <div id="sizes" class="sizes"></div>
+      <div
+        id="sizes"
+        class="sizes"
+      ></div>
 
       <button
         class="add"
@@ -559,40 +1455,66 @@ footer a{display:block;margin-bottom:8px}
 
 </div>
 
-<!-- BAG -->
+<!-- =========================
+     BAG
+========================= -->
 
-<div id="bagPanel" class="panel">
+<div
+  id="bagPanel"
+  class="panel"
+>
 
   <div class="panel-head">
-    <strong>Your Bag</strong>
+
+    <strong>
+      Your Bag
+    </strong>
 
     <button
       class="panel-close"
       onclick="closeBag()"
-    >×</button>
+    >
+      ×
+    </button>
+
   </div>
 
   <div class="bag">
 
-    <div id="bagItems"></div>
+    <div
+      id="bagItems"
+    ></div>
 
-    <div id="bagSummary"></div>
+    <div
+      id="bagSummary"
+    ></div>
 
   </div>
 
 </div>
 
-<!-- CHECKOUT -->
+<!-- =========================
+     CHECKOUT
+========================= -->
 
-<div id="checkoutPanel" class="panel">
+<div
+  id="checkoutPanel"
+  class="panel"
+>
 
   <div class="panel-head">
-    <strong>Checkout</strong>
+
+    <strong>
+      Checkout
+    </strong>
 
     <button
       class="panel-close"
       onclick="closeCheckout()"
-    >×</button>
+    >
+      ×
+    </button>
+
   </div>
 
   <div class="checkout-content">
@@ -601,34 +1523,84 @@ footer a{display:block;margin-bottom:8px}
       Delivery details
     </h2>
 
-    <div class="field">
-      <label>Full name *</label>
-      <input id="fullName" type="text">
+    <div class="delivery-notice">
+      DELIVERY TAKES 12-20 WORKING DAYS
     </div>
 
     <div class="field">
-      <label>Phone number *</label>
-      <input id="phone" type="tel">
+
+      <label>
+        Full name *
+      </label>
+
+      <input
+        id="fullName"
+        type="text"
+      >
+
     </div>
 
     <div class="field">
-      <label>City *</label>
-      <input id="city" type="text">
+
+      <label>
+        Phone number *
+      </label>
+
+      <input
+        id="phone"
+        type="tel"
+      >
+
     </div>
 
     <div class="field">
-      <label>Area *</label>
-      <input id="area" type="text">
+
+      <label>
+        City *
+      </label>
+
+      <input
+        id="city"
+        type="text"
+      >
+
     </div>
 
     <div class="field">
-      <label>Full address *</label>
-      <textarea id="address"></textarea>
+
+      <label>
+        Area *
+      </label>
+
+      <input
+        id="area"
+        type="text"
+      >
+
     </div>
 
     <div class="field">
-      <label>Delivery notes</label>
-      <textarea id="notes"></textarea>
+
+      <label>
+        Full address *
+      </label>
+
+      <textarea
+        id="address"
+      ></textarea>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Delivery notes
+      </label>
+
+      <textarea
+        id="notes"
+      ></textarea>
+
     </div>
 
     <div class="cod">
@@ -638,18 +1610,35 @@ footer a{display:block;margin-bottom:8px}
     <div class="summary">
 
       <div>
-        <span>Subtotal</span>
-        <span id="subtotal">$0</span>
+        <span>
+          Subtotal
+        </span>
+
+        <span id="subtotal">
+          $0
+        </span>
       </div>
 
       <div>
-        <span>Delivery</span>
-        <span>$5</span>
+        <span>
+          Delivery
+        </span>
+
+        <span>
+          $5
+        </span>
       </div>
 
       <div class="grand">
-        <strong>Total</strong>
-        <strong id="total">$0</strong>
+
+        <strong>
+          Total
+        </strong>
+
+        <strong id="total">
+          $0
+        </strong>
+
       </div>
 
     </div>
@@ -665,14 +1654,21 @@ footer a{display:block;margin-bottom:8px}
 
 </div>
 
-<!-- SEARCH -->
+<!-- =========================
+     SEARCH
+========================= -->
 
-<div id="searchPanel" class="search">
+<div
+  id="searchPanel"
+  class="search"
+>
 
   <button
     class="search-x"
     onclick="closeSearch()"
-  >×</button>
+  >
+    ×
+  </button>
 
   <input
     id="searchInput"
@@ -681,14 +1677,22 @@ footer a{display:block;margin-bottom:8px}
     oninput="searchProducts()"
   >
 
-  <div id="searchResults"></div>
+  <div
+    id="searchResults"
+  ></div>
 
 </div>
 
-<div id="notice" class="notice">
+<!-- =========================
+     NOTICE
+========================= -->
+
+<div
+  id="notice"
+  class="notice"
+>
   ADDED TO BAG
 </div>
-
 
 <script>
 
@@ -720,31 +1724,78 @@ let bag=[];
 
 let lastScrollY=0;
 
+let bodyLockY=0;
 
 /* =====================================================
    BASIC
 ===================================================== */
 
 function isOpen(id){
-  return document
-    .getElementById(id)
-    .classList.contains("active");
+
+  const element=
+    document.getElementById(id);
+
+  return element &&
+    element.classList.contains("active");
+
 }
 
+
+/* =====================================================
+   PAGE LOCK
+===================================================== */
+
 function lockPage(){
+
+  if(
+    document.body.classList.contains("lock")
+  ){
+    return;
+  }
+
+  bodyLockY=
+    window.scrollY||
+    window.pageYOffset||
+    0;
+
+  document.body.style.position="fixed";
+  document.body.style.top=
+    "-"+bodyLockY+"px";
+  document.body.style.left="0";
+  document.body.style.right="0";
+  document.body.style.width="100%";
+  document.body.style.overflow="hidden";
+
   document.body.classList.add("lock");
+
 }
+
 
 function unlockPage(){
 
-  if(
-    !isOpen("productModal") &&
-    !isOpen("bagPanel") &&
-    !isOpen("checkoutPanel") &&
-    !isOpen("searchPanel")
-  ){
-    document.body.classList.remove("lock");
+  const stillOpen=
+    isOpen("productModal")||
+    isOpen("bagPanel")||
+    isOpen("checkoutPanel")||
+    isOpen("searchPanel");
+
+  if(stillOpen){
+    return;
   }
+
+  document.body.classList.remove("lock");
+
+  document.body.style.position="";
+  document.body.style.top="";
+  document.body.style.left="";
+  document.body.style.right="";
+  document.body.style.width="";
+  document.body.style.overflow="";
+
+  window.scrollTo(
+    0,
+    bodyLockY
+  );
 
 }
 
@@ -784,12 +1835,17 @@ function shop(){
 
   setTimeout(()=>{
 
-    document
-      .getElementById("shop")
-      .scrollIntoView({
+    const shopElement=
+      document.getElementById("shop");
+
+    if(shopElement){
+
+      shopElement.scrollIntoView({
         behavior:"smooth",
         block:"start"
       });
+
+    }
 
   },30);
 
@@ -800,9 +1856,28 @@ function filterCategory(category){
 
   selectedCategory=category;
 
-  shop();
+  closeProduct(false);
+  closeBag();
+  closeCheckout();
+  closeSearch();
 
   renderProducts();
+
+  setTimeout(()=>{
+
+    const shopElement=
+      document.getElementById("shop");
+
+    if(shopElement){
+
+      shopElement.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+    }
+
+  },30);
 
 }
 
@@ -826,16 +1901,20 @@ async function loadProducts(){
   try{
 
     const response=
-      await fetch(url,{
-        method:"GET",
-        headers:{
-          "apikey":SUPABASE_KEY,
-          "Authorization":
-            "Bearer "+SUPABASE_KEY,
-          "Accept":"application/json"
-        },
-        cache:"no-store"
-      });
+      await fetch(
+        url,
+        {
+          method:"GET",
+          headers:{
+            "apikey":SUPABASE_KEY,
+            "Authorization":
+              "Bearer "+SUPABASE_KEY,
+            "Accept":
+              "application/json"
+          },
+          cache:"no-store"
+        }
+      );
 
     const text=
       await response.text();
@@ -868,30 +1947,31 @@ async function loadProducts(){
         ...p,
 
         name:
-          p.name ||
+          p.name||
           "ORRA PRODUCT",
 
         price:
           Number(p.price)||0,
 
         category:
-          p.category ||
+          p.category||
           "ORRA",
 
         sizes:
-          p.sizes ||
+          p.sizes||
           "",
 
         description:
-          p.description ||
+          p.description||
           "A piece from the ORRA collection."
 
       }));
 
 
-    products.sort((a,b)=>
-      new Date(b.created_at||0)-
-      new Date(a.created_at||0)
+    products.sort(
+      (a,b)=>
+        new Date(b.created_at||0)-
+        new Date(a.created_at||0)
     );
 
 
@@ -901,11 +1981,21 @@ async function loadProducts(){
 
     box.innerHTML=
       `<div class="error">
-        <strong>COULD NOT LOAD PRODUCTS</strong>
+
+        <strong>
+          COULD NOT LOAD PRODUCTS
+        </strong>
+
         <br><br>
-        ${escapeHtml(error.message)}
+
+        ${escapeHtml(
+          error.message
+        )}
+
         <br><br>
+
         Please check Supabase Products SELECT access.
+
       </div>`;
 
     document
@@ -927,8 +2017,11 @@ function getImages(product){
     product.name===
       "White Stitch Detail Set" ||
 
-    String(product.image_url||"")
-      .includes("IMG_3097.jpeg")
+    String(
+      product.image_url||""
+    ).includes(
+      "IMG_3097.jpeg"
+    )
   ){
 
     return[
@@ -944,14 +2037,15 @@ function getImages(product){
 
 
   if(
-    Array.isArray(product.image_urls)
+    Array.isArray(
+      product.image_urls
+    )
   ){
 
     images=
       product.image_urls;
 
   }
-
 
   else if(
     typeof product.image_urls===
@@ -966,8 +2060,13 @@ function getImages(product){
           product.image_urls
         );
 
-      if(Array.isArray(parsed))
+      if(
+        Array.isArray(parsed)
+      ){
+
         images=parsed;
+
+      }
 
     }catch{
 
@@ -1003,7 +2102,8 @@ function getImages(product){
   if(!images.length){
 
     images=[
-      GITHUB+"IMG_3097.jpeg"
+      GITHUB+
+      "IMG_3097.jpeg"
     ];
 
   }
@@ -1020,11 +2120,17 @@ function normalizeImage(url){
 
   if(
     /^https?:\/\//i.test(url)
-  )
+  ){
+
     return url;
 
+  }
+
   return GITHUB+
-    url.replace(/^\/+/,"");
+    url.replace(
+      /^\/+/,
+      ""
+    );
 
 }
 
@@ -1040,10 +2146,13 @@ function renderProducts(){
   ];
 
 
-  if(selectedCategory!=="ALL"){
+  if(
+    selectedCategory!=="ALL"
+  ){
 
     list=
       list.filter(product=>
+
         String(
           product.category||""
         )
@@ -1051,6 +2160,7 @@ function renderProducts(){
         .includes(
           selectedCategory
         )
+
       );
 
   }
@@ -1098,6 +2208,7 @@ function renderProducts(){
 
           <button
             class="product"
+            type="button"
             onclick="
               openProductByIndex(${index})
             "
@@ -1116,15 +2227,21 @@ function renderProducts(){
             <div class="product-info">
 
               <div class="product-name">
-                ${escapeHtml(product.name)}
+                ${escapeHtml(
+                  product.name
+                )}
               </div>
 
               <div class="product-price">
-                $${formatPrice(product.price)}
+                $${formatPrice(
+                  product.price
+                )}
               </div>
 
               <div class="product-cat">
-                ${escapeHtml(product.category)}
+                ${escapeHtml(
+                  product.category
+                )}
               </div>
 
             </div>
@@ -1144,8 +2261,11 @@ function openProductByIndex(index){
   const product=
     shownProducts[index];
 
-  if(product)
+  if(product){
+
     openProduct(product);
+
+  }
 
 }
 
@@ -1162,7 +2282,8 @@ function openProduct(product){
     0;
 
 
-  activeProduct=product;
+  activeProduct=
+    product;
 
   activeImages=
     getImages(product);
@@ -1173,20 +2294,26 @@ function openProduct(product){
 
 
   document
-    .getElementById("detailCategory")
+    .getElementById(
+      "detailCategory"
+    )
     .textContent=
       product.category||
       "ORRA";
 
 
   document
-    .getElementById("detailName")
+    .getElementById(
+      "detailName"
+    )
     .textContent=
       product.name;
 
 
   document
-    .getElementById("detailPrice")
+    .getElementById(
+      "detailPrice"
+    )
     .textContent=
       "$"+
       formatPrice(
@@ -1195,7 +2322,9 @@ function openProduct(product){
 
 
   document
-    .getElementById("detailDescription")
+    .getElementById(
+      "detailDescription"
+    )
     .textContent=
       product.description||
       "A piece from the ORRA collection.";
@@ -1207,7 +2336,9 @@ function openProduct(product){
 
 
   document
-    .getElementById("productModal")
+    .getElementById(
+      "productModal"
+    )
     .classList
     .add("active");
 
@@ -1221,14 +2352,20 @@ function closeProduct(
   restore=true
 ){
 
+  const modal=
+    document.getElementById(
+      "productModal"
+    );
+
   const wasOpen=
-    isOpen("productModal");
+    modal.classList.contains(
+      "active"
+    );
 
 
-  document
-    .getElementById("productModal")
-    .classList
-    .remove("active");
+  modal.classList.remove(
+    "active"
+  );
 
 
   activeProduct=null;
@@ -1245,14 +2382,14 @@ function closeProduct(
     restore
   ){
 
-    requestAnimationFrame(()=>{
+    setTimeout(()=>{
 
-      window.scrollTo({
-        top:lastScrollY,
-        behavior:"instant"
-      });
+      window.scrollTo(
+        0,
+        lastScrollY
+      );
 
-    });
+    },20);
 
   }
 
@@ -1292,14 +2429,21 @@ function renderSizes(){
     sizes=
       activeProduct.sizes
         .split(",")
-        .map(x=>x.trim())
+        .map(
+          x=>x.trim()
+        )
         .filter(Boolean);
 
   }
 
 
-  if(!sizes.length)
-    sizes=["ONE SIZE"];
+  if(!sizes.length){
+
+    sizes=[
+      "ONE SIZE"
+    ];
+
+  }
 
 
   selectedSize=
@@ -1311,6 +2455,7 @@ function renderSizes(){
       (size,index)=>`
 
         <button
+          type="button"
           class="size ${
             index===0
             ?"selected"
@@ -1332,22 +2477,30 @@ function renderSizes(){
 }
 
 
-function selectSize(button,size){
+function selectSize(
+  button,
+  size
+){
 
   document
     .querySelectorAll(
       "#sizes .size"
     )
-    .forEach(x=>
-      x.classList
-        .remove("selected")
+    .forEach(
+      x=>
+        x.classList.remove(
+          "selected"
+        )
     );
+
 
   button
     .classList
     .add("selected");
 
-  selectedSize=size;
+
+  selectedSize=
+    size;
 
 }
 
@@ -1358,26 +2511,35 @@ function selectSize(button,size){
 
 function updateGallery(){
 
-  if(!activeImages.length)
+  if(!activeImages.length){
+
     return;
 
-
-  document
-    .getElementById("galleryImg")
-    .src=
-      activeImages[imageIndex];
+  }
 
 
-  document
-    .getElementById("galleryImg")
-    .alt=
-      activeProduct
+  const image=
+    document.getElementById(
+      "galleryImg"
+    );
+
+
+  image.src=
+    activeImages[
+      imageIndex
+    ];
+
+
+  image.alt=
+    activeProduct
       ?activeProduct.name
       :"ORRA";
 
 
   document
-    .getElementById("dots")
+    .getElementById(
+      "dots"
+    )
     .innerHTML=
 
       activeImages.map(
@@ -1399,12 +2561,21 @@ function updateGallery(){
 
 function nextImage(){
 
-  if(activeImages.length<=1)
+  if(
+    activeImages.length<=1
+  ){
+
     return;
 
+  }
+
+
   imageIndex=
-    (imageIndex+1)%
+    (
+      imageIndex+1
+    )%
     activeImages.length;
+
 
   updateGallery();
 
@@ -1413,13 +2584,22 @@ function nextImage(){
 
 function previousImage(){
 
-  if(activeImages.length<=1)
+  if(
+    activeImages.length<=1
+  ){
+
     return;
 
+  }
+
+
   imageIndex=
-    (imageIndex-1+
-    activeImages.length)%
+    (
+      imageIndex-1+
+      activeImages.length
+    )%
     activeImages.length;
+
 
   updateGallery();
 
@@ -1433,6 +2613,7 @@ function previousImage(){
 let galleryStartX=0;
 let galleryStartY=0;
 
+
 const gallery=
   document.getElementById(
     "gallery"
@@ -1443,8 +2624,14 @@ gallery.addEventListener(
   "touchstart",
   e=>{
 
-    if(!e.touches[0])
+    if(
+      !e.touches[0]
+    ){
+
       return;
+
+    }
+
 
     galleryStartX=
       e.touches[0].clientX;
@@ -1453,7 +2640,9 @@ gallery.addEventListener(
       e.touches[0].clientY;
 
   },
-  {passive:true}
+  {
+    passive:true
+  }
 );
 
 
@@ -1461,12 +2650,19 @@ gallery.addEventListener(
   "touchend",
   e=>{
 
-    if(!e.changedTouches[0])
+    if(
+      !e.changedTouches[0]
+    ){
+
       return;
+
+    }
+
 
     const dx=
       e.changedTouches[0].clientX-
       galleryStartX;
+
 
     const dy=
       e.changedTouches[0].clientY-
@@ -1477,17 +2673,27 @@ gallery.addEventListener(
       Math.abs(dx)<55 ||
       Math.abs(dx)<
       Math.abs(dy)*1.35
-    )
+    ){
+
       return;
 
+    }
 
-    if(dx<0)
+
+    if(dx<0){
+
       nextImage();
-    else
+
+    }else{
+
       previousImage();
 
+    }
+
   },
-  {passive:true}
+  {
+    passive:true
+  }
 );
 
 
@@ -1507,19 +2713,18 @@ document.addEventListener(
     edgeActive=false;
 
 
-    if(!e.touches[0])
+    if(
+      !e.touches[0]
+    ){
+
       return;
 
+    }
 
-    const target=e.target;
 
+    const target=
+      e.target;
 
-    /*
-      Never activate this gesture
-      inside product gallery,
-      bag, checkout, search,
-      inputs or buttons.
-    */
 
     if(
       target.closest &&
@@ -1528,20 +2733,34 @@ document.addEventListener(
         "#bagPanel,"+
         "#checkoutPanel,"+
         "#searchPanel,"+
-        "button,input,textarea"
+        "button,"+
+        "input,"+
+        "textarea"
       )
     ){
+
       return;
+
     }
 
 
     if(
-      isOpen("productModal")||
-      isOpen("bagPanel")||
-      isOpen("checkoutPanel")||
-      isOpen("searchPanel")
+      isOpen(
+        "productModal"
+      )||
+      isOpen(
+        "bagPanel"
+      )||
+      isOpen(
+        "checkoutPanel"
+      )||
+      isOpen(
+        "searchPanel"
+      )
     ){
+
       return;
+
     }
 
 
@@ -1552,16 +2771,13 @@ document.addEventListener(
       e.touches[0].clientY;
 
 
-    /*
-      Must begin very close
-      to the left edge.
-    */
-
     edgeActive=
       edgeStartX<=35;
 
   },
-  {passive:true}
+  {
+    passive:true
+  }
 );
 
 
@@ -1570,35 +2786,38 @@ document.addEventListener(
   e=>{
 
     if(
-      !edgeActive||
+      !edgeActive ||
       !e.touches[0]
-    )
+    ){
+
       return;
+
+    }
 
 
     const dx=
       e.touches[0].clientX-
       edgeStartX;
 
+
     const dy=
       e.touches[0].clientY-
       edgeStartY;
 
 
-    /*
-      Cancel if it becomes
-      mostly vertical.
-    */
-
     if(
       Math.abs(dy)>
       Math.abs(dx)*1.2
     ){
+
       edgeActive=false;
+
     }
 
   },
-  {passive:true}
+  {
+    passive:true
+  }
 );
 
 
@@ -1607,11 +2826,12 @@ document.addEventListener(
   e=>{
 
     if(
-      !edgeActive||
+      !edgeActive ||
       !e.changedTouches[0]
     ){
 
       edgeActive=false;
+
       return;
 
     }
@@ -1620,6 +2840,7 @@ document.addEventListener(
     const dx=
       e.changedTouches[0].clientX-
       edgeStartX;
+
 
     const dy=
       e.changedTouches[0].clientY-
@@ -1639,7 +2860,9 @@ document.addEventListener(
     }
 
   },
-  {passive:true}
+  {
+    passive:true
+  }
 );
 
 
@@ -1649,8 +2872,11 @@ document.addEventListener(
 
 function addToBag(){
 
-  if(!activeProduct)
+  if(!activeProduct){
+
     return;
+
+  }
 
 
   bag.push({
@@ -1679,11 +2905,55 @@ function addToBag(){
   });
 
 
+  updateBagCount();
+
+
   closeProduct();
+
 
   showNotice(
     "ADDED TO BAG"
   );
+
+}
+
+
+function updateBagCount(){
+
+  const count=
+    document.getElementById(
+      "bagCount"
+    );
+
+
+  if(!count){
+
+    return;
+
+  }
+
+
+  const total=
+    bag.length;
+
+
+  if(total>0){
+
+    count.textContent=
+      total;
+
+    count.style.display=
+      "block";
+
+  }else{
+
+    count.textContent=
+      "0";
+
+    count.style.display=
+      "none";
+
+  }
 
 }
 
@@ -1698,7 +2968,9 @@ function openBag(){
 
 
   document
-    .getElementById("bagPanel")
+    .getElementById(
+      "bagPanel"
+    )
     .classList
     .add("active");
 
@@ -1711,9 +2983,12 @@ function openBag(){
 function closeBag(){
 
   document
-    .getElementById("bagPanel")
+    .getElementById(
+      "bagPanel"
+    )
     .classList
     .remove("active");
+
 
   unlockPage();
 
@@ -1722,7 +2997,13 @@ function closeBag(){
 
 function removeItem(index){
 
-  bag.splice(index,1);
+  bag.splice(
+    index,
+    1
+  );
+
+
+  updateBagCount();
 
   renderBag();
 
@@ -1735,7 +3016,9 @@ function subtotal(){
     (sum,item)=>
       sum+
       (
-        Number(item.price)||0
+        Number(
+          item.price
+        )||0
       ),
     0
   );
@@ -1765,6 +3048,8 @@ function renderBag(){
 
     summary.innerHTML="";
 
+    updateBagCount();
+
     return;
 
   }
@@ -1777,27 +3062,44 @@ function renderBag(){
         <div class="bag-item">
 
           <img
-            src="${escapeAttr(item.image)}"
-            alt="${escapeAttr(item.name)}"
+            src="${escapeAttr(
+              item.image
+            )}"
+            alt="${escapeAttr(
+              item.name
+            )}"
           >
 
           <div>
 
             <div class="bag-name">
-              ${escapeHtml(item.name)}
+              ${escapeHtml(
+                item.name
+              )}
             </div>
 
             <div class="bag-meta">
+
               SIZE:
-              ${escapeHtml(item.size)}
+              ${escapeHtml(
+                item.size
+              )}
+
               <br>
+
               PRICE:
-              $${formatPrice(item.price)}
+              $${formatPrice(
+                item.price
+              )}
+
             </div>
 
             <button
+              type="button"
               class="remove"
-              onclick="removeItem(${index})"
+              onclick="
+                removeItem(${index})
+              "
             >
               REMOVE
             </button>
@@ -1805,7 +3107,9 @@ function renderBag(){
           </div>
 
           <div>
-            $${formatPrice(item.price)}
+            $${formatPrice(
+              item.price
+            )}
           </div>
 
         </div>
@@ -1821,20 +3125,39 @@ function renderBag(){
   summary.innerHTML=`
 
     <div class="total">
-      <span>Subtotal</span>
-      <span>$${formatPrice(sub)}</span>
+
+      <span>
+        Subtotal
+      </span>
+
+      <span>
+        $${formatPrice(sub)}
+      </span>
+
     </div>
 
     <div class="total">
-      <span>Delivery</span>
-      <span>$${DELIVERY_CHARGE}</span>
+
+      <span>
+        Delivery
+      </span>
+
+      <span>
+        $${DELIVERY_CHARGE}
+      </span>
+
     </div>
 
     <div
       class="total"
-      style="border-top:1px solid #000"
+      style="
+        border-top:1px solid #000
+      "
     >
-      <strong>Total</strong>
+
+      <strong>
+        Total
+      </strong>
 
       <strong>
         $${formatPrice(
@@ -1842,9 +3165,11 @@ function renderBag(){
           DELIVERY_CHARGE
         )}
       </strong>
+
     </div>
 
     <button
+      type="button"
       class="checkout-btn"
       onclick="openCheckout()"
     >
@@ -1852,6 +3177,9 @@ function renderBag(){
     </button>
 
   `;
+
+
+  updateBagCount();
 
 }
 
@@ -1892,14 +3220,20 @@ function openCheckout(){
 
 
   document
-    .getElementById("subtotal")
+    .getElementById(
+      "subtotal"
+    )
     .textContent=
       "$"+
-      formatPrice(sub);
+      formatPrice(
+        sub
+      );
 
 
   document
-    .getElementById("total")
+    .getElementById(
+      "total"
+    )
     .textContent=
       "$"+
       formatPrice(
@@ -1919,6 +3253,7 @@ function closeCheckout(){
     .classList
     .remove("active");
 
+
   unlockPage();
 
 }
@@ -1928,11 +3263,30 @@ function placeOrder(){
 
   const fields=[
 
-    ["fullName","Full name"],
-    ["phone","Phone number"],
-    ["city","City"],
-    ["area","Area"],
-    ["address","Full address"]
+    [
+      "fullName",
+      "Full name"
+    ],
+
+    [
+      "phone",
+      "Phone number"
+    ],
+
+    [
+      "city",
+      "City"
+    ],
+
+    [
+      "area",
+      "Area"
+    ],
+
+    [
+      "address",
+      "Full address"
+    ]
 
   ];
 
@@ -1953,10 +3307,12 @@ function placeOrder(){
 
       element.focus();
 
+
       showNotice(
         field[1].toUpperCase()+
         " REQUIRED"
       );
+
 
       return;
 
@@ -1974,24 +3330,30 @@ function placeOrder(){
 
     bag=[];
 
+    updateBagCount();
+
     closeCheckout();
 
     renderBag();
 
 
-    fields.forEach(field=>{
+    fields.forEach(
+      field=>{
 
-      document
-        .getElementById(
-          field[0]
-        )
-        .value="";
+        document
+          .getElementById(
+            field[0]
+          )
+          .value="";
 
-    });
+      }
+    );
 
 
     document
-      .getElementById("notes")
+      .getElementById(
+        "notes"
+      )
       .value="";
 
 
@@ -2046,6 +3408,7 @@ function closeSearch(){
     .classList
     .remove("active");
 
+
   unlockPage();
 
 }
@@ -2079,21 +3442,22 @@ function searchProducts(){
 
 
   const matches=
-    products.filter(product=>
+    products.filter(
+      product=>
 
-      String(
-        product.name||""
-      )
-      .toLowerCase()
-      .includes(query)
+        String(
+          product.name||""
+        )
+        .toLowerCase()
+        .includes(query)
 
-      ||
+        ||
 
-      String(
-        product.category||""
-      )
-      .toLowerCase()
-      .includes(query)
+        String(
+          product.category||""
+        )
+        .toLowerCase()
+        .includes(query)
 
     );
 
@@ -2101,7 +3465,9 @@ function searchProducts(){
   if(!matches.length){
 
     box.innerHTML=
-      '<div class="loading">NO RESULTS</div>';
+      '<div class="loading">'+
+      'NO RESULTS'+
+      '</div>';
 
     return;
 
@@ -2122,6 +3488,7 @@ function searchProducts(){
         return`
 
           <button
+            type="button"
             style="
               display:flex;
               width:100%;
@@ -2130,7 +3497,9 @@ function searchProducts(){
               border:0;
               border-bottom:1px solid #eee;
               background:#fff;
-              text-align:left
+              text-align:left;
+              color:#000;
+              -webkit-text-fill-color:#000;
             "
             onclick="
               openSearchProduct(${index})
@@ -2152,14 +3521,26 @@ function searchProducts(){
                 style="
                   display:block;
                   font-size:12px;
-                  margin:5px 0 8px
+                  margin:5px 0 8px;
+                  color:#000;
+                  -webkit-text-fill-color:#000;
                 "
               >
-                ${escapeHtml(product.name)}
+                ${escapeHtml(
+                  product.name
+                )}
               </strong>
 
-              <span style="font-size:11px">
-                $${formatPrice(product.price)}
+              <span
+                style="
+                  font-size:11px;
+                  color:#000;
+                  -webkit-text-fill-color:#000;
+                "
+              >
+                $${formatPrice(
+                  product.price
+                )}
               </span>
 
             </span>
@@ -2177,14 +3558,23 @@ function searchProducts(){
 function openSearchProduct(index){
 
   const product=
-    window.searchMatches[index];
+    window.searchMatches[
+      index
+    ];
 
-  if(!product)
+
+  if(!product){
+
     return;
+
+  }
+
 
   closeSearch();
 
-  openProduct(product);
+  openProduct(
+    product
+  );
 
 }
 
@@ -2208,7 +3598,9 @@ function showNotice(text){
     text;
 
 
-  notice.classList.add("show");
+  notice.classList.add(
+    "show"
+  );
 
 
   clearTimeout(
@@ -2236,6 +3628,7 @@ function formatPrice(value){
   const n=
     Number(value)||0;
 
+
   return n%1===0
     ?String(n)
     :n.toFixed(2);
@@ -2245,19 +3638,38 @@ function formatPrice(value){
 
 function escapeHtml(value){
 
-  return String(value??"")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+  return String(
+    value??""
+  )
+  .replaceAll(
+    "&",
+    "&amp;"
+  )
+  .replaceAll(
+    "<",
+    "&lt;"
+  )
+  .replaceAll(
+    ">",
+    "&gt;"
+  )
+  .replaceAll(
+    '"',
+    "&quot;"
+  )
+  .replaceAll(
+    "'",
+    "&#039;"
+  );
 
 }
 
 
 function escapeAttr(value){
 
-  return escapeHtml(value);
+  return escapeHtml(
+    value
+  );
 
 }
 
@@ -2270,8 +3682,14 @@ document.addEventListener(
   "keydown",
   e=>{
 
-    if(e.key!=="Escape")
+    if(
+      e.key!=="Escape"
+    ){
+
       return;
+
+    }
+
 
     closeProduct();
     closeBag();
@@ -2285,6 +3703,8 @@ document.addEventListener(
 /* =====================================================
    START
 ===================================================== */
+
+updateBagCount();
 
 loadProducts();
 
