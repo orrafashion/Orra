@@ -9,7 +9,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#111}
-button,input{font:inherit}
+button,input,textarea{font:inherit}
 button{cursor:pointer}
 a{text-decoration:none;color:inherit}
 
@@ -298,8 +298,30 @@ footer{
  padding:15px 0;
  border-bottom:1px solid #eee;
  display:flex;
+ align-items:center;
  justify-content:space-between;
- gap:10px
+ gap:12px
+}
+.bag-item-left{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ flex:1
+}
+.bag-item-image{
+ width:65px;
+ height:82px;
+ object-fit:cover;
+ background:#f3f3f3;
+ flex-shrink:0
+}
+.bag-item-info{
+ font-size:12px;
+ line-height:1.7
+}
+.bag-item-price{
+ font-size:12px;
+ white-space:nowrap
 }
 .checkout{
  margin-top:30px;
@@ -307,6 +329,169 @@ footer{
  background:#111;color:#fff;
  border:0;letter-spacing:2px;
  font-size:10px
+}
+
+/* CHECKOUT */
+.checkout-modal{
+ position:fixed;
+ inset:0;
+ z-index:3000;
+ background:rgba(0,0,0,.55);
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:20px
+}
+.checkout-modal.active{
+ display:flex
+}
+.checkout-box{
+ width:min(950px,100%);
+ max-height:94vh;
+ overflow:auto;
+ background:#fff;
+ position:relative;
+ padding:45px
+}
+.checkout-close{
+ position:absolute;
+ right:15px;
+ top:15px;
+ width:38px;
+ height:38px;
+ border:0;
+ background:#fff;
+ color:#000;
+ font-size:25px
+}
+.checkout-title{
+ font-size:13px;
+ letter-spacing:4px;
+ margin-bottom:40px
+}
+.checkout-content{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:55px
+}
+.checkout-section-title{
+ font-size:10px;
+ letter-spacing:3px;
+ margin-bottom:25px;
+ border-bottom:1px solid #111;
+ padding-bottom:12px
+}
+.checkout-item{
+ display:flex;
+ gap:15px;
+ padding:15px 0;
+ border-bottom:1px solid #eee
+}
+.checkout-item-image{
+ width:80px;
+ height:100px;
+ object-fit:cover;
+ background:#f3f3f3;
+ flex-shrink:0
+}
+.checkout-item-info{
+ flex:1;
+ font-size:12px;
+ line-height:1.8
+}
+.checkout-item-name{
+ margin-bottom:4px
+}
+.checkout-item-meta{
+ color:#777;
+ font-size:10px
+}
+.checkout-item-price{
+ font-size:12px;
+ margin-top:5px
+}
+.checkout-total{
+ display:flex;
+ justify-content:space-between;
+ border-top:1px solid #111;
+ margin-top:25px;
+ padding-top:18px;
+ font-size:11px;
+ letter-spacing:2px
+}
+.checkout-form{
+ display:flex;
+ flex-direction:column
+}
+.checkout-form label{
+ font-size:9px;
+ letter-spacing:1.5px;
+ margin-bottom:7px;
+ margin-top:15px
+}
+.checkout-form input,
+.checkout-form textarea{
+ width:100%;
+ border:1px solid #ddd;
+ padding:13px;
+ outline:none;
+ font-size:13px;
+ background:#fff;
+ color:#111
+}
+.checkout-form input:focus,
+.checkout-form textarea:focus{
+ border-color:#111
+}
+.checkout-form textarea{
+ min-height:80px;
+ resize:vertical
+}
+.payment-box{
+ margin-top:28px;
+ border-top:1px solid #eee;
+ border-bottom:1px solid #eee;
+ padding:20px 0
+}
+.payment-title{
+ font-size:9px;
+ letter-spacing:2px;
+ margin-bottom:15px
+}
+.payment-method{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ font-size:10px;
+ letter-spacing:1px
+}
+.payment-radio{
+ width:14px;
+ height:14px;
+ border:1px solid #111;
+ border-radius:50%;
+ display:block;
+ position:relative
+}
+.payment-radio:after{
+ content:"";
+ position:absolute;
+ width:6px;
+ height:6px;
+ background:#111;
+ border-radius:50%;
+ top:3px;
+ left:3px
+}
+.place-order{
+ width:100%;
+ height:52px;
+ background:#111;
+ color:#fff;
+ border:0;
+ margin-top:25px;
+ font-size:10px;
+ letter-spacing:2px
 }
 
 /* MOBILE */
@@ -383,6 +568,31 @@ footer{
  .footer-links{
   flex-wrap:wrap
  }
+
+ .checkout-modal{
+  padding:0;
+  align-items:flex-end
+ }
+
+ .checkout-box{
+  width:100%;
+  max-height:96vh;
+  padding:35px 20px 30px
+ }
+
+ .checkout-content{
+  grid-template-columns:1fr;
+  gap:40px
+ }
+
+ .checkout-title{
+  margin-bottom:30px
+ }
+
+ .checkout-item-image{
+  width:70px;
+  height:88px
+ }
 }
 </style>
 </head>
@@ -415,7 +625,6 @@ footer{
 
    </button>
 
-
    <!-- BAG -->
    <button class="icon-btn" onclick="openBag()">
 
@@ -431,7 +640,6 @@ footer{
   </div>
 
  </div>
-
 
  <div class="search-box" id="searchBox">
 
@@ -487,9 +695,7 @@ footer{
   COLLECTIONS
  </div>
 
-
  <div class="collections">
-
 
   <a class="collection" href="#shop">
 
@@ -505,7 +711,6 @@ footer{
 
   </a>
 
-
   <a class="collection" href="#new-in">
 
    <img src="IMG_3098.jpeg" alt="NEW IN">
@@ -520,7 +725,6 @@ footer{
 
   </a>
 
-
   <a class="collection" href="#shop">
 
    <img src="IMG_3099.jpeg" alt="SHOP ALL">
@@ -534,7 +738,6 @@ footer{
    </div>
 
   </a>
-
 
  </div>
 
@@ -594,7 +797,6 @@ footer{
    ORRA
   </div>
 
-
   <div class="footer-links">
 
    <a href="#new-in">
@@ -610,7 +812,6 @@ footer{
    </a>
 
   </div>
-
 
   <div class="footer-bottom">
 
@@ -632,7 +833,6 @@ footer{
   <button class="close" onclick="closeProduct()">
    ×
   </button>
-
 
   <div class="gallery" id="gallery">
 
@@ -656,7 +856,6 @@ footer{
 
   </div>
 
-
   <div class="details">
 
    <div class="category" id="detailCategory"></div>
@@ -670,17 +869,14 @@ footer{
     id="detailDescription"
    ></div>
 
-
    <div class="size-label">
     SELECT SIZE
    </div>
-
 
    <div
     class="sizes"
     id="sizes"
    ></div>
-
 
    <button
     class="add"
@@ -717,7 +913,6 @@ footer{
 
   </div>
 
-
   <div
    class="bag-items"
    id="bagItems"
@@ -725,13 +920,157 @@ footer{
    Your bag is empty.
   </div>
 
-
   <button
    class="checkout"
    onclick="checkout()"
   >
    CHECKOUT
   </button>
+
+ </div>
+
+</div>
+
+
+<!-- CHECKOUT -->
+
+<div class="checkout-modal" id="checkoutModal">
+
+ <div class="checkout-box">
+
+  <button
+   class="checkout-close"
+   onclick="closeCheckout()"
+  >
+   ×
+  </button>
+
+  <div class="checkout-title">
+   CHECKOUT
+  </div>
+
+  <div class="checkout-content">
+
+   <div class="checkout-order">
+
+    <div class="checkout-section-title">
+     YOUR ORDER
+    </div>
+
+    <div id="checkoutItems"></div>
+
+    <div class="checkout-total">
+
+     <span>
+      TOTAL
+     </span>
+
+     <strong id="checkoutTotal">
+      $0.00
+     </strong>
+
+    </div>
+
+   </div>
+
+
+   <div class="checkout-form">
+
+    <div class="checkout-section-title">
+     CUSTOMER INFORMATION
+    </div>
+
+    <label>
+     FULL NAME *
+    </label>
+
+    <input
+     id="customerName"
+     type="text"
+     placeholder="Your full name"
+    >
+
+
+    <label>
+     PHONE NUMBER *
+    </label>
+
+    <input
+     id="customerPhone"
+     type="tel"
+     placeholder="Your phone number"
+    >
+
+
+    <label>
+     CITY *
+    </label>
+
+    <input
+     id="customerCity"
+     type="text"
+     placeholder="City"
+    >
+
+
+    <label>
+     AREA *
+    </label>
+
+    <input
+     id="customerArea"
+     type="text"
+     placeholder="Area"
+    >
+
+
+    <label>
+     FULL ADDRESS *
+    </label>
+
+    <textarea
+     id="customerAddress"
+     placeholder="Building, street, floor..."
+    ></textarea>
+
+
+    <label>
+     DELIVERY NOTES
+    </label>
+
+    <textarea
+     id="deliveryNotes"
+     placeholder="Optional"
+    ></textarea>
+
+
+    <div class="payment-box">
+
+     <div class="payment-title">
+      PAYMENT METHOD
+     </div>
+
+     <div class="payment-method">
+
+      <span class="payment-radio"></span>
+
+      CASH ON DELIVERY
+
+     </div>
+
+    </div>
+
+
+    <button
+     class="place-order"
+     onclick="placeOrder()"
+    >
+     PLACE ORDER
+    </button>
+
+   </div>
+
+  </div>
 
  </div>
 
@@ -772,10 +1111,6 @@ let bag=[];
 
 function getImages(product){
 
- /*
-  Current White Stitch product.
- */
-
  if(
   product.name === "White Stitch Detail Set" ||
   String(product.image_url || "").includes("IMG_3097")
@@ -789,12 +1124,6 @@ function getImages(product){
 
  }
 
-
- /*
-  Future multiple-image support.
-  If image_urls exists, separate URLs
-  with commas.
- */
 
  if(
   product.image_urls &&
@@ -853,11 +1182,6 @@ async function loadProducts(){
  );
 
 
- /*
-  If "Products" fails because the database
-  table was created lowercase, try "products".
- */
-
  if(result.error){
 
   result=
@@ -879,11 +1203,6 @@ async function loadProducts(){
    result.error
   );
 
-
-  /*
-   Keep the website working even if the
-   database is temporarily unavailable.
-  */
 
   products=[
 
@@ -1089,7 +1408,7 @@ function openProduct(product){
 
 
 /* =========================
-   CLOSE
+   CLOSE PRODUCT
 ========================= */
 
 function closeProduct(){
@@ -1425,7 +1744,10 @@ function addToBag(){
   ),
 
   size:
-  selectedSize
+  selectedSize,
+
+  image:
+  getImages(selectedProduct)[0] || ""
 
  });
 
@@ -1487,20 +1809,68 @@ function openBag(){
    "bag-item";
 
 
-   row.innerHTML=
-   "<span>"+
-   item.name+
-   "<br>Size: "+
-   item.size+
-   "</span>"+
-   "<span>$"+
-   item.price.toFixed(2)+
-   "</span>";
-
-
-   box.appendChild(
-    row
+   const left=
+   document.createElement(
+    "div"
    );
+
+   left.className=
+   "bag-item-left";
+
+
+   const image=
+   document.createElement(
+    "img"
+   );
+
+   image.className=
+   "bag-item-image";
+
+   image.src=
+   item.image || "";
+
+   image.alt=
+   item.name || "ORRA";
+
+
+   const info=
+   document.createElement(
+    "div"
+   );
+
+   info.className=
+   "bag-item-info";
+
+   info.innerHTML=
+   "<div>"+
+   item.name+
+   "</div>"+
+   "<div>Size: "+
+   item.size+
+   "</div>";
+
+
+   left.appendChild(image);
+   left.appendChild(info);
+
+
+   const price=
+   document.createElement(
+    "div"
+   );
+
+   price.className=
+   "bag-item-price";
+
+   price.textContent=
+   "$"+item.price.toFixed(2);
+
+
+   row.appendChild(left);
+   row.appendChild(price);
+
+
+   box.appendChild(row);
 
   });
 
@@ -1544,9 +1914,184 @@ function checkout(){
  }
 
 
- alert(
-  "Checkout is the next step. Your products are ready in the bag."
+ closeBag();
+
+ renderCheckout();
+
+ document.getElementById(
+  "checkoutModal"
+ ).classList.add(
+  "active"
  );
+
+ document.body.style.overflow=
+ "hidden";
+
+}
+
+
+function renderCheckout(){
+
+ const box=
+ document.getElementById(
+  "checkoutItems"
+ );
+
+ const totalBox=
+ document.getElementById(
+  "checkoutTotal"
+ );
+
+ box.innerHTML="";
+
+ let total=0;
+
+
+ bag.forEach(
+ item=>{
+
+  total+=
+  Number(
+   item.price || 0
+  );
+
+
+  const row=
+  document.createElement(
+   "div"
+  );
+
+  row.className=
+  "checkout-item";
+
+
+  const image=
+  document.createElement(
+   "img"
+  );
+
+  image.className=
+  "checkout-item-image";
+
+  image.src=
+  item.image || "";
+
+  image.alt=
+  item.name || "ORRA";
+
+
+  const info=
+  document.createElement(
+   "div"
+  );
+
+  info.className=
+  "checkout-item-info";
+
+
+  info.innerHTML=
+  '<div class="checkout-item-name">'+
+  item.name+
+  '</div>'+
+  '<div class="checkout-item-meta">'+
+  'Size: '+
+  item.size+
+  '</div>'+
+  '<div class="checkout-item-price">$'+
+  Number(item.price).toFixed(2)+
+  '</div>';
+
+
+  row.appendChild(image);
+  row.appendChild(info);
+
+
+  box.appendChild(row);
+
+ });
+
+
+ totalBox.textContent=
+ "$"+total.toFixed(2);
+
+}
+
+
+function closeCheckout(){
+
+ document.getElementById(
+  "checkoutModal"
+ ).classList.remove(
+  "active"
+ );
+
+ document.body.style.overflow=
+ "";
+
+}
+
+
+function placeOrder(){
+
+ const name=
+ document.getElementById(
+  "customerName"
+ ).value.trim();
+
+
+ const phone=
+ document.getElementById(
+  "customerPhone"
+ ).value.trim();
+
+
+ const city=
+ document.getElementById(
+  "customerCity"
+ ).value.trim();
+
+
+ const area=
+ document.getElementById(
+  "customerArea"
+ ).value.trim();
+
+
+ const address=
+ document.getElementById(
+  "customerAddress"
+ ).value.trim();
+
+
+ if(
+  !name ||
+  !phone ||
+  !city ||
+  !area ||
+  !address
+ ){
+
+  alert(
+   "Please fill in all required information."
+  );
+
+  return;
+
+ }
+
+
+ alert(
+  "Thank you for your order, "+
+  name+
+  "! We will contact you shortly."
+ );
+
+
+ bag=[];
+
+ updateBagCount();
+
+ closeCheckout();
 
 }
 
@@ -1676,6 +2221,23 @@ e=>{
 };
 
 
+document.getElementById(
+ "checkoutModal"
+).onclick=
+e=>{
+
+ if(
+  e.target===
+  e.currentTarget
+ ){
+
+  closeCheckout();
+
+ }
+
+};
+
+
 document.addEventListener(
  "keydown",
  e=>{
@@ -1684,6 +2246,7 @@ document.addEventListener(
 
    closeProduct();
    closeBag();
+   closeCheckout();
 
   }
 
