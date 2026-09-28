@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>ORRA</title>
   <meta name="description" content="ORRA — Fashion Store">
 
@@ -33,8 +32,6 @@
       font: inherit;
     }
 
-    /* ================= HEADER ================= */
-
     header {
       height: 74px;
       padding: 0 28px;
@@ -48,11 +45,15 @@
       z-index: 100;
     }
 
-    .logo {
+    .logo,
+    .footer-logo {
       font-family: Georgia, serif;
-      font-size: 32px;
       letter-spacing: 7px;
       font-weight: normal;
+    }
+
+    .logo {
+      font-size: 32px;
     }
 
     .header-left,
@@ -88,8 +89,6 @@
       justify-content: center;
     }
 
-    /* ================= HERO ================= */
-
     .hero {
       position: relative;
       height: 78vh;
@@ -111,11 +110,7 @@
       display: flex;
       align-items: flex-end;
       padding: 55px;
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,.55),
-        rgba(0,0,0,0)
-      );
+      background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0));
       color: #fff;
     }
 
@@ -149,8 +144,6 @@
       cursor: pointer;
     }
 
-    /* ================= SECTION ================= */
-
     .section {
       padding: 75px 5%;
     }
@@ -172,8 +165,6 @@
       font-size: clamp(36px, 5vw, 58px);
       font-weight: normal;
     }
-
-    /* ================= COLLECTIONS ================= */
 
     .collections {
       display: grid;
@@ -207,15 +198,10 @@
       right: 0;
       padding: 22px;
       color: #fff;
-      background: linear-gradient(
-        transparent,
-        rgba(0,0,0,.75)
-      );
+      background: linear-gradient(transparent, rgba(0,0,0,.75));
       font-family: Georgia, serif;
       font-size: 25px;
     }
-
-    /* ================= PRODUCTS ================= */
 
     .products {
       display: grid;
@@ -238,7 +224,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: grayscale(100%);
       transition: transform .4s ease;
     }
 
@@ -260,7 +245,13 @@
       color: #666;
     }
 
-    /* ================= EDITORIAL ================= */
+    .product-tag {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #777;
+      margin-top: 8px;
+    }
 
     .editorial {
       margin: 20px 5% 75px;
@@ -294,8 +285,6 @@
       letter-spacing: 5px;
     }
 
-    /* ================= FOOTER ================= */
-
     footer {
       background: #111;
       color: #fff;
@@ -304,9 +293,7 @@
     }
 
     .footer-logo {
-      font-family: Georgia, serif;
       font-size: 34px;
-      letter-spacing: 7px;
       margin-bottom: 20px;
     }
 
@@ -325,7 +312,147 @@
       text-transform: uppercase;
     }
 
-    /* ================= MOBILE ================= */
+    /* PRODUCT POPUP */
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.65);
+      z-index: 500;
+      overflow-y: auto;
+      padding: 25px;
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-box {
+      background: #fff;
+      width: 100%;
+      max-width: 950px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
+
+    .gallery {
+      position: relative;
+      background: #f3f3f3;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 620px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-buttons {
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      top: 50%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .gallery-buttons button {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      background: #fff;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .product-details {
+      padding: 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      border: 0;
+      background: #fff;
+      font-size: 25px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .details-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #777;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    .product-details h2 {
+      font-family: Georgia, serif;
+      font-size: 38px;
+      font-weight: normal;
+      margin-bottom: 12px;
+    }
+
+    .details-price {
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .details-description {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 28px;
+    }
+
+    .size-title {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .sizes {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .size {
+      width: 48px;
+      height: 42px;
+      background: #fff;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .size.selected {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    .add-cart {
+      width: 100%;
+      padding: 16px;
+      border: 0;
+      background: #111;
+      color: #fff;
+      letter-spacing: 2px;
+      font-size: 11px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
 
     @media (max-width: 700px) {
 
@@ -413,16 +540,35 @@
         flex-wrap: wrap;
         gap: 18px;
       }
+
+      .modal {
+        padding: 10px;
+      }
+
+      .modal-box {
+        grid-template-columns: 1fr;
+        max-height: 95vh;
+        overflow-y: auto;
+      }
+
+      .gallery img {
+        height: 430px;
+      }
+
+      .product-details {
+        padding: 30px 22px;
+      }
+
+      .product-details h2 {
+        font-size: 30px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-
   <header>
-
     <div class="header-left">
       <button class="header-button">☰</button>
     </div>
@@ -430,135 +576,79 @@
     <a href="#" class="logo">ORRA</a>
 
     <div class="header-right">
-
       <button class="header-button">⌕</button>
 
       <button class="header-button cart">
         ♡
         <span class="cart-count" id="cartCount">0</span>
       </button>
-
     </div>
-
   </header>
 
-
-  <!-- HERO -->
-
   <section class="hero">
-
     <img
       src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=85"
       alt="ORRA Collection"
     >
 
     <div class="hero-content">
-
       <div class="hero-text">
-
-        <div class="hero-label">
-          NEW COLLECTION
-        </div>
+        <div class="hero-label">NEW COLLECTION</div>
 
         <h1>
           Made for<br>
           your style.
         </h1>
 
-        <a href="#shop" class="shop-button">
-          Shop Now
-        </a>
-
+        <a href="#shop" class="shop-button">Shop Now</a>
       </div>
-
     </div>
-
   </section>
 
-
-  <!-- COLLECTIONS -->
-
   <section class="section">
-
     <div class="section-title">
-
-      <div class="section-label">
-        Explore
-      </div>
-
-      <h2>
-        Collections
-      </h2>
-
+      <div class="section-label">Explore</div>
+      <h2>Collections</h2>
     </div>
-
 
     <div class="collections">
 
       <a href="#shop" class="collection">
-
         <img
           src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1000&q=85"
           alt="New Arrivals"
         >
-
-        <div class="collection-name">
-          New Arrivals
-        </div>
-
+        <div class="collection-name">New Arrivals</div>
       </a>
 
-
       <a href="#shop" class="collection">
-
         <img
           src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=1000&q=85"
           alt="Dresses"
         >
-
-        <div class="collection-name">
-          Dresses
-        </div>
-
+        <div class="collection-name">Dresses</div>
       </a>
 
-
       <a href="#shop" class="collection">
-
         <img
           src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1000&q=85"
           alt="Sets"
         >
-
-        <div class="collection-name">
-          Sets
-        </div>
-
+        <div class="collection-name">Sets</div>
       </a>
 
-
       <a href="#shop" class="collection">
-
         <img
           src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85"
           alt="Tops"
         >
-
-        <div class="collection-name">
-          Tops
-        </div>
-
+        <div class="collection-name">Tops</div>
       </a>
 
     </div>
-
   </section>
 
-
-  <!-- EDITORIAL -->
-
   <div class="editorial">
-
     <img
       src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1800&q=85"
       alt="ORRA"
@@ -567,128 +657,40 @@
     <div class="editorial-text">
       <h2>ORRA</h2>
     </div>
-
   </div>
-
-
-  <!-- PRODUCTS -->
 
   <section class="section" id="shop">
 
     <div class="section-title">
-
-      <div class="section-label">
-        Shop
-      </div>
-
-      <h2>
-        New In
-      </h2>
-
+      <div class="section-label">Shop</div>
+      <h2>New In</h2>
     </div>
-
 
     <div class="products">
 
-      <div class="product">
+      <!-- WHITE STITCH DETAIL SET -->
+
+      <div class="product" onclick="openProduct()">
 
         <div class="product-image">
-
           <img
-            src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=900&q=85"
-            alt="ORRA Dress"
+            src="IMG_3097.jpeg"
+            alt="White Stitch Detail Set"
           >
-
         </div>
 
         <div class="product-info">
-
           <div class="product-name">
-            Signature Dress
+            White Stitch Detail Set
           </div>
 
           <div class="product-price">
-            $89
+            $35
           </div>
 
-        </div>
-
-      </div>
-
-
-      <div class="product">
-
-        <div class="product-image">
-
-          <img
-            src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=900&q=85"
-            alt="ORRA Dress"
-          >
-
-        </div>
-
-        <div class="product-info">
-
-          <div class="product-name">
-            Essential Dress
+          <div class="product-tag">
+            SETS
           </div>
-
-          <div class="product-price">
-            $79
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="product">
-
-        <div class="product-image">
-
-          <img
-            src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=900&q=85"
-            alt="ORRA Look"
-          >
-
-        </div>
-
-        <div class="product-info">
-
-          <div class="product-name">
-            Evening Look
-          </div>
-
-          <div class="product-price">
-            $110
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="product">
-
-        <div class="product-image">
-
-          <img
-            src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85"
-            alt="ORRA Set"
-          >
-
-        </div>
-
-        <div class="product-info">
-
-          <div class="product-name">
-            Classic Set
-          </div>
-
-          <div class="product-price">
-            $95
-          </div>
-
         </div>
 
       </div>
@@ -697,32 +699,158 @@
 
   </section>
 
-
-  <!-- FOOTER -->
-
   <footer>
 
-    <div class="footer-logo">
-      ORRA
-    </div>
+    <div class="footer-logo">ORRA</div>
 
     <div class="footer-text">
       Fashion made simple.
     </div>
 
     <div class="footer-links">
-
       <a href="#shop">Shop</a>
-
       <a href="#">About</a>
-
       <a href="#">Contact</a>
-
       <a href="#">Instagram</a>
-
     </div>
 
   </footer>
+
+  <!-- PRODUCT DETAILS -->
+
+  <div class="modal" id="productModal">
+
+    <div class="modal-box">
+
+      <button class="close-modal" onclick="closeProduct()">×</button>
+
+      <div class="gallery">
+
+        <img
+          id="galleryImage"
+          src="IMG_3097.jpeg"
+          alt="White Stitch Detail Set"
+        >
+
+        <div class="gallery-buttons">
+          <button onclick="previousImage()">‹</button>
+          <button onclick="nextImage()">›</button>
+        </div>
+
+      </div>
+
+      <div class="product-details">
+
+        <div class="details-label">
+          ORRA / SETS
+        </div>
+
+        <h2>
+          White Stitch Detail Set
+        </h2>
+
+        <div class="details-price">
+          $35
+        </div>
+
+        <div class="details-description">
+          White stitch detail set with a clean and modern ORRA look.
+        </div>
+
+        <div class="size-title">
+          Select Size
+        </div>
+
+        <div class="sizes">
+
+          <button class="size" onclick="selectSize(this)">
+            S
+          </button>
+
+          <button class="size" onclick="selectSize(this)">
+            M
+          </button>
+
+          <button class="size" onclick="selectSize(this)">
+            L
+          </button>
+
+        </div>
+
+        <button class="add-cart" onclick="addToCart()">
+          Add to Cart
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const productImages = [
+      "IMG_3097.jpeg",
+      "IMG_3098.jpeg",
+      "IMG_3099.jpeg"
+    ];
+
+    let currentImage = 0;
+    let selectedSize = "";
+
+    function openProduct() {
+      document.getElementById("productModal").classList.add("active");
+      currentImage = 0;
+      document.getElementById("galleryImage").src = productImages[currentImage];
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeProduct() {
+      document.getElementById("productModal").classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    function nextImage() {
+      currentImage = (currentImage + 1) % productImages.length;
+      document.getElementById("galleryImage").src = productImages[currentImage];
+    }
+
+    function previousImage() {
+      currentImage =
+        (currentImage - 1 + productImages.length) % productImages.length;
+
+      document.getElementById("galleryImage").src = productImages[currentImage];
+    }
+
+    function selectSize(button) {
+
+      document.querySelectorAll(".size").forEach(function(size) {
+        size.classList.remove("selected");
+      });
+
+      button.classList.add("selected");
+      selectedSize = button.innerText;
+    }
+
+    function addToCart() {
+
+      if (!selectedSize) {
+        alert("Please select a size.");
+        return;
+      }
+
+      const cartCount = document.getElementById("cartCount");
+
+      cartCount.innerText = "1";
+      cartCount.style.display = "flex";
+
+      alert(
+        "White Stitch Detail Set added to cart — Size " +
+        selectedSize
+      );
+    }
+
+  </script>
 
 </body>
 </html>
