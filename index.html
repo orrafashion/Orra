@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ORRA - Online Fashion Store">
+  <title>ORRA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
+      color: #000;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 10px 15px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* HEADER */
+    header {
+      height: 82px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 45px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .menu {
+      font-size: 25px;
+      border: 0;
+      background: none;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 42px;
+      letter-spacing: 8px;
+      font-weight: normal;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      font-size: 22px;
+    }
+
+    .cart-icon {
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -9px;
+      right: -10px;
+      background: #000;
+      color: #fff;
+      border-radius: 50%;
+      width: 17px;
+      height: 17px;
+      font-size: 10px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* HERO */
+    .hero {
+      height: 78vh;
+      min-height: 550px;
+      position: relative;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(0,0,0,.58),
+        rgba(0,0,0,.05)
+      );
+      display: flex;
+      align-items: center;
+      padding-left: 9%;
+    }
+
+    .hero-content {
+      color: #fff;
+      max-width: 480px;
+    }
+
+    .hero-small {
+      font-size: 13px;
+      letter-spacing: 4px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(50px, 7vw, 95px);
+      font-weight: normal;
+      line-height: .95;
+      margin-bottom: 30px;
+    }
+
+    .shop-button {
+      display: inline-block;
+      background: #fff;
+      color: #000;
+      padding: 16px 30px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+    }
+
+    /* SECTION */
+    .section {
+      padding: 75px 5%;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 35px;
+    }
+
+    .section-heading small {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(38px, 5vw, 65px);
+      font-weight: normal;
+      margin-top: 8px;
+    }
+
+    .view-all {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #000;
+      padding-bottom: 4px;
+    }
+
+    /* CATEGORIES */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .category {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+      background: #eee;
+    }
+
+    .category img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: transform .5s ease;
+    }
+
+    .category:hover img {
+      transform: scale(1.04);
+    }
+
+    .category-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #000;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: Georgia, serif;
+      font-size: 22px;
+    }
+
+    /* PRODUCTS */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .product-image {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #eee;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: transform .5s ease;
+    }
+
+    .product:hover img {
+      transform: scale(1.03);
+    }
+
+    .heart {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #fff;
+      border: 0;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 19px;
+    }
+
+    .product-info {
+      padding: 15px 2px 25px;
+    }
+
+    .product-name {
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+
+    .product-price {
+      font-size: 13px;
+      color: #555;
+    }
+
+    /* EDITORIAL */
+    .editorial {
+      margin: 30px 5% 80px;
+      height: 520px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .editorial img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+
+    .editorial-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.2);
+      color: white;
+      text-align: center;
+    }
+
+    .editorial h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: normal;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #000;
+      color: #fff;
+      padding: 60px 5%;
+      text-align: center;
+    }
+
+    footer .footer-logo {
+      font-family: Georgia, serif;
+      font-size: 42px;
+      letter-spacing: 8px;
+      margin-bottom: 25px;
+    }
+
+    footer p {
+      color: #aaa;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    .footer-links {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 700px) {
+
+      .top-bar {
+        font-size: 9px;
+        padding: 9px;
+      }
+
+      header {
+        height: 68px;
+        padding: 0 18px;
+      }
+
+      .logo {
+        font-size: 28px;
+        letter-spacing: 5px;
+      }
+
+      .header-actions {
+        gap: 15px;
+        font-size: 19px;
+      }
+
+      .hero {
+        height: 72vh;
+        min-height: 500px;
+      }
+
+      .hero-overlay {
+        padding: 25px;
+        align-items: end;
+        padding-bottom: 50px;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .hero-small {
+        font-size: 10px;
+      }
+
+      .section {
+        padding: 55px 18px;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading h2 {
+        margin-bottom: 18px;
+      }
+
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .category {
+        height: 300px;
+      }
+
+      .category-title {
+        padding: 13px;
+        font-size: 17px;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .product-info {
+        padding-bottom: 18px;
+      }
+
+      .product-name {
+        font-size: 12px;
+      }
+
+      .product-price {
+        font-size: 11px;
+      }
+
+      .heart {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        top: 9px;
+        right: 9px;
+      }
+
+      .editorial {
+        margin: 10px 18px 50px;
+        height: 430px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-bar">
+    Free delivery on orders over $100
+  </div>
+
+  <header>
+    <button class="menu">☰</button>
+
+    <div class="logo">ORRA</div>
+
+    <div class="header-actions">
+      <span>⌕</span>
+
+      <span class="cart-icon">
+        ♡
+        <span class="cart-count" id="cartCount">0</span>
+      </span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <img
+      src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1800&q=85"
+      alt="ORRA Fashion"
+    >
+
+    <div class="hero-overlay">
+
+      <div class="hero-content">
+
+        <div class="hero-small">NEW COLLECTION</div>
+
+        <h1>
+          Effortless<br>
+          Elegance
+        </h1>
+
+        <button
+          class="shop-button"
+          onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})"
+        >
+          Shop Now →
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CATEGORIES -->
+
+  <section class="section">
+
+    <div class="section-heading">
+      <div>
+        <small>Explore</small>
+        <h2>Collections</h2>
+      </div>
+    </div>
+
+    <div class="categories">
+
+      <a class="category" href="#shop">
+        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85">
+        <div class="category-title">
+          <span>New Arrivals</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a class="category" href="#shop">
+        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=85">
+        <div class="category-title">
+          <span>Dresses</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a class="category" href="#shop">
+        <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=85">
+        <div class="category-title">
+          <span>Sets</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a class="category" href="#shop">
+        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=900&q=85">
+        <div class="category-title">
+          <span>Tops</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a class="category" href="#shop">
+        <img src="https://images.unsplash.com/photo-1583496661160-fb5886a13d27?auto=format&fit=crop&w=900&q=85">
+        <div class="category-title">
+          <span>Skirts</span>
+          <span>→</span>
+        </div>
+      </a>
+
+      <a class="category" href="#shop">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85">
+        <div class="category-title">
+          <span>Best Sellers</span>
+          <span>→</span>
+        </div>
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- EDITORIAL -->
+
+  <div class="editorial">
+
+    <img
+      src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1800&q=85"
+      alt="ORRA Collection"
+    >
+
+    <div class="editorial-content">
+      <h2>ORRA</h2>
+    </div>
+
+  </div>
+
+
+  <!-- SHOP -->
+
+  <section class="section" id="shop">
+
+    <div class="section-heading">
+
+      <div>
+        <small>Our Favorites</small>
+        <h2>Best Sellers</h2>
+      </div>
+
+      <a href="#shop" class="view-all">View All →</a>
+
+    </div>
+
+
+    <div class="products">
+
+      <div class="product">
+
+        <div class="product-image">
+
+          <img src="https://images.unsplash.com/photo-1591369822096-ffd140ec948f?auto=format&fit=crop&w=800&q=85">
+
+          <button class="heart">♡</button>
+
+        </div>
+
+        <div class="product-info">
+          <div class="product-name">Signature Dress</div>
+          <div class="product-price">$89</div>
+        </div>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-image">
+
+          <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=800&q=85">
+
+          <button class="heart">♡</button>
+
+        </div>
+
+        <div class="product-info">
+          <div class="product-name">Classic Set</div>
+          <div class="product-price">$95</div>
+        </div>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-image">
+
+          <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=800&q=85">
+
+          <button class="heart">♡</button>
+
+        </div>
+
+        <div class="product-info">
+          <div class="product-name">Essential Dress</div>
+          <div class="product-price">$79</div>
+        </div>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-image">
+
+          <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=800&q=85">
+
+          <button class="heart">♡</button>
+
+        </div>
+
+        <div class="product-info">
+          <div class="product-name">Evening Look</div>
+          <div class="product-price">$110</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-logo">ORRA</div>
+
+    <p>Effortless fashion. Timeless style.</p>
+
+    <div class="footer-links">
+      <a href="#">Shop</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Instagram</a>
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    let cart = 0;
+
+    const buttons = document.querySelectorAll('.product');
+
+    buttons.forEach(product => {
+
+      product.addEventListener('click', () => {
+
+        cart++;
+
+        const counter = document.getElementById('cartCount');
+
+        counter.textContent = cart;
+
+        counter.style.display = 'flex';
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
