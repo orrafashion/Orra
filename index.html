@@ -1281,8 +1281,6 @@ footer a{
         class="description"
       ></div>
 
-      <!-- COLOR -->
-
       <div
         id="colorOption"
         style="display:none"
@@ -1465,7 +1463,6 @@ footer a{
   ADDED TO BAG
 </div>
 
-
 <script>
 
 /* SUPABASE */
@@ -1505,8 +1502,7 @@ const OLIVIA_VARIANTS=[
     images:[
       GITHUB+"IMG_3083.jpeg",
       GITHUB+"IMG_3085.jpeg",
-      GITHUB+"IMG_3084.jpeg",
-      GITHUB+"IMG_3086.jpeg"
+      GITHUB+"IMG_3084.jpeg"
     ]
   },
 
@@ -1515,14 +1511,14 @@ const OLIVIA_VARIANTS=[
     images:[
       GITHUB+"IMG_3087.jpeg",
       GITHUB+"IMG_3088.jpeg",
-      GITHUB+"IMG_3089.jpeg",
-      GITHUB+"IMG_3467.jpeg"
+      GITHUB+"IMG_3089.jpeg"
     ]
   },
 
   {
     name:"Purple",
     images:[
+      GITHUB+"IMG_3467.jpeg",
       GITHUB+"IMG_3468.jpeg",
       GITHUB+"IMG_3469.jpeg"
     ]
@@ -1810,11 +1806,6 @@ function isOlivia(product){
 
 
 function getColorVariants(product){
-
-  /*
-    First use Supabase color_variants if you ever add it.
-    Otherwise Olivia uses the GitHub images directly.
-  */
 
   if(product && product.color_variants){
 
