@@ -9,32 +9,23 @@
 <style>
 *{box-sizing:border-box}
 
-html{
-  scroll-behavior:smooth;
-  overscroll-behavior-x:none
-}
+html{scroll-behavior:smooth}
 
 body{
   margin:0;
   background:#fff;
   color:#000;
   font-family:Arial,Helvetica,sans-serif;
-  overflow-x:hidden;
-  overscroll-behavior-x:none
+  overflow-x:hidden
 }
 
-body.lock{
-  overflow:hidden
-}
+body.lock{overflow:hidden}
 
-button,input,textarea{
-  font:inherit
-}
+button,input,textarea{font:inherit}
 
 button{
   cursor:pointer;
-  color:#000 !important;
-  -webkit-text-fill-color:#000 !important;
+  color:#000;
   -webkit-appearance:none;
   appearance:none
 }
@@ -44,9 +35,7 @@ a{
   color:inherit
 }
 
-/* =========================
-   ANNOUNCEMENT
-========================= */
+/* ANNOUNCEMENT */
 
 .announcement{
   position:sticky;
@@ -64,9 +53,7 @@ a{
   padding:0 10px
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 header{
   position:sticky;
@@ -85,8 +72,7 @@ header{
   font-size:25px;
   font-weight:700;
   letter-spacing:5px;
-  color:#000 !important;
-  -webkit-text-fill-color:#000 !important
+  color:#000
 }
 
 .header-left,
@@ -96,15 +82,12 @@ header{
   gap:18px
 }
 
-.header-right{
-  justify-content:flex-end
-}
+.header-right{justify-content:flex-end}
 
 .nav{
   border:0;
   background:none;
-  color:#000 !important;
-  -webkit-text-fill-color:#000 !important;
+  color:#000;
   font-size:11px;
   letter-spacing:1.5px;
   text-transform:uppercase
@@ -116,7 +99,7 @@ header{
   height:34px;
   border:0;
   background:#fff;
-  color:#000 !important;
+  color:#000;
   padding:5px
 }
 
@@ -126,9 +109,7 @@ header{
   stroke:#000
 }
 
-/* =========================
-   BAG COUNT
-========================= */
+/* BAG COUNT */
 
 .bag-count{
   position:absolute;
@@ -139,8 +120,7 @@ header{
   padding:0 4px;
   border-radius:50%;
   background:#000;
-  color:#fff !important;
-  -webkit-text-fill-color:#fff !important;
+  color:#fff;
   display:none;
   align-items:center;
   justify-content:center;
@@ -150,13 +130,9 @@ header{
   letter-spacing:0
 }
 
-.bag-count.show{
-  display:flex
-}
+.bag-count.show{display:flex}
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 
 .hero{
   height:calc(100vh - 104px);
@@ -215,19 +191,15 @@ header{
 
 .white-btn{
   background:#fff;
-  color:#000 !important;
-  -webkit-text-fill-color:#000 !important
+  color:#000
 }
 
 .black-btn{
   background:#000;
-  color:#fff !important;
-  -webkit-text-fill-color:#fff !important
+  color:#fff
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* SECTIONS */
 
 .section{
   padding:75px 6vw
@@ -254,13 +226,11 @@ header{
   color:#000
 }
 
-/* =========================
-   COLLECTIONS
-========================= */
+/* COLLECTIONS */
 
 .collections{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:12px
 }
 
@@ -281,9 +251,7 @@ header{
   text-transform:uppercase
 }
 
-/* =========================
-   PRODUCTS
-========================= */
+/* PRODUCTS */
 
 .products{
   display:grid;
@@ -297,7 +265,7 @@ header{
   padding:0;
   text-align:left;
   color:#000 !important;
-  -webkit-text-fill-color:#000 !important;
+  -webkit-text-fill-color:#000;
   width:100%
 }
 
@@ -323,18 +291,17 @@ header{
   font-size:12px;
   margin-bottom:6px;
   color:#000 !important;
-  -webkit-text-fill-color:#000 !important
+  -webkit-text-fill-color:#000
 }
 
 .product-price{
   font-size:12px;
   color:#000 !important;
-  -webkit-text-fill-color:#000 !important
+  -webkit-text-fill-color:#000
 }
 
 .product-cat{
-  color:#777 !important;
-  -webkit-text-fill-color:#777 !important;
+  color:#777;
   font-size:9px;
   letter-spacing:1.2px;
   margin-top:5px;
@@ -360,9 +327,7 @@ header{
   color:#000
 }
 
-/* =========================
-   EDITORIAL
-========================= */
+/* EDITORIAL */
 
 .editorial{
   margin:0 6vw;
@@ -386,9 +351,7 @@ header{
   font-weight:400
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer{
   margin-top:75px;
@@ -436,9 +399,7 @@ footer a{
   letter-spacing:1px
 }
 
-/* =========================
-   PRODUCT MODAL
-========================= */
+/* PRODUCT MODAL */
 
 .modal{
   position:fixed;
@@ -448,9 +409,7 @@ footer a{
   background:#fff
 }
 
-.modal.active{
-  display:block
-}
+.modal.active{display:block}
 
 .close{
   position:absolute;
@@ -462,7 +421,7 @@ footer a{
   border:0;
   background:#fff;
   color:#000 !important;
-  -webkit-text-fill-color:#000 !important;
+  -webkit-text-fill-color:#000;
   font-size:30px;
   font-weight:300;
   line-height:1
@@ -487,8 +446,7 @@ footer a{
   object-fit:contain;
   display:block;
   user-select:none;
-  -webkit-user-drag:none;
-  pointer-events:none
+  -webkit-user-drag:none
 }
 
 .dots{
@@ -507,9 +465,7 @@ footer a{
   background:#bbb
 }
 
-.dot.active{
-  background:#000
-}
+.dot.active{background:#000}
 
 .details{
   padding:90px 7vw 50px 5vw;
@@ -563,16 +519,14 @@ footer a{
   min-width:48px;
   height:40px;
   background:#fff;
-  color:#000 !important;
-  -webkit-text-fill-color:#000 !important;
+  color:#000;
   border:1px solid #ccc;
   font-size:11px
 }
 
 .size.selected{
   background:#000;
-  color:#fff !important;
-  -webkit-text-fill-color:#fff !important;
+  color:#fff;
   border-color:#000
 }
 
@@ -580,16 +534,13 @@ footer a{
   width:100%;
   height:50px;
   background:#000;
-  color:#fff !important;
-  -webkit-text-fill-color:#fff !important;
+  color:#fff;
   border:1px solid #000;
   font-size:11px;
   letter-spacing:1.5px
 }
 
-/* =========================
-   NOTICE
-========================= */
+/* NOTICE */
 
 .notice{
   position:fixed;
@@ -598,8 +549,7 @@ footer a{
   left:50%;
   transform:translate(-50%,-50%) scale(.95);
   background:#000;
-  color:#fff !important;
-  -webkit-text-fill-color:#fff !important;
+  color:#fff;
   padding:18px 28px;
   font-size:11px;
   letter-spacing:2px;
@@ -613,9 +563,7 @@ footer a{
   transform:translate(-50%,-50%) scale(1)
 }
 
-/* =========================
-   PANELS
-========================= */
+/* PANELS */
 
 .panel{
   position:fixed;
@@ -626,9 +574,7 @@ footer a{
   overflow:auto
 }
 
-.panel.active{
-  display:block
-}
+.panel.active{display:block}
 
 .panel-head{
   position:sticky;
@@ -654,7 +600,7 @@ footer a{
   border:0;
   background:none;
   color:#000 !important;
-  -webkit-text-fill-color:#000 !important;
+  -webkit-text-fill-color:#000;
   font-size:28px;
   width:45px;
   height:45px
@@ -696,8 +642,7 @@ footer a{
 .remove{
   border:0;
   background:none;
-  color:#000 !important;
-  -webkit-text-fill-color:#000 !important;
+  color:#000;
   text-decoration:underline;
   padding:0;
   margin-top:10px;
@@ -716,17 +661,14 @@ footer a{
   width:100%;
   height:50px;
   background:#000;
-  color:#fff !important;
-  -webkit-text-fill-color:#fff !important;
+  color:#fff;
   border:0;
   font-size:11px;
   letter-spacing:1.5px;
   margin-top:15px
 }
 
-/* =========================
-   CHECKOUT
-========================= */
+/* CHECKOUT */
 
 .checkout-content{
   max-width:700px;
@@ -749,9 +691,7 @@ footer a{
   color:#000
 }
 
-.field{
-  margin-bottom:17px
-}
+.field{margin-bottom:17px}
 
 .field label{
   display:block;
@@ -806,9 +746,7 @@ footer a{
   font-size:14px
 }
 
-/* =========================
-   SEARCH
-========================= */
+/* SEARCH */
 
 .search{
   position:fixed;
@@ -820,9 +758,7 @@ footer a{
   overflow:auto
 }
 
-.search.active{
-  display:block
-}
+.search.active{display:block}
 
 .search-x{
   position:absolute;
@@ -830,8 +766,7 @@ footer a{
   right:20px;
   background:none;
   border:0;
-  color:#000 !important;
-  -webkit-text-fill-color:#000 !important;
+  color:#000;
   font-size:30px
 }
 
@@ -845,9 +780,7 @@ footer a{
   color:#000
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:850px){
 
@@ -862,42 +795,28 @@ footer a{
     letter-spacing:4px
   }
 
-  .header-left .nav{
-    display:none
-  }
+  .header-left .nav{display:none}
 
-  .header-right{
-    gap:4px
-  }
+  .header-right{gap:4px}
 
   .hero{
     height:calc(100svh - 96px);
     min-height:540px
   }
 
-  .hero-text{
-    padding:30px 22px
-  }
+  .hero-text{padding:30px 22px}
 
-  .hero h1{
-    font-size:48px
-  }
+  .hero h1{font-size:48px}
 
-  .section{
-    padding:55px 16px
-  }
+  .section{padding:55px 16px}
 
-  .section-title{
-    font-size:22px
-  }
+  .section-title{font-size:22px}
 
   .collections{
     grid-template-columns:1fr 1fr
   }
 
-  .collection{
-    height:260px
-  }
+  .collection{height:260px}
 
   .collection:first-child{
     grid-column:1/-1;
@@ -914,13 +833,9 @@ footer a{
     height:58vh
   }
 
-  .editorial-text h2{
-    font-size:40px
-  }
+  .editorial-text h2{font-size:40px}
 
-  footer{
-    padding:45px 20px 30px
-  }
+  footer{padding:45px 20px 30px}
 
   .footer-grid{
     grid-template-columns:1fr 1fr;
@@ -950,9 +865,7 @@ footer a{
 
   .close{
     top:8px;
-    right:8px;
-    color:#000 !important;
-    -webkit-text-fill-color:#000 !important
+    right:8px
   }
 
   .bag-item{
@@ -978,19 +891,11 @@ footer a{
 
   <div class="header-left">
 
-    <button
-      type="button"
-      class="nav"
-      onclick="goHome()"
-    >
+    <button class="nav" onclick="goHome()">
       Home
     </button>
 
-    <button
-      type="button"
-      class="nav"
-      onclick="shop()"
-    >
+    <button class="nav" onclick="shop()">
       Shop
     </button>
 
@@ -1007,35 +912,25 @@ footer a{
   <div class="header-right">
 
     <button
-      type="button"
       class="icon"
       onclick="openSearch()"
       aria-label="Search"
     >
-
       <svg
         viewBox="0 0 24 24"
         fill="none"
         stroke-width="1.7"
       >
-        <circle
-          cx="10.5"
-          cy="10.5"
-          r="6.5"
-        />
-
+        <circle cx="10.5" cy="10.5" r="6.5"/>
         <path d="M15.5 15.5L21 21"/>
       </svg>
-
     </button>
 
     <button
-      type="button"
       class="icon"
       onclick="openBag()"
       aria-label="Bag"
     >
-
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -1045,11 +940,7 @@ footer a{
         <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
       </svg>
 
-      <span
-        id="bagCount"
-        class="bag-count"
-      >0</span>
-
+      <span id="bagCount" class="bag-count">0</span>
     </button>
 
   </div>
@@ -1077,7 +968,6 @@ footer a{
     </h1>
 
     <button
-      type="button"
       class="white-btn"
       onclick="shop()"
     >
@@ -1109,16 +999,11 @@ footer a{
       href="#shop"
       onclick="filterCategory('SETS');return false"
     >
-
       <img
         src="IMG_3097.jpeg"
         alt="Sets"
       >
-
-      <span>
-        Sets
-      </span>
-
+      <span>Sets</span>
     </a>
 
     <a
@@ -1126,16 +1011,11 @@ footer a{
       href="#shop"
       onclick="filterCategory('DRESSES');return false"
     >
-
       <img
         src="IMG_3098.jpeg"
         alt="Dresses"
       >
-
-      <span>
-        Dresses
-      </span>
-
+      <span>Dresses</span>
     </a>
 
     <a
@@ -1143,26 +1023,32 @@ footer a{
       href="#shop"
       onclick="filterCategory('JACKETS');return false"
     >
-
       <img
         src="IMG_3099.jpeg"
         alt="Jackets"
       >
+      <span>Jackets</span>
+    </a>
 
-      <span>
-        Jackets
-      </span>
+    <!-- NEW JEANS CATEGORY -->
 
+    <a
+      class="collection"
+      href="#shop"
+      onclick="filterCategory('JEANS');return false"
+    >
+      <img
+        src="IMG_3097.jpeg"
+        alt="Jeans"
+      >
+      <span>Jeans</span>
     </a>
 
   </div>
 
 </section>
 
-<section
-  class="section"
-  id="shop"
->
+<section class="section" id="shop">
 
   <div class="section-head">
 
@@ -1183,11 +1069,9 @@ footer a{
     id="products"
     class="products"
   >
-
     <div class="loading">
       LOADING ORRA...
     </div>
-
   </div>
 
 </section>
@@ -1208,7 +1092,6 @@ footer a{
     </h2>
 
     <button
-      type="button"
       class="white-btn"
       onclick="shop()"
     >
@@ -1257,9 +1140,7 @@ footer a{
 
     <div>
 
-      <h4>
-        SHOP
-      </h4>
+      <h4>SHOP</h4>
 
       <a
         href="#shop"
@@ -1289,6 +1170,8 @@ footer a{
         Jackets
       </a>
 
+      <!-- JEANS FOOTER LINK -->
+
       <a
         href="#shop"
         onclick="filterCategory('JEANS');return false"
@@ -1300,9 +1183,7 @@ footer a{
 
     <div>
 
-      <h4>
-        INFO
-      </h4>
+      <h4>INFO</h4>
 
       <a
         href="#home"
@@ -1328,13 +1209,9 @@ footer a{
 
 </footer>
 
-
 <!-- PRODUCT MODAL -->
 
-<div
-  id="productModal"
-  class="modal"
->
+<div id="productModal" class="modal">
 
   <button
     type="button"
@@ -1347,10 +1224,7 @@ footer a{
 
   <div class="modal-content">
 
-    <div
-      id="gallery"
-      class="gallery"
-    >
+    <div id="gallery" class="gallery">
 
       <img
         id="galleryImg"
@@ -1394,7 +1268,6 @@ footer a{
       ></div>
 
       <button
-        type="button"
         class="add"
         onclick="addToBag()"
       >
@@ -1407,22 +1280,15 @@ footer a{
 
 </div>
 
-
 <!-- BAG -->
 
-<div
-  id="bagPanel"
-  class="panel"
->
+<div id="bagPanel" class="panel">
 
   <div class="panel-head">
 
-    <strong>
-      Your Bag
-    </strong>
+    <strong>Your Bag</strong>
 
     <button
-      type="button"
       class="panel-close"
       onclick="closeBag()"
     >
@@ -1441,22 +1307,15 @@ footer a{
 
 </div>
 
-
 <!-- CHECKOUT -->
 
-<div
-  id="checkoutPanel"
-  class="panel"
->
+<div id="checkoutPanel" class="panel">
 
   <div class="panel-head">
 
-    <strong>
-      Checkout
-    </strong>
+    <strong>Checkout</strong>
 
     <button
-      type="button"
       class="panel-close"
       onclick="closeCheckout()"
     >
@@ -1476,81 +1335,33 @@ footer a{
     </div>
 
     <div class="field">
-
-      <label>
-        Full name *
-      </label>
-
-      <input
-        id="fullName"
-        type="text"
-        autocomplete="name"
-      >
-
+      <label>Full name *</label>
+      <input id="fullName" type="text">
     </div>
 
     <div class="field">
-
-      <label>
-        Phone number *
-      </label>
-
-      <input
-        id="phone"
-        type="tel"
-        autocomplete="tel"
-      >
-
+      <label>Phone number *</label>
+      <input id="phone" type="tel">
     </div>
 
     <div class="field">
-
-      <label>
-        City *
-      </label>
-
-      <input
-        id="city"
-        type="text"
-      >
-
+      <label>City *</label>
+      <input id="city" type="text">
     </div>
 
     <div class="field">
-
-      <label>
-        Area *
-      </label>
-
-      <input
-        id="area"
-        type="text"
-      >
-
+      <label>Area *</label>
+      <input id="area" type="text">
     </div>
 
     <div class="field">
-
-      <label>
-        Full address *
-      </label>
-
-      <textarea
-        id="address"
-      ></textarea>
-
+      <label>Full address *</label>
+      <textarea id="address"></textarea>
     </div>
 
     <div class="field">
-
-      <label>
-        Delivery notes
-      </label>
-
-      <textarea
-        id="notes"
-      ></textarea>
-
+      <label>Delivery notes</label>
+      <textarea id="notes"></textarea>
     </div>
 
     <div class="cod">
@@ -1577,7 +1388,6 @@ footer a{
     </div>
 
     <button
-      type="button"
       class="checkout-btn"
       onclick="placeOrder()"
     >
@@ -1588,16 +1398,11 @@ footer a{
 
 </div>
 
-
 <!-- SEARCH -->
 
-<div
-  id="searchPanel"
-  class="search"
->
+<div id="searchPanel" class="search">
 
   <button
-    type="button"
     class="search-x"
     onclick="closeSearch()"
   >
@@ -1615,20 +1420,14 @@ footer a{
 
 </div>
 
-
-<div
-  id="notice"
-  class="notice"
->
+<div id="notice" class="notice">
   ADDED TO BAG
 </div>
 
 
 <script>
 
-/* =====================================================
-   SUPABASE
-===================================================== */
+/* SUPABASE */
 
 const SUPABASE_URL =
 "https://zkgjtrpmonhnmtxtdjnf.supabase.co";
@@ -1640,11 +1439,6 @@ const DELIVERY_CHARGE=5;
 
 const GITHUB=
 "https://raw.githubusercontent.com/orrafashion/Orra/main/";
-
-
-/* =====================================================
-   STATE
-===================================================== */
 
 let products=[];
 let shownProducts=[];
@@ -1658,167 +1452,55 @@ let selectedSize="";
 let bag=[];
 
 let lastScrollY=0;
-let lockedScrollY=0;
 
 
-/* =====================================================
-   LOAD BAG FROM DEVICE
-===================================================== */
-
-function loadBag(){
-
-  try{
-
-    const saved=
-      localStorage.getItem("orra_bag");
-
-    if(saved){
-
-      const parsed=
-        JSON.parse(saved);
-
-      if(Array.isArray(parsed))
-        bag=parsed;
-
-    }
-
-  }catch(error){
-
-    bag=[];
-
-  }
-
-  updateBagCount();
-
-}
-
-
-function saveBag(){
-
-  try{
-
-    localStorage.setItem(
-      "orra_bag",
-      JSON.stringify(bag)
-    );
-
-  }catch(error){
-
-    /* Ignore localStorage errors */
-
-  }
-
-}
-
-
-/* =====================================================
-   BASIC
-===================================================== */
+/* BASIC */
 
 function isOpen(id){
-
-  const element=
-    document.getElementById(id);
-
-  return !!element &&
-    element.classList.contains("active");
-
+  return document
+    .getElementById(id)
+    .classList
+    .contains("active");
 }
-
 
 function lockPage(){
-
-  if(
-    document.body.classList.contains("lock")
-  )
-    return;
-
-  lockedScrollY=
-    window.scrollY||
-    window.pageYOffset||
-    0;
-
-  document.body.style.position="fixed";
-  document.body.style.top=
-    `-${lockedScrollY}px`;
-  document.body.style.left="0";
-  document.body.style.right="0";
-  document.body.style.width="100%";
-
   document.body.classList.add("lock");
-
 }
-
 
 function unlockPage(){
 
   if(
-    isOpen("productModal")||
-    isOpen("bagPanel")||
-    isOpen("checkoutPanel")||
-    isOpen("searchPanel")
+    !isOpen("productModal") &&
+    !isOpen("bagPanel") &&
+    !isOpen("checkoutPanel") &&
+    !isOpen("searchPanel")
   ){
-
-    return;
-
+    document.body.classList.remove("lock");
   }
-
-  const y=
-    lockedScrollY;
-
-  document.body.classList.remove("lock");
-
-  document.body.style.position="";
-  document.body.style.top="";
-  document.body.style.left="";
-  document.body.style.right="";
-  document.body.style.width="";
-
-  requestAnimationFrame(()=>{
-
-    window.scrollTo(
-      0,
-      y
-    );
-
-  });
 
 }
 
 
-/* =====================================================
-   BAG COUNT
-===================================================== */
+/* BAG COUNT */
 
 function updateBagCount(){
 
   const badge=
-    document.getElementById(
-      "bagCount"
-    );
+    document.getElementById("bagCount");
 
-  const count=
-    bag.length;
+  const count=bag.length;
 
-  badge.textContent=
-    count;
+  badge.textContent=count;
 
-  if(count>0){
-
+  if(count>0)
     badge.classList.add("show");
-
-  }else{
-
+  else
     badge.classList.remove("show");
-
-  }
 
 }
 
 
-/* =====================================================
-   HOME / SHOP
-===================================================== */
+/* HOME / SHOP */
 
 function goHome(){
 
@@ -1834,14 +1516,10 @@ function goHome(){
     location.search
   );
 
-  setTimeout(()=>{
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-
-  },30);
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
@@ -1855,17 +1533,12 @@ function shop(){
 
   setTimeout(()=>{
 
-    const target=
-      document.getElementById("shop");
-
-    if(target){
-
-      target.scrollIntoView({
+    document
+      .getElementById("shop")
+      .scrollIntoView({
         behavior:"smooth",
         block:"start"
       });
-
-    }
 
   },30);
 
@@ -1874,132 +1547,92 @@ function shop(){
 
 function filterCategory(category){
 
-  selectedCategory=
-    String(category||"ALL")
-      .toUpperCase();
+  selectedCategory=category;
 
   renderProducts();
 
   setTimeout(()=>{
 
-    const target=
-      document.getElementById("shop");
-
-    if(target){
-
-      target.scrollIntoView({
+    document
+      .getElementById("shop")
+      .scrollIntoView({
         behavior:"smooth",
         block:"start"
       });
-
-    }
 
   },30);
 
 }
 
 
-/* =====================================================
-   LOAD PRODUCTS
-===================================================== */
+/* LOAD PRODUCTS */
 
 async function loadProducts(){
 
   const box=
-    document.getElementById(
-      "products"
-    );
+    document.getElementById("products");
 
   box.innerHTML=
     '<div class="loading">LOADING ORRA...</div>';
 
-  const endpoints=[
-    SUPABASE_URL+
-    "/rest/v1/Products?select=*",
-
-    SUPABASE_URL+
-    "/rest/v1/products?select=*"
+  const urls=[
+    SUPABASE_URL+"/rest/v1/Products?select=*",
+    SUPABASE_URL+"/rest/v1/products?select=*"
   ];
 
-  let lastError=null;
+  let response=null;
+  let lastError="";
 
   try{
 
-    let response=null;
-    let text="";
-
-    for(
-      const url of endpoints
-    ){
+    for(const url of urls){
 
       try{
 
-        response=
+        const r=
           await fetch(
             url,
             {
               method:"GET",
-
               headers:{
-                "apikey":
-                  SUPABASE_KEY,
-
+                "apikey":SUPABASE_KEY,
                 "Authorization":
-                  "Bearer "+
-                  SUPABASE_KEY,
-
-                "Accept":
-                  "application/json"
+                  "Bearer "+SUPABASE_KEY,
+                "Accept":"application/json"
               },
-
               cache:"no-store"
             }
           );
 
-        text=
-          await response.text();
+        if(r.ok){
 
-        if(response.ok){
-
+          response=r;
           break;
 
         }
 
         lastError=
-          new Error(
-            "HTTP "+
-            response.status+
-            ": "+
-            text
-          );
+          "HTTP "+
+          r.status+
+          ": "+
+          await r.text();
 
       }catch(error){
 
-        lastError=error;
+        lastError=error.message;
 
       }
 
     }
 
+    if(!response){
 
-    if(
-      !response||
-      !response.ok
-    ){
-
-      throw(
-        lastError||
-        new Error(
-          "Could not connect to Supabase."
-        )
-      );
+      throw new Error(lastError);
 
     }
 
-
     const data=
-      JSON.parse(text);
-
+      await response.json();
 
     if(!Array.isArray(data)){
 
@@ -2008,7 +1641,6 @@ async function loadProducts(){
       );
 
     }
-
 
     products=
       data.map(p=>({
@@ -2036,17 +1668,11 @@ async function loadProducts(){
 
       }));
 
-
     products.sort(
       (a,b)=>
-        new Date(
-          b.created_at||0
-        )-
-        new Date(
-          a.created_at||0
-        )
+        new Date(b.created_at||0)-
+        new Date(a.created_at||0)
     );
-
 
     renderProducts();
 
@@ -2061,9 +1687,7 @@ async function loadProducts(){
 
         <br><br>
 
-        ${escapeHtml(
-          error.message
-        )}
+        ${escapeHtml(error.message)}
 
         <br><br>
 
@@ -2080,20 +1704,13 @@ async function loadProducts(){
 }
 
 
-/* =====================================================
-   IMAGES
-===================================================== */
+/* IMAGES */
 
 function getImages(product){
 
-  /*
-    Special gallery for the first ORRA product.
-  */
-
   if(
     product.name===
-      "White Stitch Detail Set" ||
-
+    "White Stitch Detail Set" ||
     String(product.image_url||"")
       .includes("IMG_3097.jpeg")
   ){
@@ -2106,34 +1723,21 @@ function getImages(product){
 
   }
 
-
   let images=[];
 
+  if(Array.isArray(product.image_urls)){
 
-  if(
-    Array.isArray(
-      product.image_urls
-    )
-  ){
+    images=product.image_urls;
 
-    images=
-      product.image_urls;
-
-  }
-
-
-  else if(
-    typeof product.image_urls===
-      "string" &&
+  }else if(
+    typeof product.image_urls==="string" &&
     product.image_urls.trim()
   ){
 
     try{
 
       const parsed=
-        JSON.parse(
-          product.image_urls
-        );
+        JSON.parse(product.image_urls);
 
       if(Array.isArray(parsed))
         images=parsed;
@@ -2141,35 +1745,27 @@ function getImages(product){
     }catch{
 
       images=
-        product.image_urls
-          .split(",");
+        product.image_urls.split(",");
 
     }
 
   }
 
-
   if(
     !images.length &&
-    typeof product.image_url===
-      "string"
+    typeof product.image_url==="string"
   ){
 
     images=
-      product.image_url
-        .split(",");
+      product.image_url.split(",");
 
   }
 
-
   images=
     images
-      .map(
-        x=>String(x).trim()
-      )
+      .map(x=>String(x).trim())
       .filter(Boolean)
       .map(normalizeImage);
-
 
   if(!images.length){
 
@@ -2179,89 +1775,46 @@ function getImages(product){
 
   }
 
-
-  return[
-    ...new Set(images)
-  ];
+  return[...new Set(images)];
 
 }
 
 
 function normalizeImage(url){
 
-  if(
-    /^https?:\/\//i.test(url)
-  ){
-
+  if(/^https?:\/\//i.test(url))
     return url;
 
-  }
-
   return GITHUB+
-    url.replace(
-      /^\/+/,
-      ""
-    );
+    url.replace(/^\/+/,"");
 
 }
 
 
-/* =====================================================
-   PRODUCTS
-===================================================== */
+/* PRODUCTS */
 
 function renderProducts(){
 
-  let list=[
-    ...products
-  ];
+  let list=[...products];
 
-
-  if(
-    selectedCategory!=="ALL"
-  ){
+  if(selectedCategory!=="ALL"){
 
     list=
-      list.filter(product=>{
-
-        const category=
-          String(
-            product.category||""
-          ).toUpperCase();
-
-        /*
-          Supports:
-          SETS
-          DRESSES
-          JACKETS
-          JEANS
-          NEW IN
-        */
-
-        return category
-          .includes(
-            selectedCategory
-          );
-
-      });
+      list.filter(product=>
+        String(product.category||"")
+          .toUpperCase()
+          .includes(selectedCategory)
+      );
 
   }
 
-
-  shownProducts=
-    list;
-
+  shownProducts=list;
 
   document
     .getElementById("count")
     .textContent=
       list.length+
-      (
-        list.length===1
-        ?" ITEM"
-        :" ITEMS"
-      );
-
+      (list.length===1?" ITEM":" ITEMS");
 
   if(!list.length){
 
@@ -2276,59 +1829,53 @@ function renderProducts(){
 
   }
 
-
   document
     .getElementById("products")
     .innerHTML=
 
-    list.map(
-      (product,index)=>{
+    list.map((product,index)=>{
 
-        const image=
-          getImages(product)[0];
+      const image=
+        getImages(product)[0];
 
-        return`
+      return`
 
-          <button
-            type="button"
-            class="product"
-            onclick="
-              openProductByIndex(${index})
-            "
-          >
+        <button
+          class="product"
+          onclick="openProductByIndex(${index})"
+        >
 
-            <div class="product-img">
+          <div class="product-img">
 
-              <img
-                src="${escapeAttr(image)}"
-                alt="${escapeAttr(product.name)}"
-                loading="lazy"
-              >
+            <img
+              src="${escapeAttr(image)}"
+              alt="${escapeAttr(product.name)}"
+              loading="lazy"
+            >
 
+          </div>
+
+          <div class="product-info">
+
+            <div class="product-name">
+              ${escapeHtml(product.name)}
             </div>
 
-            <div class="product-info">
-
-              <div class="product-name">
-                ${escapeHtml(product.name)}
-              </div>
-
-              <div class="product-price">
-                $${formatPrice(product.price)}
-              </div>
-
-              <div class="product-cat">
-                ${escapeHtml(product.category)}
-              </div>
-
+            <div class="product-price">
+              $${formatPrice(product.price)}
             </div>
 
-          </button>
+            <div class="product-cat">
+              ${escapeHtml(product.category)}
+            </div>
 
-        `;
+          </div>
 
-      }
-    ).join("");
+        </button>
+
+      `;
+
+    }).join("");
 
 }
 
@@ -2344,9 +1891,7 @@ function openProductByIndex(index){
 }
 
 
-/* =====================================================
-   PRODUCT
-===================================================== */
+/* PRODUCT */
 
 function openProduct(product){
 
@@ -2355,8 +1900,7 @@ function openProduct(product){
     window.pageYOffset||
     0;
 
-  activeProduct=
-    product;
+  activeProduct=product;
 
   activeImages=
     getImages(product);
@@ -2365,94 +1909,60 @@ function openProduct(product){
 
   selectedSize="";
 
-
   document
-    .getElementById(
-      "detailCategory"
-    )
+    .getElementById("detailCategory")
     .textContent=
       product.category||
       "ORRA";
 
-
   document
-    .getElementById(
-      "detailName"
-    )
+    .getElementById("detailName")
     .textContent=
       product.name;
 
-
   document
-    .getElementById(
-      "detailPrice"
-    )
+    .getElementById("detailPrice")
     .textContent=
-      "$"+
-      formatPrice(
-        product.price
-      );
-
+      "$"+formatPrice(product.price);
 
   document
-    .getElementById(
-      "detailDescription"
-    )
+    .getElementById("detailDescription")
     .textContent=
       product.description||
       "A piece from the ORRA collection.";
-
 
   renderSizes();
 
   updateGallery();
 
-
   document
-    .getElementById(
-      "productModal"
-    )
+    .getElementById("productModal")
     .classList
     .add("active");
-
 
   lockPage();
 
 }
 
 
-function closeProduct(
-  restore=true
-){
+function closeProduct(restore=true){
 
   const wasOpen=
     isOpen("productModal");
 
-
   document
-    .getElementById(
-      "productModal"
-    )
+    .getElementById("productModal")
     .classList
     .remove("active");
-
 
   activeProduct=null;
   activeImages=[];
   imageIndex=0;
   selectedSize="";
 
-
   unlockPage();
 
-
-  if(
-    wasOpen &&
-    restore &&
-    !isOpen("bagPanel") &&
-    !isOpen("checkoutPanel") &&
-    !isOpen("searchPanel")
-  ){
+  if(wasOpen && restore){
 
     requestAnimationFrame(()=>{
 
@@ -2468,172 +1978,106 @@ function closeProduct(
 }
 
 
-/* =====================================================
-   SIZES
-===================================================== */
+/* SIZES */
 
 function renderSizes(){
 
   const box=
-    document.getElementById(
-      "sizes"
-    );
+    document.getElementById("sizes");
 
   let sizes=[];
 
+  if(Array.isArray(activeProduct.sizes)){
 
-  if(
-    Array.isArray(
-      activeProduct.sizes
-    )
-  ){
+    sizes=activeProduct.sizes;
 
-    sizes=
-      activeProduct.sizes;
-
-  }
-
-  else if(
-    typeof activeProduct.sizes===
-      "string"
+  }else if(
+    typeof activeProduct.sizes==="string"
   ){
 
     sizes=
       activeProduct.sizes
         .split(",")
-        .map(
-          x=>x.trim()
-        )
+        .map(x=>x.trim())
         .filter(Boolean);
 
   }
 
-
   if(!sizes.length)
     sizes=["ONE SIZE"];
 
-
-  selectedSize=
-    sizes[0];
-
+  selectedSize=sizes[0];
 
   box.innerHTML=
-    sizes.map(
-      (size,index)=>`
+    sizes.map((size,index)=>`
 
-        <button
-          type="button"
-          class="size ${
-            index===0
-            ?"selected"
-            :""
-          }"
-          onclick="
-            selectSize(
-              this,
-              '${escapeAttr(size)}'
-            )
-          "
-        >
-          ${escapeHtml(size)}
-        </button>
+      <button
+        class="size ${index===0?"selected":""}"
+        onclick="selectSize(this,'${escapeAttr(size)}')"
+      >
+        ${escapeHtml(size)}
+      </button>
 
-      `
-    ).join("");
+    `).join("");
 
 }
 
 
-function selectSize(
-  button,
-  size
-){
+function selectSize(button,size){
 
   document
-    .querySelectorAll(
-      "#sizes .size"
-    )
-    .forEach(
-      x=>
-        x.classList
-          .remove("selected")
+    .querySelectorAll("#sizes .size")
+    .forEach(x=>
+      x.classList.remove("selected")
     );
 
-  button
-    .classList
-    .add("selected");
+  button.classList.add("selected");
 
-  selectedSize=
-    size;
+  selectedSize=size;
 
 }
 
 
-/* =====================================================
-   GALLERY
-===================================================== */
+/* GALLERY */
 
 function updateGallery(){
 
   if(!activeImages.length)
     return;
 
-
   document
-    .getElementById(
-      "galleryImg"
-    )
+    .getElementById("galleryImg")
     .src=
-      activeImages[
-        imageIndex
-      ];
-
+      activeImages[imageIndex];
 
   document
-    .getElementById(
-      "galleryImg"
-    )
+    .getElementById("galleryImg")
     .alt=
-      activeProduct
-      ?activeProduct.name
-      :"ORRA";
-
+      activeProduct?
+      activeProduct.name:
+      "ORRA";
 
   document
-    .getElementById(
-      "dots"
-    )
+    .getElementById("dots")
     .innerHTML=
+      activeImages.map((x,index)=>`
 
-      activeImages.map(
-        (x,index)=>`
+        <span
+          class="dot ${index===imageIndex?"active":""}"
+        ></span>
 
-          <span
-            class="dot ${
-              index===imageIndex
-              ?"active"
-              :""
-            }"
-          ></span>
-
-        `
-      ).join("");
+      `).join("");
 
 }
 
 
 function nextImage(){
 
-  if(
-    activeImages.length<=1
-  )
+  if(activeImages.length<=1)
     return;
 
   imageIndex=
-    (
-      imageIndex+1
-    )%
-    activeImages.length;
+    (imageIndex+1)%activeImages.length;
 
   updateGallery();
 
@@ -2642,36 +2086,27 @@ function nextImage(){
 
 function previousImage(){
 
-  if(
-    activeImages.length<=1
-  )
+  if(activeImages.length<=1)
     return;
 
   imageIndex=
     (
       imageIndex-1+
       activeImages.length
-    )%
-    activeImages.length;
+    )%activeImages.length;
 
   updateGallery();
 
 }
 
 
-/* =====================================================
-   PRODUCT IMAGE SWIPE
-===================================================== */
+/* PRODUCT SWIPE */
 
 let galleryStartX=0;
 let galleryStartY=0;
 
-
 const gallery=
-  document.getElementById(
-    "gallery"
-  );
-
+  document.getElementById("gallery");
 
 gallery.addEventListener(
   "touchstart",
@@ -2687,11 +2122,8 @@ gallery.addEventListener(
       e.touches[0].clientY;
 
   },
-  {
-    passive:true
-  }
+  {passive:true}
 );
-
 
 gallery.addEventListener(
   "touchend",
@@ -2708,43 +2140,28 @@ gallery.addEventListener(
       e.changedTouches[0].clientY-
       galleryStartY;
 
-
     if(
       Math.abs(dx)<55 ||
       Math.abs(dx)<
       Math.abs(dy)*1.35
-    ){
-
+    )
       return;
 
-    }
-
-
-    if(dx<0){
-
+    if(dx<0)
       nextImage();
-
-    }else{
-
+    else
       previousImage();
 
-    }
-
   },
-  {
-    passive:true
-  }
+  {passive:true}
 );
 
 
-/* =====================================================
-   LEFT EDGE SWIPE -> HOME
-===================================================== */
+/* LEFT EDGE SWIPE -> HOME */
 
 let edgeStartX=0;
 let edgeStartY=0;
 let edgeActive=false;
-
 
 document.addEventListener(
   "touchstart",
@@ -2752,25 +2169,10 @@ document.addEventListener(
 
     edgeActive=false;
 
-
     if(!e.touches[0])
       return;
 
-
-    const target=
-      e.target;
-
-
-    /*
-      Do not interfere with:
-      gallery
-      bag
-      checkout
-      search
-      buttons
-      inputs
-      textareas
-    */
+    const target=e.target;
 
     if(
       target.closest &&
@@ -2782,11 +2184,8 @@ document.addEventListener(
         "button,input,textarea"
       )
     ){
-
       return;
-
     }
-
 
     if(
       isOpen("productModal")||
@@ -2794,11 +2193,8 @@ document.addEventListener(
       isOpen("checkoutPanel")||
       isOpen("searchPanel")
     ){
-
       return;
-
     }
-
 
     edgeStartX=
       e.touches[0].clientX;
@@ -2806,16 +2202,12 @@ document.addEventListener(
     edgeStartY=
       e.touches[0].clientY;
 
-
     edgeActive=
       edgeStartX<=35;
 
   },
-  {
-    passive:true
-  }
+  {passive:true}
 );
-
 
 document.addEventListener(
   "touchmove",
@@ -2827,7 +2219,6 @@ document.addEventListener(
     )
       return;
 
-
     const dx=
       e.touches[0].clientX-
       edgeStartX;
@@ -2836,22 +2227,16 @@ document.addEventListener(
       e.touches[0].clientY-
       edgeStartY;
 
-
     if(
       Math.abs(dy)>
       Math.abs(dx)*1.2
     ){
-
       edgeActive=false;
-
     }
 
   },
-  {
-    passive:true
-  }
+  {passive:true}
 );
-
 
 document.addEventListener(
   "touchend",
@@ -2867,7 +2252,6 @@ document.addEventListener(
 
     }
 
-
     const dx=
       e.changedTouches[0].clientX-
       edgeStartX;
@@ -2876,14 +2260,11 @@ document.addEventListener(
       e.changedTouches[0].clientY-
       edgeStartY;
 
-
     edgeActive=false;
-
 
     if(
       dx>=110 &&
-      dx>
-      Math.abs(dy)*1.5
+      dx>Math.abs(dy)*1.5
     ){
 
       goHome();
@@ -2891,21 +2272,16 @@ document.addEventListener(
     }
 
   },
-  {
-    passive:true
-  }
+  {passive:true}
 );
 
 
-/* =====================================================
-   BAG
-===================================================== */
+/* BAG */
 
 function addToBag(){
 
   if(!activeProduct)
     return;
-
 
   bag.push({
 
@@ -2917,33 +2293,22 @@ function addToBag(){
       activeProduct.name,
 
     price:
-      Number(
-        activeProduct.price
-      )||0,
+      Number(activeProduct.price)||0,
 
     size:
       selectedSize||
       "ONE SIZE",
 
     image:
-      getImages(
-        activeProduct
-      )[0]
+      getImages(activeProduct)[0]
 
   });
 
-
-  saveBag();
-
   updateBagCount();
-
 
   closeProduct();
 
-
-  showNotice(
-    "ADDED TO BAG"
-  );
+  showNotice("ADDED TO BAG");
 
 }
 
@@ -2956,14 +2321,10 @@ function openBag(){
 
   renderBag();
 
-
   document
-    .getElementById(
-      "bagPanel"
-    )
+    .getElementById("bagPanel")
     .classList
     .add("active");
-
 
   lockPage();
 
@@ -2973,9 +2334,7 @@ function openBag(){
 function closeBag(){
 
   document
-    .getElementById(
-      "bagPanel"
-    )
+    .getElementById("bagPanel")
     .classList
     .remove("active");
 
@@ -2986,12 +2345,7 @@ function closeBag(){
 
 function removeItem(index){
 
-  bag.splice(
-    index,
-    1
-  );
-
-  saveBag();
+  bag.splice(index,1);
 
   updateBagCount();
 
@@ -3005,11 +2359,7 @@ function subtotal(){
   return bag.reduce(
     (sum,item)=>
       sum+
-      (
-        Number(
-          item.price
-        )||0
-      ),
+      (Number(item.price)||0),
     0
   );
 
@@ -3019,18 +2369,12 @@ function subtotal(){
 function renderBag(){
 
   const box=
-    document.getElementById(
-      "bagItems"
-    );
+    document.getElementById("bagItems");
 
   const summary=
-    document.getElementById(
-      "bagSummary"
-    );
-
+    document.getElementById("bagSummary");
 
   updateBagCount();
-
 
   if(!bag.length){
 
@@ -3045,106 +2389,72 @@ function renderBag(){
 
   }
 
-
   box.innerHTML=
-    bag.map(
-      (item,index)=>`
+    bag.map((item,index)=>`
 
-        <div class="bag-item">
+      <div class="bag-item">
 
-          <img
-            src="${escapeAttr(item.image)}"
-            alt="${escapeAttr(item.name)}"
-          >
+        <img
+          src="${escapeAttr(item.image)}"
+          alt="${escapeAttr(item.name)}"
+        >
 
-          <div>
+        <div>
 
-            <div class="bag-name">
-              ${escapeHtml(item.name)}
-            </div>
-
-            <div class="bag-meta">
-
-              SIZE:
-              ${escapeHtml(item.size)}
-
-              <br>
-
-              PRICE:
-              $${formatPrice(item.price)}
-
-            </div>
-
-            <button
-              type="button"
-              class="remove"
-              onclick="removeItem(${index})"
-            >
-              REMOVE
-            </button>
-
+          <div class="bag-name">
+            ${escapeHtml(item.name)}
           </div>
 
-          <div>
+          <div class="bag-meta">
+            SIZE:
+            ${escapeHtml(item.size)}
+            <br>
+            PRICE:
             $${formatPrice(item.price)}
           </div>
 
+          <button
+            class="remove"
+            onclick="removeItem(${index})"
+          >
+            REMOVE
+          </button>
+
         </div>
 
-      `
-    ).join("");
+        <div>
+          $${formatPrice(item.price)}
+        </div>
 
+      </div>
 
-  const sub=
-    subtotal();
+    `).join("");
 
+  const sub=subtotal();
 
   summary.innerHTML=`
 
     <div class="total">
-
-      <span>
-        Subtotal
-      </span>
-
-      <span>
-        $${formatPrice(sub)}
-      </span>
-
+      <span>Subtotal</span>
+      <span>$${formatPrice(sub)}</span>
     </div>
 
     <div class="total">
-
-      <span>
-        Delivery
-      </span>
-
-      <span>
-        $${DELIVERY_CHARGE}
-      </span>
-
+      <span>Delivery</span>
+      <span>$${DELIVERY_CHARGE}</span>
     </div>
 
     <div
       class="total"
       style="border-top:1px solid #000"
     >
-
+      <strong>Total</strong>
       <strong>
-        Total
+        $${formatPrice(sub+DELIVERY_CHARGE)}
       </strong>
-
-      <strong>
-        $${formatPrice(
-          sub+
-          DELIVERY_CHARGE
-        )}
-      </strong>
-
     </div>
 
     <button
-      type="button"
       class="checkout-btn"
       onclick="openCheckout()"
     >
@@ -3156,59 +2466,39 @@ function renderBag(){
 }
 
 
-/* =====================================================
-   CHECKOUT
-===================================================== */
+/* CHECKOUT */
 
 function openCheckout(){
 
   if(!bag.length){
 
-    showNotice(
-      "YOUR BAG IS EMPTY"
-    );
+    showNotice("YOUR BAG IS EMPTY");
 
     return;
 
   }
 
-
   closeBag();
 
-
   document
-    .getElementById(
-      "checkoutPanel"
-    )
+    .getElementById("checkoutPanel")
     .classList
     .add("active");
 
-
   lockPage();
 
-
-  const sub=
-    subtotal();
-
+  const sub=subtotal();
 
   document
-    .getElementById(
-      "subtotal"
-    )
+    .getElementById("subtotal")
     .textContent=
-      "$"+
-      formatPrice(sub);
-
+      "$"+formatPrice(sub);
 
   document
-    .getElementById(
-      "total"
-    )
+    .getElementById("total")
     .textContent=
-      "$"+
-      formatPrice(
-        sub+
-        DELIVERY_CHARGE
+      "$"+formatPrice(
+        sub+DELIVERY_CHARGE
       );
 
 }
@@ -3217,9 +2507,7 @@ function openCheckout(){
 function closeCheckout(){
 
   document
-    .getElementById(
-      "checkoutPanel"
-    )
+    .getElementById("checkoutPanel")
     .classList
     .remove("active");
 
@@ -3240,20 +2528,12 @@ function placeOrder(){
 
   ];
 
-
-  for(
-    const field of fields
-  ){
+  for(const field of fields){
 
     const element=
-      document.getElementById(
-        field[0]
-      );
+      document.getElementById(field[0]);
 
-
-    if(
-      !element.value.trim()
-    ){
+    if(!element.value.trim()){
 
       element.focus();
 
@@ -3268,17 +2548,11 @@ function placeOrder(){
 
   }
 
-
-  showNotice(
-    "ORDER RECEIVED"
-  );
-
+  showNotice("ORDER RECEIVED");
 
   setTimeout(()=>{
 
     bag=[];
-
-    saveBag();
 
     updateBagCount();
 
@@ -3286,26 +2560,17 @@ function placeOrder(){
 
     renderBag();
 
+    fields.forEach(field=>{
 
-    fields.forEach(
-      field=>{
+      document
+        .getElementById(field[0])
+        .value="";
 
-        document
-          .getElementById(
-            field[0]
-          )
-          .value="";
-
-      }
-    );
-
+    });
 
     document
-      .getElementById(
-        "notes"
-      )
+      .getElementById("notes")
       .value="";
-
 
     goHome();
 
@@ -3314,9 +2579,7 @@ function placeOrder(){
 }
 
 
-/* =====================================================
-   SEARCH
-===================================================== */
+/* SEARCH */
 
 function openSearch(){
 
@@ -3324,24 +2587,17 @@ function openSearch(){
   closeBag();
   closeCheckout();
 
-
   document
-    .getElementById(
-      "searchPanel"
-    )
+    .getElementById("searchPanel")
     .classList
     .add("active");
 
-
   lockPage();
-
 
   setTimeout(()=>{
 
     document
-      .getElementById(
-        "searchInput"
-      )
+      .getElementById("searchInput")
       .focus();
 
   },50);
@@ -3352,9 +2608,7 @@ function openSearch(){
 function closeSearch(){
 
   document
-    .getElementById(
-      "searchPanel"
-    )
+    .getElementById("searchPanel")
     .classList
     .remove("active");
 
@@ -3367,19 +2621,13 @@ function searchProducts(){
 
   const query=
     document
-      .getElementById(
-        "searchInput"
-      )
+      .getElementById("searchInput")
       .value
       .trim()
       .toLowerCase();
 
-
   const box=
-    document.getElementById(
-      "searchResults"
-    );
-
+    document.getElementById("searchResults");
 
   if(!query){
 
@@ -3389,27 +2637,20 @@ function searchProducts(){
 
   }
 
-
   const matches=
-    products.filter(
-      product=>
+    products.filter(product=>
 
-        String(
-          product.name||""
-        )
+      String(product.name||"")
         .toLowerCase()
         .includes(query)
 
-        ||
+      ||
 
-        String(
-          product.category||""
-        )
+      String(product.category||"")
         .toLowerCase()
         .includes(query)
 
-    );
-
+  );
 
   if(!matches.length){
 
@@ -3420,81 +2661,69 @@ function searchProducts(){
 
   }
 
-
-  window.searchMatches=
-    matches;
-
+  window.searchMatches=matches;
 
   box.innerHTML=
-    matches.map(
-      (product,index)=>{
+    matches.map((product,index)=>{
 
-        const image=
-          getImages(product)[0];
+      const image=
+        getImages(product)[0];
 
-        return`
+      return`
 
-          <button
-            type="button"
+        <button
+          style="
+            display:flex;
+            width:100%;
+            gap:15px;
+            padding:12px 0;
+            border:0;
+            border-bottom:1px solid #eee;
+            background:#fff;
+            color:#000;
+            text-align:left
+          "
+          onclick="openSearchProduct(${index})"
+        >
+
+          <img
+            src="${escapeAttr(image)}"
             style="
-              display:flex;
-              width:100%;
-              gap:15px;
-              padding:12px 0;
-              border:0;
-              border-bottom:1px solid #eee;
-              background:#fff;
-              color:#000 !important;
-              -webkit-text-fill-color:#000 !important;
-              text-align:left
-            "
-            onclick="
-              openSearchProduct(${index})
+              width:70px;
+              height:90px;
+              object-fit:cover
             "
           >
 
-            <img
-              src="${escapeAttr(image)}"
-              alt="${escapeAttr(product.name)}"
+          <span>
+
+            <strong
               style="
-                width:70px;
-                height:90px;
-                object-fit:cover
+                display:block;
+                font-size:12px;
+                margin:5px 0 8px;
+                color:#000
               "
             >
+              ${escapeHtml(product.name)}
+            </strong>
 
-            <span>
-
-              <strong
-                style="
-                  display:block;
-                  font-size:12px;
-                  margin:5px 0 8px;
-                  color:#000 !important;
-                  -webkit-text-fill-color:#000 !important
-                "
-              >
-                ${escapeHtml(product.name)}
-              </strong>
-
-              <span
-                style="
-                  font-size:11px;
-                  color:#000 !important;
-                  -webkit-text-fill-color:#000 !important
-                "
-              >
-                $${formatPrice(product.price)}
-              </span>
-
+            <span
+              style="
+                font-size:11px;
+                color:#000
+              "
+            >
+              $${formatPrice(product.price)}
             </span>
 
-          </button>
+          </span>
 
-        `;
+        </button>
 
-      }
-    ).join("");
+      `;
+
+    }).join("");
 
 }
 
@@ -3514,48 +2743,32 @@ function openSearchProduct(index){
 }
 
 
-/* =====================================================
-   NOTICE
-===================================================== */
+/* NOTICE */
 
 let noticeTimer;
-
 
 function showNotice(text){
 
   const notice=
-    document.getElementById(
-      "notice"
-    );
+    document.getElementById("notice");
 
+  notice.textContent=text;
 
-  notice.textContent=
-    text;
+  notice.classList.add("show");
 
-
-  notice.classList
-    .add("show");
-
-
-  clearTimeout(
-    noticeTimer
-  );
-
+  clearTimeout(noticeTimer);
 
   noticeTimer=
     setTimeout(()=>{
 
-      notice.classList
-        .remove("show");
+      notice.classList.remove("show");
 
     },1200);
 
 }
 
 
-/* =====================================================
-   HELPERS
-===================================================== */
+/* HELPERS */
 
 function formatPrice(value){
 
@@ -3572,26 +2785,11 @@ function formatPrice(value){
 function escapeHtml(value){
 
   return String(value??"")
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
@@ -3603,17 +2801,13 @@ function escapeAttr(value){
 }
 
 
-/* =====================================================
-   ESC
-===================================================== */
+/* ESC */
 
 document.addEventListener(
   "keydown",
   e=>{
 
-    if(
-      e.key!=="Escape"
-    )
+    if(e.key!=="Escape")
       return;
 
     closeProduct();
@@ -3625,11 +2819,9 @@ document.addEventListener(
 );
 
 
-/* =====================================================
-   START
-===================================================== */
+/* START */
 
-loadBag();
+updateBagCount();
 
 loadProducts();
 
