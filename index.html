@@ -500,6 +500,33 @@ footer a{
   margin-bottom:30px
 }
 
+/* COLORS */
+
+.colors{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:30px
+}
+
+.color-btn{
+  min-width:62px;
+  height:40px;
+  padding:0 14px;
+  background:#fff;
+  color:#000 !important;
+  border:1px solid #ccc;
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase
+}
+
+.color-btn.selected{
+  background:#000;
+  color:#fff !important;
+  border-color:#000
+}
+
 .option{
   font-size:10px;
   letter-spacing:1.3px;
@@ -1030,8 +1057,6 @@ footer a{
       <span>Jackets</span>
     </a>
 
-    <!-- NEW JEANS CATEGORY -->
-
     <a
       class="collection"
       href="#shop"
@@ -1170,8 +1195,6 @@ footer a{
         Jackets
       </a>
 
-      <!-- JEANS FOOTER LINK -->
-
       <a
         href="#shop"
         onclick="filterCategory('JEANS');return false"
@@ -1257,6 +1280,24 @@ footer a{
         id="detailDescription"
         class="description"
       ></div>
+
+      <!-- COLOR -->
+
+      <div
+        id="colorOption"
+        style="display:none"
+      >
+
+        <div class="option">
+          Color
+        </div>
+
+        <div
+          id="colors"
+          class="colors"
+        ></div>
+
+      </div>
 
       <div class="option">
         Size
@@ -1448,24 +1489,75 @@ let activeProduct=null;
 let activeImages=[];
 let imageIndex=0;
 let selectedSize="";
+let selectedColor="";
 
 let bag=[];
 
 let lastScrollY=0;
 
 
+/* OLIVIA COLORS */
+
+const OLIVIA_VARIANTS=[
+
+  {
+    name:"Pink",
+    images:[
+      GITHUB+"IMG_3083.jpeg",
+      GITHUB+"IMG_3085.jpeg",
+      GITHUB+"IMG_3084.jpeg",
+      GITHUB+"IMG_3086.jpeg"
+    ]
+  },
+
+  {
+    name:"Black",
+    images:[
+      GITHUB+"IMG_3087.jpeg",
+      GITHUB+"IMG_3088.jpeg",
+      GITHUB+"IMG_3089.jpeg",
+      GITHUB+"IMG_3467.jpeg"
+    ]
+  },
+
+  {
+    name:"Purple",
+    images:[
+      GITHUB+"IMG_3468.jpeg",
+      GITHUB+"IMG_3469.jpeg"
+    ]
+  },
+
+  {
+    name:"Red",
+    images:[
+      GITHUB+"IMG_3502.jpeg",
+      GITHUB+"IMG_3503.jpeg",
+      GITHUB+"IMG_3504.jpeg"
+    ]
+  }
+
+];
+
+
 /* BASIC */
 
 function isOpen(id){
+
   return document
     .getElementById(id)
     .classList
     .contains("active");
+
 }
 
+
 function lockPage(){
+
   document.body.classList.add("lock");
+
 }
+
 
 function unlockPage(){
 
@@ -1475,7 +1567,9 @@ function unlockPage(){
     !isOpen("checkoutPanel") &&
     !isOpen("searchPanel")
   ){
+
     document.body.classList.remove("lock");
+
   }
 
 }
@@ -1704,9 +1798,109 @@ async function loadProducts(){
 }
 
 
+/* COLOR VARIANTS */
+
+function isOlivia(product){
+
+  return String(product?.name||"")
+    .toLowerCase()
+    .includes("olivia");
+
+}
+
+
+function getColorVariants(product){
+
+  /*
+    First use Supabase color_variants if you ever add it.
+    Otherwise Olivia uses the GitHub images directly.
+  */
+
+  if(product && product.color_variants){
+
+    let variants=null;
+
+    if(Array.isArray(product.color_variants)){
+
+      variants=product.color_variants;
+
+    }else if(
+      typeof product.color_variants==="string"
+    ){
+
+      try{
+
+        variants=
+          JSON.parse(product.color_variants);
+
+      }catch{
+
+        variants=null;
+
+      }
+
+    }
+
+    if(
+      Array.isArray(variants) &&
+      variants.length
+    ){
+
+      return variants
+        .filter(v=>
+          v &&
+          v.name &&
+          Array.isArray(v.images) &&
+          v.images.length
+        )
+        .map(v=>({
+
+          name:String(v.name),
+
+          images:
+            v.images
+              .map(x=>normalizeImage(x))
+              .filter(Boolean)
+
+        }));
+
+    }
+
+  }
+
+  if(isOlivia(product)){
+
+    return OLIVIA_VARIANTS;
+
+  }
+
+  return [];
+
+}
+
+
+function getDisplayName(product){
+
+  if(isOlivia(product))
+    return "Olivia Dress";
+
+  return product.name;
+
+}
+
+
 /* IMAGES */
 
 function getImages(product){
+
+  const variants=
+    getColorVariants(product);
+
+  if(variants.length){
+
+    return variants[0].images;
+
+  }
 
   if(
     product.name===
@@ -1849,7 +2043,7 @@ function renderProducts(){
 
             <img
               src="${escapeAttr(image)}"
-              alt="${escapeAttr(product.name)}"
+              alt="${escapeAttr(getDisplayName(product))}"
               loading="lazy"
             >
 
@@ -1858,7 +2052,7 @@ function renderProducts(){
           <div class="product-info">
 
             <div class="product-name">
-              ${escapeHtml(product.name)}
+              ${escapeHtml(getDisplayName(product))}
             </div>
 
             <div class="product-price">
@@ -1902,8 +2096,25 @@ function openProduct(product){
 
   activeProduct=product;
 
-  activeImages=
-    getImages(product);
+  const variants=
+    getColorVariants(product);
+
+  if(variants.length){
+
+    selectedColor=
+      variants[0].name;
+
+    activeImages=
+      variants[0].images;
+
+  }else{
+
+    selectedColor="";
+
+    activeImages=
+      getImages(product);
+
+  }
 
   imageIndex=0;
 
@@ -1918,7 +2129,7 @@ function openProduct(product){
   document
     .getElementById("detailName")
     .textContent=
-      product.name;
+      getDisplayName(product);
 
   document
     .getElementById("detailPrice")
@@ -1930,6 +2141,8 @@ function openProduct(product){
     .textContent=
       product.description||
       "A piece from the ORRA collection.";
+
+  renderColors();
 
   renderSizes();
 
@@ -1959,6 +2172,7 @@ function closeProduct(restore=true){
   activeImages=[];
   imageIndex=0;
   selectedSize="";
+  selectedColor="";
 
   unlockPage();
 
@@ -1974,6 +2188,82 @@ function closeProduct(restore=true){
     });
 
   }
+
+}
+
+
+/* COLORS */
+
+function renderColors(){
+
+  const wrapper=
+    document.getElementById("colorOption");
+
+  const box=
+    document.getElementById("colors");
+
+  const variants=
+    getColorVariants(activeProduct);
+
+  if(!variants.length){
+
+    wrapper.style.display="none";
+    box.innerHTML="";
+
+    return;
+
+  }
+
+  wrapper.style.display="block";
+
+  box.innerHTML=
+    variants.map(variant=>`
+
+      <button
+        type="button"
+        class="color-btn ${
+          variant.name===selectedColor
+            ?"selected"
+            :""
+        }"
+        onclick="selectColor('${escapeAttr(variant.name)}')"
+      >
+        ${escapeHtml(variant.name)}
+      </button>
+
+    `).join("");
+
+}
+
+
+function selectColor(color){
+
+  if(!activeProduct)
+    return;
+
+  const variants=
+    getColorVariants(activeProduct);
+
+  const variant=
+    variants.find(v=>
+      String(v.name).toLowerCase()===
+      String(color).toLowerCase()
+    );
+
+  if(!variant)
+    return;
+
+  selectedColor=
+    variant.name;
+
+  activeImages=
+    variant.images;
+
+  imageIndex=0;
+
+  renderColors();
+
+  updateGallery();
 
 }
 
@@ -2012,6 +2302,7 @@ function renderSizes(){
     sizes.map((size,index)=>`
 
       <button
+        type="button"
         class="size ${index===0?"selected":""}"
         onclick="selectSize(this,'${escapeAttr(size)}')"
       >
@@ -2054,7 +2345,7 @@ function updateGallery(){
     .getElementById("galleryImg")
     .alt=
       activeProduct?
-      activeProduct.name:
+      getDisplayName(activeProduct):
       "ORRA";
 
   document
@@ -2290,7 +2581,7 @@ function addToBag(){
       Date.now(),
 
     name:
-      activeProduct.name,
+      getDisplayName(activeProduct),
 
     price:
       Number(activeProduct.price)||0,
@@ -2299,7 +2590,12 @@ function addToBag(){
       selectedSize||
       "ONE SIZE",
 
+    color:
+      selectedColor||
+      "",
+
     image:
+      activeImages[0]||
       getImages(activeProduct)[0]
 
   });
@@ -2406,11 +2702,21 @@ function renderBag(){
           </div>
 
           <div class="bag-meta">
+
+            ${item.color
+              ? "COLOR: "+
+                escapeHtml(item.color)+
+                "<br>"
+              : ""}
+
             SIZE:
             ${escapeHtml(item.size)}
+
             <br>
+
             PRICE:
             $${formatPrice(item.price)}
+
           </div>
 
           <button
@@ -2705,7 +3011,7 @@ function searchProducts(){
                 color:#000
               "
             >
-              ${escapeHtml(product.name)}
+              ${escapeHtml(getDisplayName(product))}
             </strong>
 
             <span
