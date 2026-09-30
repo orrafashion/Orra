@@ -1126,7 +1126,10 @@ footer a{
 
   <div class="section-head">
 
-    <h2 class="section-title">
+    <h2
+      id="shopTitle"
+      class="section-title"
+    >
       New In
     </h2>
 
@@ -1218,7 +1221,7 @@ footer a{
 
       <a
         href="#shop"
-        onclick="shop();return false"
+        onclick="showNewIn();return false"
       >
         New In
       </a>
@@ -1656,6 +1659,18 @@ function goHome(){
   closeCheckout();
   closeSearch();
 
+  selectedCategory="ALL";
+
+  if(catalogProducts.length){
+    renderProducts();
+  }
+
+  const title=
+    document.getElementById("shopTitle");
+
+  if(title)
+    title.textContent="New In";
+
   history.replaceState(
     null,
     "",
@@ -1678,6 +1693,18 @@ function shop(){
   closeCheckout();
   closeSearch();
 
+  selectedCategory="ALL";
+
+  if(catalogProducts.length){
+    renderProducts();
+  }
+
+  const title=
+    document.getElementById("shopTitle");
+
+  if(title)
+    title.textContent="New In";
+
   setTimeout(()=>{
 
     document
@@ -1692,9 +1719,61 @@ function shop(){
 }
 
 
+/*
+  SHOW NEW IN
+
+  New In contains ALL product colors.
+  Every color becomes its own card.
+*/
+
+function showNewIn(){
+
+  selectedCategory="ALL";
+
+  const title=
+    document.getElementById("shopTitle");
+
+  if(title)
+    title.textContent="New In";
+
+  renderProducts();
+
+  setTimeout(()=>{
+
+    document
+      .getElementById("shop")
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+  },30);
+
+}
+
+
+/*
+  FILTER CATEGORY
+
+  Every color becomes a separate card.
+*/
+
 function filterCategory(category){
 
-  selectedCategory=category;
+  selectedCategory=
+    String(category||"").toUpperCase();
+
+  const title=
+    document.getElementById("shopTitle");
+
+  if(title){
+
+    title.textContent=
+      selectedCategory==="ALL"
+        ?"New In"
+        :capitalizeWords(selectedCategory);
+
+  }
 
   renderProducts();
 
@@ -1815,6 +1894,10 @@ async function loadProducts(){
 
       }));
 
+    /*
+      Newest products first.
+    */
+
     products.sort(
       (a,b)=>
         new Date(b.created_at||0)-
@@ -1822,19 +1905,20 @@ async function loadProducts(){
     );
 
     /*
-      IMPORTANT:
+      First we group duplicate database rows
+      belonging to the same product.
 
-      We now build one catalog item from
-      multiple Supabase rows when they
-      have the same product name/category.
+      Example:
 
-      This means:
-      Bexy Set BLACK
-      Bexy Set WHITE
-      Bexy Set BROWN
+      Bexy Set / Black
+      Bexy Set / Brown
+      Bexy Set / White
 
-      can automatically become ONE
-      Bexy Set product with multiple colors.
+      become one internal product with
+      all color variants.
+
+      Then renderProducts() expands the
+      variants into separate visual cards.
     */
 
     catalogProducts=
@@ -1950,18 +2034,24 @@ function getColorVariants(product){
         )
         .map(v=>({
 
-          name:String(v.name),
+          name:String(v.name).trim(),
 
           images:
             v.images
               .map(x=>normalizeImage(x))
               .filter(Boolean)
 
-        }));
+        }))
+        .filter(v=>v.images.length);
 
     }
 
   }
+
+  /*
+    Olivia has legacy variants stored
+    directly in the code.
+  */
 
   if(isOlivia(product)){
 
@@ -1987,10 +2077,10 @@ function normalizeVariantName(name){
 
 /*
   Try to find a color from:
-  - color_variants
-  - color column
-  - variant column
-  - product_color column
+  - color
+  - variant
+  - product_color
+  - colour
 */
 
 function getRowColor(product){
@@ -2003,7 +2093,9 @@ function getRowColor(product){
     "product_color",
     "ProductColor",
     "colour",
-    "Colour"
+    "Colour",
+    "color_name",
+    "ColorName"
   ];
 
   for(const field of possibleFields){
@@ -2027,8 +2119,16 @@ function getRowColor(product){
 
 
 /*
-  If a row contains one image and a color
-  we turn it into a variant.
+  If one Supabase row contains:
+  color = Black
+  image_url = image
+
+  we automatically turn it into:
+
+  {
+    name:"Black",
+    images:[image]
+  }
 */
 
 function getSingleRowVariant(product){
@@ -2130,12 +2230,15 @@ function getImagesWithoutVariants(product){
 
 
 /*
-  MAIN AUTOMATIC GROUPING SYSTEM.
+  AUTOMATIC PRODUCT GROUPING
 
-  Products with the same NAME + CATEGORY
-  become one product.
+  Same product name + category
+  becomes one internal product.
 
-  Their colors/images are merged.
+  This is ONLY internal.
+
+  The website later expands every
+  color into a separate card.
 */
 
 function buildCatalogProducts(rows){
@@ -2156,10 +2259,16 @@ function buildCatalogProducts(rows){
         "ORRA"
       ).trim();
 
+    /*
+      We intentionally group mainly by name.
+
+      This makes the system more tolerant
+      if one color row accidentally has a
+      slightly different category value.
+    */
+
     const key=
-      normalizeVariantName(name)+
-      "||"+
-      normalizeVariantName(category);
+      normalizeVariantName(name);
 
     if(!groups.has(key)){
 
@@ -2186,8 +2295,7 @@ function buildCatalogProducts(rows){
     group._mergedRows.push(row);
 
     /*
-      First:
-      use color_variants if available.
+      Use color_variants when available.
     */
 
     const variants=
@@ -2207,8 +2315,8 @@ function buildCatalogProducts(rows){
     }else{
 
       /*
-        Otherwise check if this row has
-        a simple color field.
+        Otherwise check for simple
+        color + image fields.
       */
 
       const single=
@@ -2233,8 +2341,8 @@ function buildCatalogProducts(rows){
   result.forEach(group=>{
 
     /*
-      If no merged variants exist,
-      keep the original product.
+      If no variants exist,
+      keep it as a normal product.
     */
 
     if(
@@ -2249,15 +2357,15 @@ function buildCatalogProducts(rows){
     }
 
     /*
-      Save merged variants in the same
-      format used everywhere else.
+      Save merged variants.
     */
 
     group.color_variants=
       group._mergedVariants;
 
     /*
-      Use first image as fallback.
+      First variant image becomes
+      fallback image.
     */
 
     if(
@@ -2281,7 +2389,8 @@ function buildCatalogProducts(rows){
 
 
 /*
-  Merge two variants with the same color.
+  Merge two variants with same color.
+
   Images are combined without duplicates.
 */
 
@@ -2461,7 +2570,15 @@ function colorToCss(color){
 }
 
 
-/* PRODUCT COLOR INDICATORS */
+/*
+  COLOR DOTS FOR A NORMAL PRODUCT.
+
+  Used mainly in search.
+
+  Product cards in the category/New In
+  views are now color-specific, so they
+  show only the selected color dot.
+*/
 
 function renderProductColorDots(product){
 
@@ -2525,12 +2642,149 @@ function renderProductColorDots(product){
 }
 
 
+/*
+  COLOR-SPECIFIC CARD DOT
+
+  Each category/New In card represents
+  ONE color, so only that color is shown.
+*/
+
+function renderSelectedColorDot(color){
+
+  if(!color)
+    return "";
+
+  const isWhite=
+    normalizeVariantName(color)
+      .includes("white");
+
+  return`
+
+    <div
+      class="product-colors"
+      aria-label="${escapeAttr(color)}"
+    >
+
+      <span
+        class="product-color-dot"
+        title="${escapeAttr(color)}"
+        style="
+          background:${colorToCss(color)};
+          ${
+            isWhite
+              ? "border:1px solid #999;"
+              : ""
+          }
+        "
+      ></span>
+
+    </div>
+
+  `;
+
+}
+
+
+/*
+  BUILD DISPLAY ITEMS
+
+  THIS IS THE IMPORTANT PART.
+
+  One database product with:
+
+  Black
+  Brown
+  White
+  Navy Blue
+
+  becomes:
+
+  Card 1 = Black
+  Card 2 = Brown
+  Card 3 = White
+  Card 4 = Navy Blue
+
+  Automatically.
+
+  This applies to:
+  New In
+  Sets
+  Dresses
+  Jackets
+  Jeans
+  Tops
+  and any future category.
+*/
+
+function buildDisplayItems(list){
+
+  const items=[];
+
+  list.forEach(product=>{
+
+    const variants=
+      getColorVariants(product);
+
+    if(variants.length){
+
+      variants.forEach(variant=>{
+
+        if(
+          !variant.images ||
+          !variant.images.length
+        )
+          return;
+
+        items.push({
+
+          product:product,
+
+          color:variant.name,
+
+          images:variant.images
+
+        });
+
+      });
+
+      return;
+
+    }
+
+    /*
+      Normal product with no colors.
+    */
+
+    const images=
+      getImagesWithoutVariants(product);
+
+    items.push({
+
+      product:product,
+
+      color:"",
+
+      images:images
+
+    });
+
+  });
+
+  return items;
+
+}
+
+
 /* PRODUCTS */
 
 function renderProducts(){
 
   let list=
     [...catalogProducts];
+
+  /*
+    Category filter.
+  */
 
   if(selectedCategory!=="ALL"){
 
@@ -2545,17 +2799,12 @@ function renderProducts(){
 
   /*
     IMPORTANT:
-    One card = one product.
 
-    Colors are NOT turned into separate cards.
+    Expand every color into a separate card.
   */
 
   shownProducts=
-    list.map(product=>({
-
-      product:product
-
-    }));
+    buildDisplayItems(list);
 
   const count=
     shownProducts.length;
@@ -2588,27 +2837,37 @@ function renderProducts(){
       const product=
         item.product;
 
-      const variants=
-        getColorVariants(product);
-
       const firstImage=
-        variants.length
-          ? variants[0].images[0]
-          : getImages(product)[0];
+        item.images?.[0]||
+        getImages(product)[0]||
+        "";
 
       return`
 
         <button
           class="product"
           onclick="openProductByIndex(${index})"
+          aria-label="${escapeAttr(
+            getDisplayName(product)+
+            (
+              item.color
+                ? " - "+item.color
+                : ""
+            )
+          )}"
         >
 
           <div class="product-img">
 
             <img
-              src="${escapeAttr(firstImage||"")}"
+              src="${escapeAttr(firstImage)}"
               alt="${escapeAttr(
-                getDisplayName(product)
+                getDisplayName(product)+
+                (
+                  item.color
+                    ? " - "+item.color
+                    : ""
+                )
               )}"
               loading="lazy"
               onerror="this.style.opacity='0'"
@@ -2629,9 +2888,9 @@ function renderProducts(){
             </div>
 
             ${
-              variants.length
-              ?renderProductColorDots(product)
-              :""
+              item.color
+                ?renderSelectedColorDot(item.color)
+                :""
             }
 
             <div class="product-cat">
@@ -2658,7 +2917,8 @@ function openProductByIndex(index){
     return;
 
   openProduct(
-    item.product
+    item.product,
+    item.color
   );
 
 }
@@ -3520,6 +3780,12 @@ function closeSearch(){
 }
 
 
+/*
+  SEARCH
+
+  Search results are also color-specific.
+*/
+
 function searchProducts(){
 
   const query=
@@ -3540,7 +3806,11 @@ function searchProducts(){
 
   }
 
-  const matches=
+  /*
+    Search the grouped products first.
+  */
+
+  const matchedProducts=
     catalogProducts.filter(product=>
 
       String(product.name||"")
@@ -3564,6 +3834,14 @@ function searchProducts(){
 
   );
 
+  /*
+    Then expand colors into separate
+    search result cards.
+  */
+
+  const matches=
+    buildDisplayItems(matchedProducts);
+
   if(!matches.length){
 
     box.innerHTML=
@@ -3576,10 +3854,15 @@ function searchProducts(){
   window.searchMatches=matches;
 
   box.innerHTML=
-    matches.map((product,index)=>{
+    matches.map((item,index)=>{
+
+      const product=
+        item.product;
 
       const image=
-        getImages(product)[0];
+        item.images?.[0]||
+        getImages(product)[0]||
+        "";
 
       return`
 
@@ -3617,7 +3900,9 @@ function searchProducts(){
                 color:#000
               "
             >
-              ${escapeHtml(getDisplayName(product))}
+              ${escapeHtml(
+                getDisplayName(product)
+              )}
             </strong>
 
             <span
@@ -3631,7 +3916,30 @@ function searchProducts(){
               $${formatPrice(product.price)}
             </span>
 
-            ${renderProductColorDots(product)}
+            ${
+              item.color
+                ?renderSelectedColorDot(item.color)
+                :renderProductColorDots(product)
+            }
+
+            ${
+              item.color
+                ?`
+                  <span
+                    style="
+                      display:block;
+                      margin-top:5px;
+                      font-size:9px;
+                      color:#777;
+                      text-transform:uppercase;
+                      letter-spacing:1px
+                    "
+                  >
+                    ${escapeHtml(item.color)}
+                  </span>
+                `
+                :""
+            }
 
           </span>
 
@@ -3646,15 +3954,18 @@ function searchProducts(){
 
 function openSearchProduct(index){
 
-  const product=
+  const item=
     window.searchMatches[index];
 
-  if(!product)
+  if(!item)
     return;
 
   closeSearch();
 
-  openProduct(product);
+  openProduct(
+    item.product,
+    item.color
+  );
 
 }
 
@@ -3694,6 +4005,17 @@ function formatPrice(value){
   return n%1===0
     ?String(n)
     :n.toFixed(2);
+
+}
+
+
+function capitalizeWords(value){
+
+  return String(value||"")
+    .toLowerCase()
+    .replace(/\b\w/g,char=>
+      char.toUpperCase()
+    );
 
 }
 
