@@ -1849,10 +1849,26 @@ function getColorVariants(product){
 
       }
 
+    }else if(
+      typeof product.color_variants==="object"
+    ){
+
+      variants=
+        Object.entries(product.color_variants)
+          .map(([name,images])=>({
+
+            name:name,
+
+            images:Array.isArray(images)
+              ? images
+              : []
+
+          }));
+
     }
 
     if(
-      Array.isArray(variants) &&
+      variants &&
       variants.length
     ){
 
@@ -2012,15 +2028,54 @@ function renderProducts(){
 
   }
 
-  shownProducts=list;
+  const displayItems=[];
+
+  list.forEach(product=>{
+
+    const variants=
+      getColorVariants(product);
+
+    if(variants.length){
+
+      variants.forEach(variant=>{
+
+        displayItems.push({
+
+          product:product,
+
+          color:variant.name,
+
+          image:variant.images[0]
+
+        });
+
+      });
+
+    }else{
+
+      displayItems.push({
+
+        product:product,
+
+        color:"",
+
+        image:getImages(product)[0]
+
+      });
+
+    }
+
+  });
+
+  shownProducts=displayItems;
 
   document
     .getElementById("count")
     .textContent=
-      list.length+
-      (list.length===1?" ITEM":" ITEMS");
+      displayItems.length+
+      (displayItems.length===1?" ITEM":" ITEMS");
 
-  if(!list.length){
+  if(!displayItems.length){
 
     document
       .getElementById("products")
@@ -2037,10 +2092,9 @@ function renderProducts(){
     .getElementById("products")
     .innerHTML=
 
-    list.map((product,index)=>{
+    displayItems.map((item,index)=>{
 
-      const image=
-        getImages(product)[0];
+      const product=item.product;
 
       return`
 
@@ -2052,8 +2106,13 @@ function renderProducts(){
           <div class="product-img">
 
             <img
-              src="${escapeAttr(image)}"
-              alt="${escapeAttr(getDisplayName(product))}"
+              src="${escapeAttr(item.image)}"
+              alt="${escapeAttr(
+                getDisplayName(product)+
+                (item.color
+                  ? " - "+item.color
+                  : "")
+              )}"
               loading="lazy"
             >
 
@@ -2062,7 +2121,9 @@ function renderProducts(){
           <div class="product-info">
 
             <div class="product-name">
-              ${escapeHtml(getDisplayName(product))}
+              ${escapeHtml(
+                getDisplayName(product)
+              )}
             </div>
 
             <div class="product-price">
@@ -2070,7 +2131,12 @@ function renderProducts(){
             </div>
 
             <div class="product-cat">
-              ${escapeHtml(product.category)}
+
+              ${item.color
+                ? escapeHtml(item.color)
+                : escapeHtml(product.category)
+              }
+
             </div>
 
           </div>
@@ -2086,18 +2152,23 @@ function renderProducts(){
 
 function openProductByIndex(index){
 
-  const product=
+  const item=
     shownProducts[index];
 
-  if(product)
-    openProduct(product);
+  if(!item)
+    return;
+
+  openProduct(
+    item.product,
+    item.color
+  );
 
 }
 
 
 /* PRODUCT */
 
-function openProduct(product){
+function openProduct(product, initialColor=""){
 
   lastScrollY=
     window.scrollY||
@@ -2111,11 +2182,17 @@ function openProduct(product){
 
   if(variants.length){
 
+    const selectedVariant=
+      variants.find(v=>
+        String(v.name).toLowerCase()===
+        String(initialColor).toLowerCase()
+      ) || variants[0];
+
     selectedColor=
-      variants[0].name;
+      selectedVariant.name;
 
     activeImages=
-      variants[0].images;
+      selectedVariant.images;
 
   }else{
 
