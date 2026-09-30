@@ -457,17 +457,20 @@ footer a{
 .modal-content{
   height:100%;
   display:grid;
-  grid-template-columns:1.15fr .85fr
+  grid-template-columns:1.25fr .75fr
 }
+
+/* GALLERY */
 
 .gallery{
   position:relative;
   background:#f3f3f3;
   overflow:hidden;
-  touch-action:pan-y;
+  touch-action:none;
   display:flex;
   align-items:center;
-  justify-content:center
+  justify-content:center;
+  cursor:zoom-in
 }
 
 .gallery img{
@@ -477,97 +480,19 @@ footer a{
   display:block;
   user-select:none;
   -webkit-user-drag:none;
-  cursor:zoom-in
+  transform:scale(1);
+  transform-origin:center center;
+  transition:transform .25s ease;
+  will-change:transform
 }
 
-/* GALLERY ARROWS */
-
-.gallery-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:20;
-  width:44px;
-  height:44px;
-  border:1px solid rgba(0,0,0,.15);
-  background:rgba(255,255,255,.92);
-  color:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
-  line-height:1
+.gallery.zoomed{
+  cursor:zoom-out
 }
 
-.gallery-arrow.prev{
-  left:18px
+.gallery.zoomed img{
+  transition:none
 }
-
-.gallery-arrow.next{
-  right:18px
-}
-
-.gallery-arrow:disabled{
-  opacity:.25;
-  cursor:default
-}
-
-/* GALLERY COUNTER */
-
-.gallery-counter{
-  position:absolute;
-  top:18px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:20;
-  background:rgba(255,255,255,.9);
-  padding:7px 11px;
-  font-size:10px;
-  letter-spacing:1px;
-  color:#000
-}
-
-/* ZOOM BUTTON */
-
-.gallery-zoom{
-  position:absolute;
-  right:18px;
-  bottom:18px;
-  z-index:20;
-  width:42px;
-  height:42px;
-  border:1px solid rgba(0,0,0,.15);
-  background:rgba(255,255,255,.92);
-  color:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center
-}
-
-.gallery-zoom svg{
-  width:20px;
-  height:20px;
-  stroke:#000
-}
-
-.dots{
-  position:absolute;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:7px;
-  z-index:15
-}
-
-.dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#bbb
-}
-
-.dot.active{background:#000}
 
 .details{
   padding:90px 7vw 50px 5vw;
@@ -669,106 +594,11 @@ footer a{
   letter-spacing:1.5px
 }
 
-/* FULL SCREEN ZOOM */
-
-.zoom-viewer{
-  position:fixed;
-  inset:0;
-  z-index:5000;
-  display:none;
-  background:#000
-}
-
-.zoom-viewer.active{
-  display:block
-}
-
-.zoom-image-wrap{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  touch-action:none
-}
-
-.zoom-image{
-  max-width:100%;
-  max-height:100%;
-  width:auto;
-  height:auto;
-  object-fit:contain;
-  user-select:none;
-  -webkit-user-drag:none;
-  transform-origin:center center;
-  cursor:grab;
-  will-change:transform
-}
-
-.zoom-image.dragging{
-  cursor:grabbing
-}
-
-.zoom-close{
-  position:absolute;
-  top:14px;
-  right:14px;
-  z-index:20;
-  width:46px;
-  height:46px;
-  border:0;
-  background:#fff;
-  color:#000;
-  font-size:30px;
-  line-height:1
-}
-
-.zoom-controls{
-  position:absolute;
-  bottom:18px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:20;
-  display:flex;
-  align-items:center;
-  gap:6px;
-  background:rgba(255,255,255,.95);
-  padding:6px
-}
-
-.zoom-control{
-  width:42px;
-  height:38px;
-  border:0;
-  background:#fff;
-  color:#000;
-  font-size:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center
-}
-
-.zoom-control.reset{
-  width:auto;
-  padding:0 12px;
-  font-size:9px;
-  letter-spacing:1px;
-  text-transform:uppercase
-}
-
-.zoom-level{
-  min-width:52px;
-  text-align:center;
-  font-size:9px;
-  letter-spacing:1px
-}
-
 /* NOTICE */
 
 .notice{
   position:fixed;
-  z-index:6000;
+  z-index:3000;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%) scale(.95);
@@ -1087,9 +917,9 @@ footer a{
   }
 
   .gallery{
-    height:64svh;
+    height:70svh;
     min-height:0;
-    flex:0 0 64svh
+    flex:0 0 70svh
   }
 
   .details{
@@ -1102,33 +932,6 @@ footer a{
     right:8px
   }
 
-  .gallery-arrow{
-    width:38px;
-    height:38px;
-    font-size:21px
-  }
-
-  .gallery-arrow.prev{
-    left:9px
-  }
-
-  .gallery-arrow.next{
-    right:9px
-  }
-
-  .gallery-counter{
-    top:12px;
-    font-size:9px;
-    padding:6px 9px
-  }
-
-  .gallery-zoom{
-    right:10px;
-    bottom:14px;
-    width:38px;
-    height:38px
-  }
-
   .bag-item{
     grid-template-columns:75px 1fr auto
   }
@@ -1136,38 +939,6 @@ footer a{
   .bag-item img{
     width:75px;
     height:100px
-  }
-
-  .zoom-close{
-    top:9px;
-    right:9px;
-    width:42px;
-    height:42px
-  }
-
-  .zoom-controls{
-    bottom:12px
-  }
-
-}
-
-
-/* SMALL MOBILE */
-
-@media(max-width:420px){
-
-  .color-btn{
-    min-width:58px;
-    padding:0 10px
-  }
-
-  .zoom-control{
-    width:38px;
-    height:36px
-  }
-
-  .zoom-control.reset{
-    padding:0 9px
   }
 
 }
@@ -1543,56 +1314,6 @@ footer a{
         alt=""
       >
 
-      <button
-        id="galleryPrev"
-        type="button"
-        class="gallery-arrow prev"
-        onclick="previousImage()"
-        aria-label="Previous image"
-      >
-        ‹
-      </button>
-
-      <button
-        id="galleryNext"
-        type="button"
-        class="gallery-arrow next"
-        onclick="nextImage()"
-        aria-label="Next image"
-      >
-        ›
-      </button>
-
-      <div
-        id="galleryCounter"
-        class="gallery-counter"
-      >
-        1 / 1
-      </div>
-
-      <button
-        type="button"
-        class="gallery-zoom"
-        onclick="openZoom()"
-        aria-label="Zoom image"
-      >
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke-width="1.7"
-        >
-          <circle cx="10.5" cy="10.5" r="6.5"/>
-          <path d="M15.5 15.5L21 21"/>
-          <path d="M10.5 7.5V13.5"/>
-          <path d="M7.5 10.5H13.5"/>
-        </svg>
-      </button>
-
-      <div
-        id="dots"
-        class="dots"
-      ></div>
-
     </div>
 
     <div class="details">
@@ -1647,75 +1368,6 @@ footer a{
       </button>
 
     </div>
-
-  </div>
-
-</div>
-
-<!-- FULL SCREEN ZOOM -->
-
-<div
-  id="zoomViewer"
-  class="zoom-viewer"
->
-
-  <button
-    type="button"
-    class="zoom-close"
-    onclick="closeZoom()"
-    aria-label="Close zoom"
-  >
-    ×
-  </button>
-
-  <div
-    id="zoomImageWrap"
-    class="zoom-image-wrap"
-  >
-
-    <img
-      id="zoomImage"
-      class="zoom-image"
-      src=""
-      alt=""
-    >
-
-  </div>
-
-  <div class="zoom-controls">
-
-    <button
-      type="button"
-      class="zoom-control"
-      onclick="zoomOut()"
-      aria-label="Zoom out"
-    >
-      −
-    </button>
-
-    <div
-      id="zoomLevel"
-      class="zoom-level"
-    >
-      100%
-    </div>
-
-    <button
-      type="button"
-      class="zoom-control"
-      onclick="zoomIn()"
-      aria-label="Zoom in"
-    >
-      +
-    </button>
-
-    <button
-      type="button"
-      class="zoom-control reset"
-      onclick="resetZoom()"
-    >
-      Reset
-    </button>
 
   </div>
 
@@ -1964,8 +1616,7 @@ function unlockPage(){
     !isOpen("productModal") &&
     !isOpen("bagPanel") &&
     !isOpen("checkoutPanel") &&
-    !isOpen("searchPanel") &&
-    !isOpen("zoomViewer")
+    !isOpen("searchPanel")
   ){
 
     document.body.classList.remove("lock");
@@ -2002,7 +1653,6 @@ function goHome(){
   closeBag();
   closeCheckout();
   closeSearch();
-  closeZoom();
 
   selectedCategory="ALL";
 
@@ -2037,7 +1687,6 @@ function shop(){
   closeBag();
   closeCheckout();
   closeSearch();
-  closeZoom();
 
   selectedCategory="ALL";
 
@@ -2068,10 +1717,8 @@ function shop(){
 /*
   SHOW NEW IN
 
-  New In contains ALL products.
-
-  Every color is displayed as its own
-  visual card.
+  New In contains ALL product colors.
+  Every color becomes its own card.
 */
 
 function showNewIn(){
@@ -2103,20 +1750,13 @@ function showNewIn(){
 /*
   FILTER CATEGORY
 
-  A product can belong to multiple
-  categories.
-
-  Example:
-
-  DRESSES,NEW IN
-
-  It will appear in both places.
+  Every color becomes a separate card.
 */
 
 function filterCategory(category){
 
   selectedCategory=
-    String(category||"").toUpperCase().trim();
+    String(category||"").toUpperCase();
 
   const title=
     document.getElementById("shopTitle");
@@ -2259,13 +1899,6 @@ async function loadProducts(){
         new Date(a.created_at||0)
     );
 
-    /*
-      Group the same product name together.
-
-      Categories and color variants are
-      merged into one internal product.
-    */
-
     catalogProducts=
       buildCatalogProducts(products);
 
@@ -2299,126 +1932,6 @@ async function loadProducts(){
 }
 
 
-/* CATEGORY HELPERS */
-
-/*
-  A product can have:
-
-  DRESSES
-
-  or:
-
-  DRESSES,NEW IN
-
-  or:
-
-  SETS,NEW IN
-
-  This helper also supports a future
-  "categories" field if you decide to
-  add one later.
-*/
-
-function getProductCategories(product){
-
-  if(!product)
-    return [];
-
-  let raw=
-    product.categories ??
-    product.category ??
-    "";
-
-  if(Array.isArray(raw)){
-
-    return raw
-      .map(x=>String(x).trim().toUpperCase())
-      .filter(Boolean);
-
-  }
-
-  if(
-    typeof raw==="string" &&
-    raw.trim()
-  ){
-
-    let parsed=null;
-
-    /*
-      Also support JSON arrays if used
-      in the future.
-    */
-
-    try{
-
-      parsed=JSON.parse(raw);
-
-      if(Array.isArray(parsed)){
-
-        return parsed
-          .map(x=>String(x).trim().toUpperCase())
-          .filter(Boolean);
-
-      }
-
-    }catch{
-
-      /* normal comma-separated text */
-
-    }
-
-    return raw
-      .split(",")
-      .map(x=>x.trim().toUpperCase())
-      .filter(Boolean);
-
-  }
-
-  return [];
-
-}
-
-
-function productHasCategory(product,category){
-
-  const wanted=
-    String(category||"")
-      .trim()
-      .toUpperCase();
-
-  if(!wanted)
-    return false;
-
-  return getProductCategories(product)
-    .includes(wanted);
-
-}
-
-
-/*
-  Display only the main product category.
-
-  NEW IN is not shown as the category
-  underneath the product.
-*/
-
-function getPrimaryCategory(product){
-
-  const categories=
-    getProductCategories(product);
-
-  const main=
-    categories.find(
-      category=>category!=="NEW IN"
-    );
-
-  return main||
-    categories[0]||
-    "ORRA";
-
-}
-
-
 /* COLOR VARIANTS */
 
 function isOlivia(product){
@@ -2429,18 +1942,6 @@ function isOlivia(product){
 
 }
 
-
-/*
-  Converts every possible color_variants
-  format into:
-
-  [
-    {
-      name:"Black",
-      images:["url1","url2"]
-    }
-  ]
-*/
 
 function getColorVariants(product){
 
@@ -2513,11 +2014,6 @@ function getColorVariants(product){
 
   }
 
-  /*
-    Olivia has legacy variants stored
-    directly in the code.
-  */
-
   if(isOlivia(product)){
 
     return OLIVIA_VARIANTS;
@@ -2540,13 +2036,7 @@ function normalizeVariantName(name){
 }
 
 
-/*
-  Try to find a color from:
-  - color
-  - variant
-  - product_color
-  - colour
-*/
+/* ROW COLOR */
 
 function getRowColor(product){
 
@@ -2583,18 +2073,7 @@ function getRowColor(product){
 }
 
 
-/*
-  If one Supabase row contains:
-  color = Black
-  image_url = image
-
-  we automatically turn it into:
-
-  {
-    name:"Black",
-    images:[image]
-  }
-*/
+/* SINGLE ROW VARIANT */
 
 function getSingleRowVariant(product){
 
@@ -2621,10 +2100,7 @@ function getSingleRowVariant(product){
 }
 
 
-/*
-  Get normal images without calling
-  getColorVariants() to avoid loops.
-*/
+/* IMAGES WITHOUT VARIANTS */
 
 function getImagesWithoutVariants(product){
 
@@ -2694,24 +2170,7 @@ function getImagesWithoutVariants(product){
 }
 
 
-/*
-  AUTOMATIC PRODUCT GROUPING
-
-  Same product name becomes ONE internal
-  product.
-
-  All categories are merged.
-
-  All color variants are merged.
-
-  Example:
-
-  Isabelle Satin Dress with Lace
-  DRESSES,NEW IN
-
-  becomes one product that can appear
-  in both New In and Dresses.
-*/
+/* AUTOMATIC PRODUCT GROUPING */
 
 function buildCatalogProducts(rows){
 
@@ -2723,6 +2182,12 @@ function buildCatalogProducts(rows){
       String(
         row.name||
         "ORRA PRODUCT"
+      ).trim();
+
+    const category=
+      String(
+        row.category||
+        "ORRA"
       ).trim();
 
     const key=
@@ -2737,18 +2202,11 @@ function buildCatalogProducts(rows){
 
           name:name,
 
-          category:
-            String(
-              row.category||
-              "ORRA"
-            ).trim(),
+          category:category,
 
           _mergedVariants:[],
 
-          _mergedRows:[],
-
-          _allCategories:[]
-
+          _mergedRows:[]
         }
       );
 
@@ -2758,31 +2216,6 @@ function buildCatalogProducts(rows){
       groups.get(key);
 
     group._mergedRows.push(row);
-
-    /*
-      Merge every category from every
-      database row.
-    */
-
-    getProductCategories(row)
-      .forEach(category=>{
-
-        if(
-          !group._allCategories
-            .includes(category)
-        ){
-
-          group._allCategories.push(
-            category
-          );
-
-        }
-
-      });
-
-    /*
-      Use color_variants when available.
-    */
 
     const variants=
       getColorVariants(row);
@@ -2799,11 +2232,6 @@ function buildCatalogProducts(rows){
       });
 
     }else{
-
-      /*
-        Otherwise check for simple
-        color + image fields.
-      */
 
       const single=
         getSingleRowVariant(row);
@@ -2826,26 +2254,6 @@ function buildCatalogProducts(rows){
 
   result.forEach(group=>{
 
-    /*
-      Save all merged categories.
-
-      Example:
-
-      DRESSES,NEW IN
-    */
-
-    if(group._allCategories.length){
-
-      group.category=
-        group._allCategories.join(",");
-
-    }
-
-    /*
-      If no variants exist,
-      keep it as a normal product.
-    */
-
     if(
       !group._mergedVariants.length
     ){
@@ -2857,17 +2265,8 @@ function buildCatalogProducts(rows){
 
     }
 
-    /*
-      Save merged variants.
-    */
-
     group.color_variants=
       group._mergedVariants;
-
-    /*
-      First variant image becomes
-      fallback image.
-    */
 
     if(
       !group.image_url &&
@@ -2889,11 +2288,7 @@ function buildCatalogProducts(rows){
 }
 
 
-/*
-  Merge two variants with same color.
-
-  Images are combined without duplicates.
-*/
+/* MERGE VARIANT */
 
 function mergeVariant(list,variant){
 
@@ -3071,11 +2466,7 @@ function colorToCss(color){
 }
 
 
-/*
-  COLOR DOTS FOR A NORMAL PRODUCT.
-
-  Used mainly in search.
-*/
+/* PRODUCT COLOR DOTS */
 
 function renderProductColorDots(product){
 
@@ -3139,12 +2530,7 @@ function renderProductColorDots(product){
 }
 
 
-/*
-  COLOR-SPECIFIC CARD DOT
-
-  Each product color becomes its own
-  visual card in New In and Categories.
-*/
+/* SELECTED COLOR DOT */
 
 function renderSelectedColorDot(color){
 
@@ -3182,25 +2568,7 @@ function renderSelectedColorDot(color){
 }
 
 
-/*
-  BUILD DISPLAY ITEMS
-
-  One database product with:
-
-  Black
-  Brown
-  White
-  Navy Blue
-
-  becomes:
-
-  Card 1 = Black
-  Card 2 = Brown
-  Card 3 = White
-  Card 4 = Navy Blue
-
-  This applies to every category.
-*/
+/* DISPLAY ITEMS */
 
 function buildDisplayItems(list){
 
@@ -3237,10 +2605,6 @@ function buildDisplayItems(list){
 
     }
 
-    /*
-      Normal product with no colors.
-    */
-
     const images=
       getImagesWithoutVariants(product);
 
@@ -3268,29 +2632,16 @@ function renderProducts(){
   let list=
     [...catalogProducts];
 
-  /*
-    New In = ALL products.
-
-    Categories = products that contain
-    that category in their category field.
-  */
-
   if(selectedCategory!=="ALL"){
 
     list=
       list.filter(product=>
-        productHasCategory(
-          product,
-          selectedCategory
-        )
+        String(product.category||"")
+          .toUpperCase()
+          .includes(selectedCategory)
       );
 
   }
-
-  /*
-    Every color becomes a separate visual
-    card exactly like the reference layout.
-  */
 
   shownProducts=
     buildDisplayItems(list);
@@ -3383,9 +2734,7 @@ function renderProducts(){
             }
 
             <div class="product-cat">
-              ${escapeHtml(
-                getPrimaryCategory(product)
-              )}
+              ${escapeHtml(product.category)}
             </div>
 
           </div>
@@ -3459,7 +2808,8 @@ function openProduct(product, initialColor=""){
   document
     .getElementById("detailCategory")
     .textContent=
-      getPrimaryCategory(product);
+      product.category||
+      "ORRA";
 
   document
     .getElementById("detailName")
@@ -3481,6 +2831,8 @@ function openProduct(product, initialColor=""){
 
   renderSizes();
 
+  resetImageZoom();
+
   updateGallery();
 
   document
@@ -3492,8 +2844,6 @@ function openProduct(product, initialColor=""){
 
 }
 
-
-/* CLOSE PRODUCT */
 
 function closeProduct(restore=true){
 
@@ -3511,7 +2861,7 @@ function closeProduct(restore=true){
   selectedSize="";
   selectedColor="";
 
-  closeZoom(false);
+  resetImageZoom();
 
   unlockPage();
 
@@ -3601,7 +2951,7 @@ function selectColorByName(color){
 
   imageIndex=0;
 
-  closeZoom(false);
+  resetImageZoom();
 
   renderColors();
 
@@ -3673,123 +3023,449 @@ function selectSize(button,size){
 
 /* GALLERY */
 
-function updateGallery(){
+let imageZoom=1;
+let imageTranslateX=0;
+let imageTranslateY=0;
 
-  const image=
+let zoomStartX=0;
+let zoomStartY=0;
+
+let zoomDragging=false;
+
+let pinchStartDistance=0;
+let pinchStartZoom=1;
+
+
+function applyImageTransform(){
+
+  const img=
     document.getElementById("galleryImg");
 
-  const dots=
-    document.getElementById("dots");
+  img.style.transform=
+    "translate3d("+
+    imageTranslateX+
+    "px,"+
+    imageTranslateY+
+    "px,0) scale("+
+    imageZoom+
+    ")";
 
-  const counter=
-    document.getElementById("galleryCounter");
+}
 
-  const prev=
-    document.getElementById("galleryPrev");
 
-  const next=
-    document.getElementById("galleryNext");
+function resetImageZoom(){
+
+  imageZoom=1;
+
+  imageTranslateX=0;
+
+  imageTranslateY=0;
+
+  zoomDragging=false;
+
+  const gallery=
+    document.getElementById("gallery");
+
+  if(gallery)
+    gallery.classList.remove("zoomed");
+
+  const img=
+    document.getElementById("galleryImg");
+
+  if(img){
+
+    img.style.transformOrigin=
+      "center center";
+
+    img.style.transform=
+      "translate3d(0,0,0) scale(1)";
+
+  }
+
+}
+
+
+function updateGallery(){
 
   if(!activeImages.length){
 
-    image.src="";
-
-    dots.innerHTML="";
-
-    counter.textContent="0 / 0";
-
-    prev.disabled=true;
-    next.disabled=true;
+    document
+      .getElementById("galleryImg")
+      .src="";
 
     return;
 
   }
 
-  /*
-    Make sure the index is always valid.
-  */
+  document
+    .getElementById("galleryImg")
+    .src=
+      activeImages[imageIndex];
 
-  if(imageIndex<0)
-    imageIndex=0;
+  document
+    .getElementById("galleryImg")
+    .alt=
+      activeProduct?
+      getDisplayName(activeProduct):
+      "ORRA";
 
-  if(imageIndex>=activeImages.length)
-    imageIndex=activeImages.length-1;
-
-  image.src=
-    activeImages[imageIndex];
-
-  image.alt=
-    activeProduct?
-    getDisplayName(activeProduct):
-    "ORRA";
-
-  counter.textContent=
-    (imageIndex+1)+
-    " / "+
-    activeImages.length;
-
-  prev.disabled=
-    activeImages.length<=1;
-
-  next.disabled=
-    activeImages.length<=1;
-
-  dots.innerHTML=
-    activeImages.map((x,index)=>`
-
-      <span
-        class="dot ${index===imageIndex?"active":""}"
-      ></span>
-
-    `).join("");
+  resetImageZoom();
 
 }
 
 
-/* GALLERY NEXT / PREVIOUS */
+/*
+  IMAGE CLICK ZOOM
 
-function nextImage(){
-
-  if(activeImages.length<=1)
-    return;
-
-  imageIndex=
-    (imageIndex+1)%activeImages.length;
-
-  updateGallery();
-
-}
-
-
-function previousImage(){
-
-  if(activeImages.length<=1)
-    return;
-
-  imageIndex=
-    (
-      imageIndex-1+
-      activeImages.length
-    )%activeImages.length;
-
-  updateGallery();
-
-}
-
-
-/* PRODUCT SWIPE */
-
-let galleryStartX=0;
-let galleryStartY=0;
+  No zoom icon.
+  No plus.
+  No minus.
+  No reset.
+  The image zooms from the exact
+  place where the user clicks.
+*/
 
 const gallery=
   document.getElementById("gallery");
 
 gallery.addEventListener(
+  "click",
+  e=>{
+
+    if(
+      e.target.closest &&
+      e.target.closest(".details")
+    )
+      return;
+
+    if(imageZoom>1){
+
+      resetImageZoom();
+
+      return;
+
+    }
+
+    const rect=
+      gallery.getBoundingClientRect();
+
+    const x=
+      e.clientX-
+      rect.left;
+
+    const y=
+      e.clientY-
+      rect.top;
+
+    const percentX=
+      (x/rect.width)*100;
+
+    const percentY=
+      (y/rect.height)*100;
+
+    const img=
+      document.getElementById("galleryImg");
+
+    img.style.transformOrigin=
+      percentX+
+      "% "+
+      percentY+
+      "%";
+
+    imageZoom=2.2;
+
+    gallery.classList.add("zoomed");
+
+    applyImageTransform();
+
+  }
+);
+
+
+/*
+  MOUSE WHEEL ZOOM
+  No visible controls.
+*/
+
+gallery.addEventListener(
+  "wheel",
+  e=>{
+
+    e.preventDefault();
+
+    const rect=
+      gallery.getBoundingClientRect();
+
+    const x=
+      e.clientX-
+      rect.left;
+
+    const y=
+      e.clientY-
+      rect.top;
+
+    const percentX=
+      (x/rect.width)*100;
+
+    const percentY=
+      (y/rect.height)*100;
+
+    const img=
+      document.getElementById("galleryImg");
+
+    img.style.transformOrigin=
+      percentX+
+      "% "+
+      percentY+
+      "%";
+
+    if(e.deltaY<0){
+
+      imageZoom=
+        Math.min(
+          4,
+          imageZoom+0.35
+        );
+
+    }else{
+
+      imageZoom=
+        Math.max(
+          1,
+          imageZoom-0.35
+        );
+
+    }
+
+    if(imageZoom<=1){
+
+      resetImageZoom();
+
+    }else{
+
+      gallery.classList.add("zoomed");
+
+      applyImageTransform();
+
+    }
+
+  },
+  {passive:false}
+);
+
+
+/*
+  DOUBLE CLICK ZOOM
+*/
+
+gallery.addEventListener(
+  "dblclick",
+  e=>{
+
+    const rect=
+      gallery.getBoundingClientRect();
+
+    const x=
+      e.clientX-
+      rect.left;
+
+    const y=
+      e.clientY-
+      rect.top;
+
+    const percentX=
+      (x/rect.width)*100;
+
+    const percentY=
+      (y/rect.height)*100;
+
+    const img=
+      document.getElementById("galleryImg");
+
+    if(imageZoom>1){
+
+      resetImageZoom();
+
+      return;
+
+    }
+
+    img.style.transformOrigin=
+      percentX+
+      "% "+
+      percentY+
+      "%";
+
+    imageZoom=2.2;
+
+    gallery.classList.add("zoomed");
+
+    applyImageTransform();
+
+  }
+);
+
+
+/*
+  MOBILE PINCH ZOOM
+*/
+
+function getTouchDistance(touches){
+
+  if(touches.length<2)
+    return 0;
+
+  const dx=
+    touches[0].clientX-
+    touches[1].clientX;
+
+  const dy=
+    touches[0].clientY-
+    touches[1].clientY;
+
+  return Math.sqrt(
+    dx*dx+
+    dy*dy
+  );
+
+}
+
+
+gallery.addEventListener(
   "touchstart",
   e=>{
 
-    if(!e.touches[0])
+    if(e.touches.length===2){
+
+      pinchStartDistance=
+        getTouchDistance(e.touches);
+
+      pinchStartZoom=
+        imageZoom;
+
+      return;
+
+    }
+
+    if(
+      e.touches.length===1 &&
+      imageZoom>1
+    ){
+
+      zoomDragging=true;
+
+      zoomStartX=
+        e.touches[0].clientX-
+        imageTranslateX;
+
+      zoomStartY=
+        e.touches[0].clientY-
+        imageTranslateY;
+
+    }
+
+  },
+  {passive:true}
+);
+
+
+gallery.addEventListener(
+  "touchmove",
+  e=>{
+
+    if(e.touches.length===2){
+
+      e.preventDefault();
+
+      const distance=
+        getTouchDistance(e);
+
+      if(!pinchStartDistance)
+        return;
+
+      const scale=
+        distance/
+        pinchStartDistance;
+
+      imageZoom=
+        Math.max(
+          1,
+          Math.min(
+            4,
+            pinchStartZoom*scale
+          )
+        );
+
+      if(imageZoom>1)
+        gallery.classList.add("zoomed");
+
+      applyImageTransform();
+
+      return;
+
+    }
+
+    if(
+      e.touches.length===1 &&
+      imageZoom>1 &&
+      zoomDragging
+    ){
+
+      e.preventDefault();
+
+      imageTranslateX=
+        e.touches[0].clientX-
+        zoomStartX;
+
+      imageTranslateY=
+        e.touches[0].clientY-
+        zoomStartY;
+
+      applyImageTransform();
+
+    }
+
+  },
+  {passive:false}
+);
+
+
+gallery.addEventListener(
+  "touchend",
+  e=>{
+
+    if(e.touches.length===0){
+
+      if(imageZoom<=1){
+
+        resetImageZoom();
+
+      }
+
+      zoomDragging=false;
+
+      pinchStartDistance=0;
+
+    }
+
+  },
+  {passive:true}
+);
+
+
+/* SWIPE BETWEEN PRODUCT IMAGES */
+
+let galleryStartX=0;
+let galleryStartY=0;
+
+gallery.addEventListener(
+  "touchstart",
+  e=>{
+
+    if(
+      e.touches.length!==1 ||
+      imageZoom>1
+    )
       return;
 
     galleryStartX=
@@ -3802,11 +3478,15 @@ gallery.addEventListener(
   {passive:true}
 );
 
+
 gallery.addEventListener(
   "touchend",
   e=>{
 
-    if(!e.changedTouches[0])
+    if(
+      imageZoom>1 ||
+      !e.changedTouches[0]
+    )
       return;
 
     const dx=
@@ -3824,375 +3504,42 @@ gallery.addEventListener(
     )
       return;
 
-    if(dx<0)
-      nextImage();
-    else
-      previousImage();
+    /*
+      No arrows.
+      Swipe only.
+    */
+
+    if(dx<0){
+
+      if(activeImages.length>1){
+
+        imageIndex=
+          (imageIndex+1)%
+          activeImages.length;
+
+        updateGallery();
+
+      }
+
+    }else{
+
+      if(activeImages.length>1){
+
+        imageIndex=
+          (
+            imageIndex-1+
+            activeImages.length
+          )%
+          activeImages.length;
+
+        updateGallery();
+
+      }
+
+    }
 
   },
   {passive:true}
-);
-
-
-/* ZOOM */
-
-let zoomScale=1;
-let zoomX=0;
-let zoomY=0;
-
-let zoomDragging=false;
-let zoomStartX=0;
-let zoomStartY=0;
-let zoomStartTranslateX=0;
-let zoomStartTranslateY=0;
-
-let zoomPointers=new Map();
-let zoomPinchDistance=0;
-let zoomPinchStartScale=1;
-
-
-/*
-  Open zoom for the currently selected
-  product image.
-*/
-
-function openZoom(){
-
-  if(!activeImages.length)
-    return;
-
-  const viewer=
-    document.getElementById("zoomViewer");
-
-  const image=
-    document.getElementById("zoomImage");
-
-  image.src=
-    activeImages[imageIndex];
-
-  image.alt=
-    activeProduct
-      ?getDisplayName(activeProduct)
-      :"ORRA";
-
-  resetZoom();
-
-  viewer.classList.add("active");
-
-  lockPage();
-
-}
-
-
-/*
-  Close zoom.
-*/
-
-function closeZoom(shouldUnlock=true){
-
-  const viewer=
-    document.getElementById("zoomViewer");
-
-  if(!viewer)
-    return;
-
-  viewer.classList.remove("active");
-
-  zoomPointers.clear();
-
-  zoomDragging=false;
-
-  if(shouldUnlock)
-    unlockPage();
-
-}
-
-
-/*
-  Apply zoom transformation.
-*/
-
-function applyZoom(){
-
-  const image=
-    document.getElementById("zoomImage");
-
-  image.style.transform=
-    `translate3d(${zoomX}px,${zoomY}px,0) scale(${zoomScale})`;
-
-  document
-    .getElementById("zoomLevel")
-    .textContent=
-      Math.round(zoomScale*100)+"%";
-
-}
-
-
-/*
-  Keep zoom between 1x and 4x.
-*/
-
-function setZoom(value){
-
-  zoomScale=
-    Math.max(
-      1,
-      Math.min(4,value)
-    );
-
-  if(zoomScale===1){
-
-    zoomX=0;
-    zoomY=0;
-
-  }
-
-  applyZoom();
-
-}
-
-
-function zoomIn(){
-
-  setZoom(
-    zoomScale+0.25
-  );
-
-}
-
-
-function zoomOut(){
-
-  setZoom(
-    zoomScale-0.25
-  );
-
-}
-
-
-function resetZoom(){
-
-  zoomScale=1;
-  zoomX=0;
-  zoomY=0;
-
-  applyZoom();
-
-}
-
-
-/* DOUBLE CLICK / DOUBLE TAP ZOOM */
-
-document
-  .getElementById("zoomImage")
-  .addEventListener(
-    "dblclick",
-    e=>{
-
-      if(zoomScale>1)
-        resetZoom();
-      else
-        setZoom(2);
-
-    }
-  );
-
-
-/* MOUSE WHEEL ZOOM */
-
-document
-  .getElementById("zoomImageWrap")
-  .addEventListener(
-    "wheel",
-    e=>{
-
-      e.preventDefault();
-
-      if(e.deltaY<0)
-        zoomIn();
-      else
-        zoomOut();
-
-    },
-    {passive:false}
-  );
-
-
-/* ZOOM DRAG + PINCH */
-
-const zoomWrap=
-  document.getElementById("zoomImageWrap");
-
-zoomWrap.addEventListener(
-  "pointerdown",
-  e=>{
-
-    if(e.target!==document.getElementById("zoomImage"))
-      return;
-
-    e.preventDefault();
-
-    zoomPointers.set(
-      e.pointerId,
-      {
-        x:e.clientX,
-        y:e.clientY
-      }
-    );
-
-    if(zoomPointers.size===1){
-
-      zoomDragging=true;
-
-      zoomStartX=e.clientX;
-      zoomStartY=e.clientY;
-
-      zoomStartTranslateX=zoomX;
-      zoomStartTranslateY=zoomY;
-
-      document
-        .getElementById("zoomImage")
-        .classList
-        .add("dragging");
-
-    }
-
-    if(zoomPointers.size===2){
-
-      zoomDragging=false;
-
-      const points=
-        Array.from(
-          zoomPointers.values()
-        );
-
-      zoomPinchDistance=
-        Math.hypot(
-          points[0].x-points[1].x,
-          points[0].y-points[1].y
-        );
-
-      zoomPinchStartScale=
-        zoomScale;
-
-    }
-
-  }
-);
-
-
-zoomWrap.addEventListener(
-  "pointermove",
-  e=>{
-
-    if(!zoomPointers.has(e.pointerId))
-      return;
-
-    zoomPointers.set(
-      e.pointerId,
-      {
-        x:e.clientX,
-        y:e.clientY
-      }
-    );
-
-    if(zoomPointers.size===2){
-
-      const points=
-        Array.from(
-          zoomPointers.values()
-        );
-
-      const distance=
-        Math.hypot(
-          points[0].x-points[1].x,
-          points[0].y-points[1].y
-        );
-
-      if(zoomPinchDistance>0){
-
-        const ratio=
-          distance/
-          zoomPinchDistance;
-
-        setZoom(
-          zoomPinchStartScale*
-          ratio
-        );
-
-      }
-
-      return;
-
-    }
-
-    if(
-      zoomDragging &&
-      zoomScale>1
-    ){
-
-      zoomX=
-        zoomStartTranslateX+
-        (e.clientX-zoomStartX);
-
-      zoomY=
-        zoomStartTranslateY+
-        (e.clientY-zoomStartY);
-
-      applyZoom();
-
-    }
-
-  }
-);
-
-
-function endZoomPointer(e){
-
-  zoomPointers.delete(
-    e.pointerId
-  );
-
-  if(zoomPointers.size===0){
-
-    zoomDragging=false;
-
-    document
-      .getElementById("zoomImage")
-      .classList
-      .remove("dragging");
-
-  }
-
-}
-
-
-zoomWrap.addEventListener(
-  "pointerup",
-  endZoomPointer
-);
-
-zoomWrap.addEventListener(
-  "pointercancel",
-  endZoomPointer
-);
-
-zoomWrap.addEventListener(
-  "pointerleave",
-  e=>{
-
-    if(
-      zoomDragging &&
-      zoomPointers.size===1
-    ){
-
-      /*
-        Keep pointer state until release.
-      */
-
-    }
-
-  }
 );
 
 
@@ -4217,7 +3564,6 @@ document.addEventListener(
       target.closest &&
       target.closest(
         "#gallery,"+
-        "#zoomViewer,"+
         "#bagPanel,"+
         "#checkoutPanel,"+
         "#searchPanel,"+
@@ -4231,8 +3577,7 @@ document.addEventListener(
       isOpen("productModal")||
       isOpen("bagPanel")||
       isOpen("checkoutPanel")||
-      isOpen("searchPanel")||
-      isOpen("zoomViewer")
+      isOpen("searchPanel")
     ){
       return;
     }
@@ -4364,7 +3709,6 @@ function openBag(){
   closeProduct(false);
   closeCheckout();
   closeSearch();
-  closeZoom();
 
   renderBag();
 
@@ -4643,7 +3987,6 @@ function openSearch(){
   closeProduct(false);
   closeBag();
   closeCheckout();
-  closeZoom();
 
   document
     .getElementById("searchPanel")
@@ -4675,11 +4018,7 @@ function closeSearch(){
 }
 
 
-/*
-  SEARCH
-
-  Search results are also color-specific.
-*/
+/* SEARCH */
 
 function searchProducts(){
 
@@ -4701,48 +4040,29 @@ function searchProducts(){
 
   }
 
-  /*
-    Search the grouped products first.
-
-    Category search also understands
-    multiple categories.
-  */
-
   const matchedProducts=
-    catalogProducts.filter(product=>{
+    catalogProducts.filter(product=>
 
-      const categories=
-        getProductCategories(product)
-          .join(" ")
-          .toLowerCase();
+      String(product.name||"")
+        .toLowerCase()
+        .includes(query)
 
-      return(
+      ||
 
-        String(product.name||"")
-          .toLowerCase()
-          .includes(query)
+      String(product.category||"")
+        .toLowerCase()
+        .includes(query)
 
-        ||
+      ||
 
-        categories.includes(query)
+      getColorVariants(product)
+        .some(variant=>
+          String(variant.name||"")
+            .toLowerCase()
+            .includes(query)
+        )
 
-        ||
-
-        getColorVariants(product)
-          .some(variant=>
-            String(variant.name||"")
-              .toLowerCase()
-              .includes(query)
-          )
-
-      );
-
-    });
-
-  /*
-    Then expand colors into separate
-    search result cards.
-  */
+  );
 
   const matches=
     buildDisplayItems(matchedProducts);
@@ -4950,21 +4270,13 @@ document.addEventListener(
   "keydown",
   e=>{
 
-    if(e.key==="Escape"){
+    if(e.key!=="Escape")
+      return;
 
-      if(isOpen("zoomViewer")){
-
-        closeZoom();
-        return;
-
-      }
-
-      closeProduct();
-      closeBag();
-      closeCheckout();
-      closeSearch();
-
-    }
+    closeProduct();
+    closeBag();
+    closeCheckout();
+    closeSearch();
 
   }
 );
