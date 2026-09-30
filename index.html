@@ -1525,7 +1525,7 @@ const SUPABASE_URL =
 "https://zkgjtrpmonhnmtxtdjnf.supabase.co";
 
 const SUPABASE_KEY =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InprZ2p0cnBtb25obm10eHRkam5mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2MDMyNjIsImV4cCI6MjEwNjE3OTI2Mn0.6v7t3gTxgE6YtgBNDLQm8NwdK8vQlovlzgCoeGNxzWk";
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InprZ2p0cG1vbG5obXR4dGRqbmYiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc5MDYwMzI2MiwiZXhwIjoxNjEwNjE3OTI2Mn0.6v7t3gTxgE6YtgBNDLQm8NwdK8vQlovlzgCoeGNxzWk";
 
 const DELIVERY_CHARGE=5;
 
@@ -1717,8 +1717,7 @@ function shop(){
 /*
   SHOW NEW IN
 
-  New In contains ALL product colors.
-  Every color becomes its own card.
+  New In contains ALL products.
 */
 
 function showNewIn(){
@@ -1750,13 +1749,21 @@ function showNewIn(){
 /*
   FILTER CATEGORY
 
-  Every color becomes a separate card.
+  Categories can contain multiple values.
+
+  Example:
+  DRESSES, NEW IN
+
+  A product with DRESSES, NEW IN
+  appears in both collections.
 */
 
 function filterCategory(category){
 
   selectedCategory=
-    String(category||"").toUpperCase();
+    String(category||"")
+      .trim()
+      .toUpperCase();
 
   const title=
     document.getElementById("shopTitle");
@@ -1782,6 +1789,105 @@ function filterCategory(category){
       });
 
   },30);
+
+}
+
+
+/* CATEGORY HELPERS */
+
+/*
+  Converts the category field into a clean list.
+
+  Accepted examples:
+
+  DRESSES
+
+  DRESSES, NEW IN
+
+  DRESSES,NEW IN
+
+  DRESSES | NEW IN
+
+  DRESSES;NEW IN
+*/
+
+function getCategories(value){
+
+  if(Array.isArray(value)){
+
+    return value
+      .flatMap(item=>getCategories(item));
+
+  }
+
+  return String(value||"")
+    .split(/[,;|]+/)
+    .map(x=>x.trim())
+    .filter(Boolean);
+
+}
+
+
+/*
+  Checks one exact category.
+
+  This prevents problems such as
+  matching text accidentally with
+  another category.
+*/
+
+function productHasCategory(product,category){
+
+  const wanted=
+    normalizeVariantName(category);
+
+  if(!wanted)
+    return false;
+
+  return getCategories(product.category)
+    .some(item=>
+      normalizeVariantName(item)===wanted
+    );
+
+}
+
+
+/*
+  Merges categories from multiple
+  Supabase rows belonging to the
+  same product.
+*/
+
+function mergeCategories(first,second){
+
+  const values=[
+    ...getCategories(first),
+    ...getCategories(second)
+  ];
+
+  const result=[];
+  const seen=new Set();
+
+  values.forEach(value=>{
+
+    const clean=
+      String(value||"").trim();
+
+    if(!clean)
+      return;
+
+    const key=
+      normalizeVariantName(clean);
+
+    if(seen.has(key))
+      return;
+
+    seen.add(key);
+    result.push(clean);
+
+  });
+
+  return result.join(", ");
 
 }
 
@@ -2025,7 +2131,7 @@ function getColorVariants(product){
 }
 
 
-/* NORMALIZE VARIANT */
+/* NORMALIZE VARIANT NAME */
 
 function normalizeVariantName(name){
 
@@ -2214,6 +2320,21 @@ function buildCatalogProducts(rows){
 
     const group=
       groups.get(key);
+
+    /*
+      IMPORTANT FIX:
+
+      If the same product exists in
+      multiple Supabase rows and one row
+      is DRESSES while another is NEW IN,
+      keep BOTH categories.
+    */
+
+    group.category=
+      mergeCategories(
+        group.category,
+        category
+      );
 
     group._mergedRows.push(row);
 
@@ -2634,11 +2755,24 @@ function renderProducts(){
 
   if(selectedCategory!=="ALL"){
 
+    /*
+      IMPORTANT FIX:
+
+      Categories are now treated as
+      separate values.
+
+      Example:
+      DRESSES, NEW IN
+
+      will match DRESSES correctly.
+    */
+
     list=
       list.filter(product=>
-        String(product.category||"")
-          .toUpperCase()
-          .includes(selectedCategory)
+        productHasCategory(
+          product,
+          selectedCategory
+        )
       );
 
   }
@@ -3121,6 +3255,7 @@ function updateGallery(){
   No plus.
   No minus.
   No reset.
+
   The image zooms from the exact
   place where the user clicks.
 */
@@ -4049,9 +4184,12 @@ function searchProducts(){
 
       ||
 
-      String(product.category||"")
-        .toLowerCase()
-        .includes(query)
+      getCategories(product.category)
+        .some(category=>
+          String(category||"")
+            .toLowerCase()
+            .includes(query)
+        )
 
       ||
 
