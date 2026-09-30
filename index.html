@@ -297,7 +297,8 @@ header{
 .product-price{
   font-size:12px;
   color:#000 !important;
-  -webkit-text-fill-color:#000
+  -webkit-text-fill-color:#000;
+  margin-bottom:8px
 }
 
 .product-cat{
@@ -306,6 +307,32 @@ header{
   letter-spacing:1.2px;
   margin-top:5px;
   text-transform:uppercase
+}
+
+/* PRODUCT COLOR DOTS */
+
+.product-colors{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  min-height:16px;
+  margin-top:2px
+}
+
+.product-color-dot{
+  width:12px;
+  height:12px;
+  min-width:12px;
+  border-radius:50%;
+  border:1px solid #d2d2d2;
+  display:inline-block
+}
+
+.product-color-more{
+  font-size:9px;
+  color:#555;
+  margin-left:2px;
+  letter-spacing:.3px
 }
 
 .loading{
@@ -853,6 +880,16 @@ footer a{
   .products{
     grid-template-columns:repeat(2,1fr);
     gap:25px 9px
+  }
+
+  .product-color-dot{
+    width:11px;
+    height:11px;
+    min-width:11px
+  }
+
+  .product-color-more{
+    font-size:8px
   }
 
   .editorial{
@@ -1498,6 +1535,7 @@ const GITHUB=
 "https://raw.githubusercontent.com/orrafashion/Orra/main/";
 
 let products=[];
+let catalogProducts=[];
 let shownProducts=[];
 let selectedCategory="ALL";
 
@@ -1783,6 +1821,25 @@ async function loadProducts(){
         new Date(a.created_at||0)
     );
 
+    /*
+      IMPORTANT:
+
+      We now build one catalog item from
+      multiple Supabase rows when they
+      have the same product name/category.
+
+      This means:
+      Bexy Set BLACK
+      Bexy Set WHITE
+      Bexy Set BROWN
+
+      can automatically become ONE
+      Bexy Set product with multiple colors.
+    */
+
+    catalogProducts=
+      buildCatalogProducts(products);
+
     renderProducts();
 
   }catch(error){
@@ -1823,6 +1880,18 @@ function isOlivia(product){
 
 }
 
+
+/*
+  Converts every possible color_variants
+  format into:
+
+  [
+    {
+      name:"Black",
+      images:["url1","url2"]
+    }
+  ]
+*/
 
 function getColorVariants(product){
 
@@ -1905,28 +1974,94 @@ function getColorVariants(product){
 }
 
 
-function getDisplayName(product){
+/* NORMALIZE VARIANT */
 
-  if(isOlivia(product))
-    return "Olivia Dress";
+function normalizeVariantName(name){
 
-  return product.name;
+  return String(name||"")
+    .trim()
+    .toLowerCase();
 
 }
 
 
-/* IMAGES */
+/*
+  Try to find a color from:
+  - color_variants
+  - color column
+  - variant column
+  - product_color column
+*/
 
-function getImages(product){
+function getRowColor(product){
 
-  const variants=
-    getColorVariants(product);
+  const possibleFields=[
+    "color",
+    "Color",
+    "variant",
+    "Variant",
+    "product_color",
+    "ProductColor",
+    "colour",
+    "Colour"
+  ];
 
-  if(variants.length){
+  for(const field of possibleFields){
 
-    return variants[0].images;
+    if(
+      product &&
+      product[field] !== undefined &&
+      product[field] !== null &&
+      String(product[field]).trim()
+    ){
+
+      return String(product[field]).trim();
+
+    }
 
   }
+
+  return "";
+
+}
+
+
+/*
+  If a row contains one image and a color
+  we turn it into a variant.
+*/
+
+function getSingleRowVariant(product){
+
+  const color=
+    getRowColor(product);
+
+  if(!color)
+    return null;
+
+  const images=
+    getImagesWithoutVariants(product);
+
+  if(!images.length)
+    return null;
+
+  return{
+
+    name:color,
+
+    images:images
+
+  };
+
+}
+
+
+/*
+  Get normal images without calling
+  getColorVariants() to avoid loops.
+*/
+
+function getImagesWithoutVariants(product){
 
   if(
     product.name===
@@ -1987,26 +2122,405 @@ function getImages(product){
       .filter(Boolean)
       .map(normalizeImage);
 
-  if(!images.length){
+  return[
+    ...new Set(images)
+  ];
 
-    images=[
-      GITHUB+"IMG_3097.jpeg"
+}
+
+
+/*
+  MAIN AUTOMATIC GROUPING SYSTEM.
+
+  Products with the same NAME + CATEGORY
+  become one product.
+
+  Their colors/images are merged.
+*/
+
+function buildCatalogProducts(rows){
+
+  const groups=new Map();
+
+  rows.forEach(row=>{
+
+    const name=
+      String(
+        row.name||
+        "ORRA PRODUCT"
+      ).trim();
+
+    const category=
+      String(
+        row.category||
+        "ORRA"
+      ).trim();
+
+    const key=
+      normalizeVariantName(name)+
+      "||"+
+      normalizeVariantName(category);
+
+    if(!groups.has(key)){
+
+      groups.set(
+        key,
+        {
+          ...row,
+
+          name:name,
+
+          category:category,
+
+          _mergedVariants:[],
+
+          _mergedRows:[]
+        }
+      );
+
+    }
+
+    const group=
+      groups.get(key);
+
+    group._mergedRows.push(row);
+
+    /*
+      First:
+      use color_variants if available.
+    */
+
+    const variants=
+      getColorVariants(row);
+
+    if(variants.length){
+
+      variants.forEach(variant=>{
+
+        mergeVariant(
+          group._mergedVariants,
+          variant
+        );
+
+      });
+
+    }else{
+
+      /*
+        Otherwise check if this row has
+        a simple color field.
+      */
+
+      const single=
+        getSingleRowVariant(row);
+
+      if(single){
+
+        mergeVariant(
+          group._mergedVariants,
+          single
+        );
+
+      }
+
+    }
+
+  });
+
+  const result=
+    Array.from(groups.values());
+
+  result.forEach(group=>{
+
+    /*
+      If no merged variants exist,
+      keep the original product.
+    */
+
+    if(
+      !group._mergedVariants.length
+    ){
+
+      delete group._mergedVariants;
+      delete group._mergedRows;
+
+      return;
+
+    }
+
+    /*
+      Save merged variants in the same
+      format used everywhere else.
+    */
+
+    group.color_variants=
+      group._mergedVariants;
+
+    /*
+      Use first image as fallback.
+    */
+
+    if(
+      !group.image_url &&
+      group._mergedVariants[0]?.images?.[0]
+    ){
+
+      group.image_url=
+        group._mergedVariants[0].images[0];
+
+    }
+
+    delete group._mergedVariants;
+    delete group._mergedRows;
+
+  });
+
+  return result;
+
+}
+
+
+/*
+  Merge two variants with the same color.
+  Images are combined without duplicates.
+*/
+
+function mergeVariant(list,variant){
+
+  if(
+    !variant ||
+    !variant.name ||
+    !Array.isArray(variant.images)
+  )
+    return;
+
+  const name=
+    String(variant.name).trim();
+
+  if(!name)
+    return;
+
+  const existing=
+    list.find(v=>
+      normalizeVariantName(v.name)===
+      normalizeVariantName(name)
+    );
+
+  if(existing){
+
+    existing.images=[
+      ...new Set([
+        ...existing.images,
+        ...variant.images
+      ])
     ];
+
+  }else{
+
+    list.push({
+
+      name:name,
+
+      images:[
+        ...new Set(
+          variant.images
+            .map(normalizeImage)
+            .filter(Boolean)
+        )
+      ]
+
+    });
 
   }
 
-  return[...new Set(images)];
+}
+
+
+/* DISPLAY NAME */
+
+function getDisplayName(product){
+
+  if(isOlivia(product))
+    return "Olivia Dress";
+
+  return product.name;
+
+}
+
+
+/* IMAGES */
+
+function getImages(product){
+
+  const variants=
+    getColorVariants(product);
+
+  if(variants.length){
+
+    return variants[0].images;
+
+  }
+
+  return getImagesWithoutVariants(product);
 
 }
 
 
 function normalizeImage(url){
 
-  if(/^https?:\/\//i.test(url))
-    return url;
+  if(!url)
+    return "";
+
+  const value=
+    String(url).trim();
+
+  if(/^https?:\/\//i.test(value))
+    return value;
 
   return GITHUB+
-    url.replace(/^\/+/,"");
+    value.replace(/^\/+/,"");
+
+}
+
+
+/* COLOR DOT */
+
+function colorToCss(color){
+
+  const name=
+    String(color||"")
+      .toLowerCase()
+      .trim();
+
+  if(name.includes("black"))
+    return "#111111";
+
+  if(name.includes("white"))
+    return "#ffffff";
+
+  if(
+    name.includes("brown")||
+    name.includes("chocolate")||
+    name.includes("coffee")
+  )
+    return "#795548";
+
+  if(
+    name.includes("navy")||
+    name.includes("dark blue")
+  )
+    return "#1d2b45";
+
+  if(
+    name==="blue"||
+    name.includes("blue")
+  )
+    return "#4169a1";
+
+  if(
+    name.includes("grey")||
+    name.includes("gray")
+  )
+    return "#999999";
+
+  if(
+    name.includes("mint")||
+    name.includes("green")
+  )
+    return "#9bcdb5";
+
+  if(
+    name.includes("yellow")
+  )
+    return "#e4c64d";
+
+  if(
+    name.includes("beige")||
+    name.includes("cream")
+  )
+    return "#d7c2a3";
+
+  if(
+    name.includes("pink")
+  )
+    return "#e7a9b8";
+
+  if(
+    name.includes("red")||
+    name.includes("burgundy")
+  )
+    return "#8e2634";
+
+  if(
+    name.includes("purple")
+  )
+    return "#8064a2";
+
+  return "#d0d0d0";
+
+}
+
+
+/* PRODUCT COLOR INDICATORS */
+
+function renderProductColorDots(product){
+
+  const variants=
+    getColorVariants(product);
+
+  if(!variants.length)
+    return "";
+
+  const maxDots=4;
+
+  const visible=
+    variants.slice(0,maxDots);
+
+  const extra=
+    variants.length-maxDots;
+
+  return`
+
+    <div
+      class="product-colors"
+      aria-label="${escapeAttr(
+        variants
+          .map(v=>v.name)
+          .join(", ")
+      )}"
+    >
+
+      ${visible.map(variant=>`
+
+        <span
+          class="product-color-dot"
+          title="${escapeAttr(variant.name)}"
+          style="
+            background:${colorToCss(variant.name)};
+            ${
+              normalizeVariantName(variant.name)
+                .includes("white")
+                ? "border:1px solid #999;"
+                : ""
+            }
+          "
+        ></span>
+
+      `).join("")}
+
+      ${
+        extra>0
+        ?`
+          <span class="product-color-more">
+            +${extra}
+          </span>
+        `
+        :""
+      }
+
+    </div>
+
+  `;
 
 }
 
@@ -2015,7 +2529,8 @@ function normalizeImage(url){
 
 function renderProducts(){
 
-  let list=[...products];
+  let list=
+    [...catalogProducts];
 
   if(selectedCategory!=="ALL"){
 
@@ -2028,54 +2543,30 @@ function renderProducts(){
 
   }
 
-  const displayItems=[];
+  /*
+    IMPORTANT:
+    One card = one product.
 
-  list.forEach(product=>{
+    Colors are NOT turned into separate cards.
+  */
 
-    const variants=
-      getColorVariants(product);
+  shownProducts=
+    list.map(product=>({
 
-    if(variants.length){
+      product:product
 
-      variants.forEach(variant=>{
+    }));
 
-        displayItems.push({
-
-          product:product,
-
-          color:variant.name,
-
-          image:variant.images[0]
-
-        });
-
-      });
-
-    }else{
-
-      displayItems.push({
-
-        product:product,
-
-        color:"",
-
-        image:getImages(product)[0]
-
-      });
-
-    }
-
-  });
-
-  shownProducts=displayItems;
+  const count=
+    shownProducts.length;
 
   document
     .getElementById("count")
     .textContent=
-      displayItems.length+
-      (displayItems.length===1?" ITEM":" ITEMS");
+      count+
+      (count===1?" ITEM":" ITEMS");
 
-  if(!displayItems.length){
+  if(!count){
 
     document
       .getElementById("products")
@@ -2092,9 +2583,18 @@ function renderProducts(){
     .getElementById("products")
     .innerHTML=
 
-    displayItems.map((item,index)=>{
+    shownProducts.map((item,index)=>{
 
-      const product=item.product;
+      const product=
+        item.product;
+
+      const variants=
+        getColorVariants(product);
+
+      const firstImage=
+        variants.length
+          ? variants[0].images[0]
+          : getImages(product)[0];
 
       return`
 
@@ -2106,14 +2606,12 @@ function renderProducts(){
           <div class="product-img">
 
             <img
-              src="${escapeAttr(item.image)}"
+              src="${escapeAttr(firstImage||"")}"
               alt="${escapeAttr(
-                getDisplayName(product)+
-                (item.color
-                  ? " - "+item.color
-                  : "")
+                getDisplayName(product)
               )}"
               loading="lazy"
+              onerror="this.style.opacity='0'"
             >
 
           </div>
@@ -2130,13 +2628,14 @@ function renderProducts(){
               $${formatPrice(product.price)}
             </div>
 
+            ${
+              variants.length
+              ?renderProductColorDots(product)
+              :""
+            }
+
             <div class="product-cat">
-
-              ${item.color
-                ? escapeHtml(item.color)
-                : escapeHtml(product.category)
-              }
-
+              ${escapeHtml(product.category)}
             </div>
 
           </div>
@@ -2159,8 +2658,7 @@ function openProductByIndex(index){
     return;
 
   openProduct(
-    item.product,
-    item.color
+    item.product
   );
 
 }
@@ -2309,11 +2807,12 @@ function renderColors(){
       <button
         type="button"
         class="color-btn ${
-          variant.name===selectedColor
+          String(variant.name).toLowerCase()===
+          String(selectedColor).toLowerCase()
             ?"selected"
             :""
         }"
-        onclick="selectColor('${escapeAttr(variant.name)}')"
+        onclick="selectColorByName('${escapeAttr(variant.name)}')"
       >
         ${escapeHtml(variant.name)}
       </button>
@@ -2323,7 +2822,7 @@ function renderColors(){
 }
 
 
-function selectColor(color){
+function selectColorByName(color){
 
   if(!activeProduct)
     return;
@@ -2420,8 +2919,19 @@ function selectSize(button,size){
 
 function updateGallery(){
 
-  if(!activeImages.length)
+  if(!activeImages.length){
+
+    document
+      .getElementById("galleryImg")
+      .src="";
+
+    document
+      .getElementById("dots")
+      .innerHTML="";
+
     return;
+
+  }
 
   document
     .getElementById("galleryImg")
@@ -3031,7 +3541,7 @@ function searchProducts(){
   }
 
   const matches=
-    products.filter(product=>
+    catalogProducts.filter(product=>
 
       String(product.name||"")
         .toLowerCase()
@@ -3042,6 +3552,15 @@ function searchProducts(){
       String(product.category||"")
         .toLowerCase()
         .includes(query)
+
+      ||
+
+      getColorVariants(product)
+        .some(variant=>
+          String(variant.name||"")
+            .toLowerCase()
+            .includes(query)
+        )
 
   );
 
@@ -3103,12 +3622,16 @@ function searchProducts(){
 
             <span
               style="
+                display:block;
                 font-size:11px;
-                color:#000
+                color:#000;
+                margin-bottom:7px
               "
             >
               $${formatPrice(product.price)}
             </span>
+
+            ${renderProductColorDots(product)}
 
           </span>
 
